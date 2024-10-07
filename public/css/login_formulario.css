@@ -24,14 +24,7 @@ body{
     height: 100vh;
 }
 
-.container-login {
-    width: 30vw;
-    height: 85vh;
-    background-color: rgba(255, 255, 255, 0.76);
-    border-radius: 10px;
-    -webkit-backdrop-filter: blur(3px);
-backdrop-filter: blur(3px);
-}
+
 
 .logo{
     width: 20vw;
@@ -46,7 +39,7 @@ h2{
     margin-bottom: 30px;
 }
 
-input{
+.input-login{
     background-color: transparent;
     border: none;
     border-bottom: solid 2px #242424;
@@ -58,7 +51,7 @@ input{
     outline: none;
 }
 
-input::placeholder {
+.input-login::placeholder {
     font-size: 20px;
     transform: translateY(100%);
     color: #242424;
@@ -89,4 +82,36 @@ input::placeholder {
     text-align: center;
     display: block;
     margin-top: 5px;
+}
+/*  CADASTRO */
+
+.forms{
+    width: 10vw;
+    height: 8vh;
+    background-color: #fffefe;
+    border: none;
+    font-size: 25px;
+    font-weight: 200;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 30px auto 0 auto;
+    display: block;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.forms a{
+    text-decoration: none;
+    color: black;
+}
+
+/*Formulario*/
+
+.container-form {
+    width: 80vw;
+    height: 85vh;
+    background-color: rgba(255, 255, 255, 0.76);
+    border-radius: 10px;
+    -webkit-backdrop-filter: blur(3px);
+backdrop-filter: blur(3px);
 }

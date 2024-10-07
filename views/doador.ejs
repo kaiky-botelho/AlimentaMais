@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/login_formulario.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="container-form">
+            <img src="/img/logo.png" alt="" class="logo">
+            <h2>FORMULÁRIO DOADOR</h2>
+            <form action='/cadastroDoador' method='post'>
+                <input type="text" id="name" name="name" placeholder="Nome Completo ou Razão Social" required>
+
+                <input type="text" id="cpf" name="cpf" placeholder="CPF OU CNPJ" required>
+
+                <input type="text" id="telefone" name="telefone" placeholder="Telefone" required> <br>
+
+                <input type="email" id="email" name="email" placeholder="Digite o seu E-mail" required>
+
+                <input type="text" id="cep" name="cep" placeholder="CEP" required>
+
+                <input type="text" id="cidade" name="cidade" placeholder="senha" required>
+
+                <input type="text" id="password" name="password" placeholder="Digite a sua senha" required><br>
+
+                <select name="UF" id="UF" aria-placeholder="UF">
+                    <option value="UF">UF</option>
+                </select>
+
+                <input type="text" id="endereco" name="endereco" placeholder="Endereço">
+
+                <input type="text" id="numero" name="numero" placeholder="Nº">
+
+                <input type="text" id="bairro" name="bairro" placeholder="Bairro">
+
+                <input type="text" id="complemento" name="complemento" placeholder="complemento"> <br>
+
+                <div class="container-doacoes">
+                    <h3>Frequência das Doações</h3> <br>
+                    <input type="checkbox" name="unica" id="unica">
+                    <label for="unica">Única</label>
+                    <input type="checkbox" name="recorrente" id="recorrente">
+                    <label for="unica">Recorrente</label>
+                </div>
+
+                <div class="container-contato">
+                    <h3>Preferência de Contato</h3> <br>
+                    <input type="checkbox" name="whatsapp" id="whatsapp">
+                    <label for="unica">whatsapp</label>
+                    <input type="checkbox" name="sms" id="sms">
+                    <label for="unica">Recorrente</label>
+                </div>
+
+                <button type="submit" class="entrar-voltar">concluir</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

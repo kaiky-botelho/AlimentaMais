@@ -14,6 +14,18 @@ app.get('/cadastro', (req, res) => {
     res.render('cadastro')
 });
 
+app.get('/doador', (req, res) => {
+    res.render('doador')
+});
+
+app.get('/voluntario', (req, res) => {
+    res.render('voluntario')
+});
+
+app.get('/beneficiario', (req, res) => {
+    res.render('beneficiario')
+});
+
 app.use(express.static('public'));
 
 app.listen(3000, () => {
