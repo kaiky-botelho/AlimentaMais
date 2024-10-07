@@ -1,0 +1,92 @@
+/* Configuração geral */
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/*Login*/
+
+body{
+    background-image: url("/img/fundo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container-login {
+    width: 30vw;
+    height: 85vh;
+    background-color: rgba(255, 255, 255, 0.76);
+    border-radius: 10px;
+    -webkit-backdrop-filter: blur(3px);
+backdrop-filter: blur(3px);
+}
+
+.logo{
+    width: 20vw;
+    display: block;
+    margin: 15px auto 30px auto;
+}
+
+h2{
+    font-size: 30px;
+    text-align: center;
+    color: #143021;
+    margin-bottom: 30px;
+}
+
+input{
+    background-color: transparent;
+    border: none;
+    border-bottom: solid 2px #242424;
+    display: block;
+    margin: 0 auto 20px auto;
+    width: 25vw;
+    height: 10vh;
+    padding: 0; 
+    outline: none;
+}
+
+input::placeholder {
+    font-size: 20px;
+    transform: translateY(100%);
+    color: #242424;
+}
+
+.esqueceu{
+        color: #317039;
+        text-align: right;
+        display: block;
+    }
+
+    .entrar-voltar {
+    width: 10vw;
+    background-color: #E07758;
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 200;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 30px auto 0 auto;
+    display: block;
+}
+
+.cadastro {
+    color: #317039;
+    text-align: center;
+    display: block;
+    margin-top: 5px;
+}
