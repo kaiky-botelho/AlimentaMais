@@ -99,31 +99,24 @@ h2 {
 
 /* Formulário de cadastro */
 .forms {
-    width: 10vw;
+    width: 16vw;
     height: 8vh;
-    background-color: #fffefe;
+    background-color: rgba(255, 255, 255, 0.3);
     border: none;
     font-size: 25px;
-    font-weight: 200;
+    font-weight: 500;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     margin: 30px auto 0 auto;
     display: block;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px)
 }
+
 
 .forms a {
     text-decoration: none;
     color: black;
-}
-
-/* Container de formulário */
-.container-form {
-    width: 80vw;
-    height: 85vh;
-    background-color: rgba(255, 255, 255, 0.76);
-    border-radius: 10px;
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
 }

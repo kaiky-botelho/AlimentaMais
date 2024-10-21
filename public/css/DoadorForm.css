@@ -1,0 +1,107 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container-form {
+    background-color: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente */
+    backdrop-filter: blur(15px); /* Fundo desfocado */
+    -webkit-backdrop-filter: blur(15px); /* Suporte para Safari */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    width: 60vw;
+    max-width: 900px;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 20px auto;
+    width: 150px;
+}
+
+h2 {
+    text-align: center;
+    color: #234d20;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+input,
+select {
+    width: 48%; /* Ajuste para que todos os campos tenham a mesma largura */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input[type="text"]:nth-child(4),
+input[type="email"]:nth-child(5),
+input[type="text"]:nth-child(10), /* Bairro */
+input[type="text"]:nth-child(11), /* Complemento */
+select {
+    width: 48%; /* Garantindo que select tenha o mesmo tamanho */
+}
+
+input[type="text"]:nth-child(12) { /* Para o campo complemento */
+    width: 48%; /* Garantindo que tenha a mesma largura */
+}
+
+.container-doacoes,
+.container-contato {
+    width: 100%;
+    margin-top: 15px;
+}
+
+h3 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #234d20;
+}
+
+.checkbox-label {
+    display: flex; /* Alinhamento horizontal dos checkbox e label */
+    align-items: center; /* Alinha verticalmente */
+    margin-bottom: 10px; /* Espaçamento entre cada checkbox-label */
+}
+
+label {
+    margin-left: -191px; /* Espaçamento entre o checkbox e a label */
+    font-size: 14px;
+}
+
+.entrar-voltar {
+    width: 100%;
+    padding: 15px;
+    background-color: #d97b5e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.entrar-voltar:hover {
+    background-color: #c56653;
+}
+
+p{
+    margin-left: -20px;
+}
