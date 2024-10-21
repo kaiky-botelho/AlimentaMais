@@ -19,6 +19,7 @@ body {
 }
 
 /* Centralização de conteúdo */
+
 .container {
     display: flex;
     flex-direction: column;
@@ -28,6 +29,7 @@ body {
 }
 
 /* Logo */
+
 .logo {
     width: 20vw;
     display: block;
