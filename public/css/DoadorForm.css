@@ -51,8 +51,10 @@ select {
     font-size: 16px;
 }
 
+/* Ajustes para os campos específicos */
 input[type="text"]:nth-child(4),
-input[type="email"]:nth-child(5),
+input[type="date"]:nth-child(5), /* Campo de data */
+input[type="email"]:nth-child(6),
 input[type="text"]:nth-child(10), /* Bairro */
 input[type="text"]:nth-child(11), /* Complemento */
 select {
@@ -102,6 +104,6 @@ label {
     background-color: #c56653;
 }
 
-p{
+p {
     margin-left: -20px;
 }
