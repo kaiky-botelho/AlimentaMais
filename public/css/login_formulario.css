@@ -1,21 +1,24 @@
 /* Configuração geral */
 
-*{
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 /*Login*/
 
-body{
+body {
     background-image: url("/img/fundo.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh;
     overflow-x: hidden;
+    font-family: sans-serif;
 }
 
+/* Centralização de conteúdo */
 .container {
     display: flex;
     flex-direction: column;
@@ -24,46 +27,53 @@ body{
     height: 100vh;
 }
 
-
-
-.logo{
+/* Logo */
+.logo {
     width: 20vw;
     display: block;
     margin: 15px auto 30px auto;
 }
 
-h2{
+/* Título de login */
+h2 {
     font-size: 30px;
     text-align: center;
     color: #143021;
     margin-bottom: 30px;
 }
 
-.input-login{
+/* Caixa de entrada de login */
+.input-login {
     background-color: transparent;
     border: none;
     border-bottom: solid 2px #242424;
     display: block;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 20px auto; /* Aumentado o espaçamento inferior */
     width: 25vw;
-    height: 10vh;
-    padding: 0; 
+    height: 6vh; /* Mantida a altura ajustada */
+    padding: 0;
     outline: none;
+    font-size: 20px;
+    color: #000;
+    line-height: 1.2;
 }
 
 .input-login::placeholder {
-    font-size: 20px;
-    transform: translateY(100%);
+    font-size: 22px;
     color: #242424;
+    line-height: 1.2;
 }
 
-.esqueceu{
-        color: #317039;
-        text-align: right;
-        display: block;
-    }
 
-    .entrar-voltar {
+/* Link esqueceu a senha */
+.esqueceu {
+    color: #317039;
+    text-align: right;
+    display: block;
+}
+
+/* Botão de entrar/voltar */
+.entrar-voltar {
     width: 10vw;
     background-color: #E07758;
     border: none;
@@ -77,15 +87,16 @@ h2{
     display: block;
 }
 
+/* Link de cadastro */
 .cadastro {
     color: #317039;
     text-align: center;
     display: block;
     margin-top: 5px;
 }
-/*  CADASTRO */
 
-.forms{
+/* Formulário de cadastro */
+.forms {
     width: 10vw;
     height: 8vh;
     background-color: #fffefe;
@@ -100,18 +111,17 @@ h2{
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
-.forms a{
+.forms a {
     text-decoration: none;
     color: black;
 }
 
-/*Formulario*/
-
+/* Container de formulário */
 .container-form {
     width: 80vw;
     height: 85vh;
     background-color: rgba(255, 255, 255, 0.76);
     border-radius: 10px;
     -webkit-backdrop-filter: blur(3px);
-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
 }
