@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doador</title>
     <link rel="stylesheet" href="/css/login_formulario.css">
-    <link rel="stylesheet" href="/css/DoadorForm.css">
+    <link rel="stylesheet" href="/css/Form.css">
 </head>
 
 <body>
@@ -67,18 +67,28 @@
                     </div>
                 </div>
 
-                <!-- Novas Seções de Consentimento -->
-                <div class="container-consentimento">
-                    <h3>Consentimento</h3>
+                <div class="container-contato">
+                    <h3>Preferência de Contato</h3>
                     <div class="checkbox-label">
-                        <input type="checkbox" id="campanhas" name="campanhas" required>
-                        <p>Receber e-mails de campanhas ou eventos</p>
+                        <input type="checkbox" name="whatsapp" id="whatsapp">
+                        <label for="whatsapp">Whatsapp</label>
                     </div>
                     <div class="checkbox-label">
-                        <input type="checkbox" id="politica" name="politica" required>
-                        <p>Política de privacidade e termos de uso: Consentimento explícito para uso de dados</p>
+                        <input type="checkbox" name="sms" id="sms">
+                        <label for="sms">Email</label>
                     </div>
                 </div>
+
+                <div class="container-permisao">
+                    <div class="check">
+                        <input type="checkbox" name="privacidade" id="privacidade">
+                        <label for="privacidade">Política de privacidade e termos de uso: Consentimento explícito para uso de dados.</label>
+                    </div>
+                    <div class="check">
+                        <input type="checkbox" name="receber" id="receber">
+                        <label for="receber">Receber E-mails de atualizações. </label>
+                    </div>
+                </div>  
 
                 <button type="submit" class="entrar-voltar">Concluir</button>
             </form>
