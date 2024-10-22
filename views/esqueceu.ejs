@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esqueceu a Senha</title>
+    <link rel="stylesheet" href="/css/login_formulario.css">
+</head>
+<body>
+    <div class="container">
+        <img src="/img/logo.png" alt="Logo" class="logo">
+        <form action="/send-code" method="post">
+            <h2>LOGIN</h2>
+            <h3>ESQUECEU A SENHA?</h3>
+            <p><b>Não se preocupe! É fácil recuperar o acesso à sua conta.</b> <br>
+                <b>Siga os passos abaixo para redefinir sua senha:</b> <br>
+                1º Digite seu endereço de e-mail no campo abaixo. <br>
+                2º Você receberá um e-mail com instruções para redefinir sua senha. <br>
+                3º Siga o link no e-mail e escolha uma nova senha.</p>
+            <input class="input-login" type="email" id="email" name="email" required placeholder="Digite seu E-mail"><br>
+            <button type="submit" class="botao" style="background-color: #FDB233; margin-top: 0px;">Enviar o Código</button> <br>
+            <div class="code-input-container">
+                <h2>Digite o Código</h2>
+                <div class="code-input">
+                    <input type="text" maxlength="1" required>
+                    <input type="text" maxlength="1" required>
+                    <input type="text" maxlength="1" required>
+                    <input type="text" maxlength="1" required>
+                    <input type="text" maxlength="1" required>
+                    <input type="text" maxlength="1" required>
+                </div>
+                <button class="botao" style="background-color: #FDB233;">Enviar</button>
+        </form>
+    </div>
+    </div>
+</body>
+</html>

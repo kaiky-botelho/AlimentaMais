@@ -26,6 +26,10 @@ app.get('/beneficiario', (req, res) => {
     res.render('beneficiario')
 });
 
+app.get('/esqueceu', (req, res) => {
+    res.render('esqueceu')
+});
+
 app.use(express.static('public'));
 
 app.listen(3000, () => {

@@ -95,7 +95,7 @@ h3 {
 }
 
 
-.entrar-voltar {
+.botao {
     width: 42vw;
     padding: 15px;
     background-color: #d97b5e;
@@ -107,7 +107,7 @@ h3 {
     margin-top: 20px;
 }
 
-.entrar-voltar:hover {
+.botao:hover {
     background-color: #c56653;
 }
 
