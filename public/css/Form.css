@@ -111,6 +111,10 @@ h3 {
     background-color: #c56653;
 }
 
+.botao a{
+    text-decoration: none;
+    color: white;
+}
 
 .container-consentimento {
     display: flex;
