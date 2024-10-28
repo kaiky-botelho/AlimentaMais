@@ -6,4 +6,8 @@ router.get('/doador', (req, res) => { // Rota protegida por autenticação
     res.render('doador');  
   });
 
+  router.get('/doadorHome', (req, res) => { // Rota protegida por autenticação
+    res.render('doadorHome');  
+  });
+
   module.exports = router;
