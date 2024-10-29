@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doador</title>
     <link rel="stylesheet" href="/css/login_formulario.css">
-    <link rel="stylesheet" href="/css/DoadorForm.css">
+    <link rel="stylesheet" href="/css/Form.css">
 </head>
 
 <body>
@@ -25,11 +25,11 @@
 
                 <input type="email" id="email" name="email" placeholder="E-mail" required>
 
-                <input type="text" id="cep" name="cep" placeholder="CEP" required>
+                <input type="text" id="password" name="password" placeholder="Senha" required>
 
                 <input type="text" id="cidade" name="cidade" placeholder="Cidade" required>
 
-                <input type="text" id="password" name="password" placeholder="Senha" required>
+                <input type="text" id="cep" name="cep" placeholder="CEP" required>
 
                 <select name="UF" id="UF">
                     <option value="UF">UF</option>
@@ -67,20 +67,20 @@
                     </div>
                 </div>
 
-                <!-- Novas Seções de Consentimento -->
-                <div class="container-consentimento">
-                    <h3>Consentimento</h3>
-                    <div class="checkbox-label">
-                        <input type="checkbox" id="campanhas" name="campanhas" required>
-                        <p>Receber e-mails de campanhas ou eventos</p>
+                <div class="container-permisao">
+                    <div class="check">
+                        <input type="checkbox" name="privacidade" id="privacidade">
+                        <label for="privacidade">Política de privacidade e termos de uso: Consentimento explícito para uso de dados.</label>
                     </div>
-                    <div class="checkbox-label">
-                        <input type="checkbox" id="politica" name="politica" required>
-                        <p>Política de privacidade e termos de uso: Consentimento explícito para uso de dados</p>
+                    <div class="check">
+                        <input type="checkbox" name="receber" id="receber">
+                        <label for="receber">Receber E-mails de atualizações. </label>
                     </div>
-                </div>
+                </div>  
 
-                <button type="submit" class="entrar-voltar">Concluir</button>
+                <button type="submit" class="botao">Concluir</button>
+                <button type="submit" class="botao"><a href="/cadastro">Voltar</a></button>
+
             </form>
         </div>
     </div>

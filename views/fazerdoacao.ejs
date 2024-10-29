@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/doacao.css">
+</head>
+
+<body>
+    <header>
+        <img class="logo" src="/img/logoV3.png" alt="">
+        <button class="logout"><a href="/">Sair</a></button>
+    </header>
+    <div class="main-section">
+        <h2 class="titulo">Fazer Doação</h2>
+        <form action="/fazerDocao" method="post">
+            <div class="form-group">
+                <label for="alimento">Alimento</label>
+                <input type="text" id="alimento" name="alimento" required>
+            </div>
+            <div class="form-group">
+                <label for="quantidade">Quantidade ou peso em KG</label>
+                <input type="text" id="quantidade" name="quantidade" required>
+            </div>
+            <div class="form-group">
+                <label for="observacao">Observação</label>
+                <input type="text" id="observacao" name="observacao" required>
+            </div>
+        </form>
+        
+    </div>
+</body>
+
+</html>
