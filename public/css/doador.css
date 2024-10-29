@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    margin: 0 auto;
 }
 
 body{
@@ -20,7 +21,8 @@ header {
 }
 
 .logo {
-    width: 20vw;
+    width: 15vw;
+    margin-left:0 ;
 }
 
 .logout {
@@ -94,7 +96,7 @@ header {
     justify-content: center;
     width: 20vw;
     height: 450px;
-    margin-right: 40px;
+    overflow: hidden;
 }
 
 .atalho {
