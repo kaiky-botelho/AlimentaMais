@@ -1,5 +1,5 @@
 function exibir() {
-    let section = document.getElementById("resultados-pesquisa");
+    let section = document.getElementById("resultados-radio");
     section.innerHTML = ""; // Limpa resultados anteriores
 
     const opcoes = document.getElementsByName("entregaColeta");
@@ -17,7 +17,7 @@ function exibir() {
             section.innerHTML = '<input type="text" id="endereco" name="endereco" required placeholder="Digite seu endereço">';
             break;
         case "retirar":
-            section.innerHTML = "<p>Você selecionou a opção para retirar no endereço!</p>";
+            section.innerHTML = "<p>A doação será retirada no seu Endereço!</p>";
             break;
     }
 }
