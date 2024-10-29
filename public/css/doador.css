@@ -56,7 +56,6 @@ header {
 .container-funcoes, .container-historico {
     display: flex;
     gap: 20px; /* Espaço entre os elementos */
-    margin-bottom: 40px;
 }
 
 .container-atalho, .container-notificacao, .historico, .mais-solicitado {
