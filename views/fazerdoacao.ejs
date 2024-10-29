@@ -34,11 +34,11 @@
                     <label>Opções de entrega</label>
                     <div class="check">
                         <div>
-                            <input type="checkbox" id="entregar-pessoalmente" name="entregar_pessoalmente">
+                            <input type="radio" id="entregar-pessoalmente" name="entregaColeta" value="entrega" onchange="exibir()" required>
                             <label for="entregar-pessoalmente">Entregar pessoalmente</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="retirar-endereco" name="retirar_endereco">
+                            <input type="radio" id="retirar-endereco" name="entregaColeta" value="retirar" onchange="exibir()" required>
                             <label for="retirar-endereco">Retirar no endereço</label>
                         </div>
                     </div>
@@ -52,12 +52,14 @@
                     <input type="time" id="hora-coleta" name="hora_coleta" required>
                 </div>
             </div>
+            <div id="resultados-pesquisa"></div>
             <div class="buttons">
                 <button class="voltar"><a href="/doadorHome">Voltar</a></button>
                 <button class="doar" type="submit">Doar</button>
             </div>
         </form>
     </div>
+    <script src="/js/script.js"></script>
 </body>
 
 </html>

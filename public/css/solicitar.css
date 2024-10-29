@@ -107,7 +107,6 @@ input[type="time"] {
     width: 100%; /* Define o width como 100% para ocupar o espaço do contêiner */
 }
 
-/* Checkbox Styling */
 .check {
     display: flex;
     gap: 20px;
@@ -117,6 +116,15 @@ input[type="time"] {
 .check div {
     display: flex;
     align-items: center;
+}
+
+input[type="radio"]{
+    width: 20px;
+    height: 20px;
+}
+
+.check div label{
+    padding-left: 10px;
 }
 
 .buttons {
