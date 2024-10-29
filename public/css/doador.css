@@ -53,9 +53,13 @@ header {
 }
 
 /* Container Styling */
-.container-funcoes, .container-historico {
+.container-funcoes, .container-solicitado {
     display: flex;
     gap: 20px; /* Espaço entre os elementos */
+}
+
+.container-funcoes{
+    margin-bottom: 40px;
 }
 
 .container-atalho, .container-notificacao, .historico, .mais-solicitado {

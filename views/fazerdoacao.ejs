@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/doacao.css">
+    <link rel="stylesheet" href="/css/solicitar.css">
 </head>
 
 <body>
@@ -16,20 +16,47 @@
     <div class="main-section">
         <h2 class="titulo">Fazer Doação</h2>
         <form action="/fazerDocao" method="post">
-            <div class="form-group">
-                <label for="alimento">Alimento</label>
-                <input type="text" id="alimento" name="alimento" required>
+            <div class="informacao-alimento">
+                <div class="form-group">
+                    <label for="alimento">Alimento</label>
+                    <input type="text" id="alimento" name="alimento" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantidade">Quantidade ou peso em KG</label>
+                    <input type="text" id="quantidade" name="quantidade" required>
+                </div>
+                <div class="form-group">
+                    <label for="observacao">Observação</label>
+                    <input type="text" id="observacao" name="observacao" required>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="quantidade">Quantidade ou peso em KG</label>
-                <input type="text" id="quantidade" name="quantidade" required>
+                <h2 class="titulo">Informação da Coleta</h2>
+                    <label>Opções de entrega</label>
+                    <div class="check">
+                        <div>
+                            <input type="checkbox" id="entregar-pessoalmente" name="entregar_pessoalmente">
+                            <label for="entregar-pessoalmente">Entregar pessoalmente</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="retirar-endereco" name="retirar_endereco">
+                            <label for="retirar-endereco">Retirar no endereço</label>
+                        </div>
+                    </div>
+            <div class="informacao-entrega">
+                <div class="form-dateTime">
+                    <label for="data-coleta">Data</label>
+                    <input type="date" id="data-coleta" name="data_coleta" required>
+                </div>
+                <div class="form-dateTime">
+                    <label for="hora-coleta">Horário</label>
+                    <input type="time" id="hora-coleta" name="hora_coleta" required>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="observacao">Observação</label>
-                <input type="text" id="observacao" name="observacao" required>
+            <div class="buttons">
+                <button class="voltar"><a href="/doadorHome">Voltar</a></button>
+                <button class="doar" type="submit">Doar</button>
             </div>
         </form>
-        
     </div>
 </body>
 

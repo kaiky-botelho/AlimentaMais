@@ -10,4 +10,8 @@ router.get('/beneficiario', (req, res) => {
     res.render('beneficiarioHome');  
   });
 
+  router.get('/solicitar', (req, res) => {
+    res.render('solicitar');  
+  });
+
   module.exports = router;
