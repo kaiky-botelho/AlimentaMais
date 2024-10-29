@@ -29,6 +29,7 @@ header {
     background-color: transparent;
     border: none;
     margin-left: auto;
+    margin-right: 0;
 }
 
 .logout a {
@@ -50,6 +51,7 @@ header {
     font-size: 75px;
     color: #2C5555;
     margin-bottom: 20px;
+    margin-left: 0;
 }
 
 /* Container Styling */
