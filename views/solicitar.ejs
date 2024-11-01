@@ -11,7 +11,7 @@
 <body>
     <header>
         <img class="logo" src="/img/logoV3.png" alt="">
-        <button class="logout"><a href="/">Sair</a></button>
+        <button class="logout"><a href="/"><img src="/img/sair.svg" alt=""></a></button>
     </header>
     <div class="main-section">
         <h2 class="titulo">Solicitar Doação</h2>
@@ -30,34 +30,39 @@
                     <input type="text" id="observacao" name="observacao" required>
                 </div>
             </div>
-                <h2 class="titulo">Informação da Coleta</h2>
-                    <label>Opções de entrega</label>
-                    <div class="check">
-                        <div>
-                            <input type="radio" id="entregar-pessoalmente" name="entregar_pessoalmente">
-                            <label for="entregar-pessoalmente">Entregar pessoalmente</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="retirar-endereco" name="retirar_endereco">
-                            <label for="retirar-endereco">Retirar no endereço</label>
-                        </div>
-                    </div>
-            <div class="informacao-entrega">
-                <div class="form-dateTime">
-                    <label for="data-coleta">Data</label>
-                    <input type="date" id="data-coleta" name="data_coleta" required>
+            <h2 class="titulo">Informação da Coleta</h2>
+            <label>Opções de entrega</label>
+            <div class="check">
+                <div>
+                    <input type="radio" id="entregar-pessoalmente" name="entregaColeta" value="entrega" onchange="exibir()" required>
+                    <label for="entregar-pessoalmente">Entregar pessoalmente</label>
                 </div>
-                <div class="form-dateTime">
-                    <label for="hora-coleta">Horário</label>
-                    <input type="time" id="hora-coleta" name="hora_coleta" required>
+                <div>
+                    <input type="radio" id="retirar-endereco" name="entregaColeta" value="retirar" onchange="exibir()" required>
+                    <label for="retirar-endereco">Retirar no endereço</label>
                 </div>
             </div>
-            <div class="buttons">
-                <button class="voltar"><a href="/doadorHome">Voltar</a></button>
-                <button class="doar" type="submit">Solicitar</button>
-            </div>
-        </form>
+    <div class="informacao-entrega">
+        <div class="form-dateTime">
+            <label for="data-coleta">Data</label>
+            <input type="date" id="data-coleta" name="data_coleta" required>
+        </div>
+        <div class="form-dateTime">
+            <label for="hora-coleta">Horário</label>
+            <input type="time" id="hora-coleta" name="hora_coleta" required>
+        </div>
+        <div id="resultados-radio">
+
+        </div>
     </div>
+    <div class="buttons">
+        <button class="voltar"><a href="/beneficiarioHome">Voltar</a></button>
+        <button class="doar" type="submit">Solicitar</button>
+    </div>
+</form>
+</div>
+<script src="/js/script.js"></script>
 </body>
 
 </html>
+

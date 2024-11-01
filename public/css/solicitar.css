@@ -30,20 +30,19 @@ header {
     margin-left: auto;
 }
 
-.logout a {
+.logout img {
     color: white;
-    font-size: 30px;
+    width: 2vw;
     text-decoration: none;
 }
 
-/* Main Section Styling */
 .main-section {
     display: flex;
     flex-direction: column;
     max-width: 95vw;
     margin: 0 auto;
     padding: 0 120px;
-    height: calc(100vh - 10vh); /* Ajusta a altura para ocupar o restante da tela */
+    height: calc(100vh - 10vh); 
 }
 
 .titulo {
@@ -101,10 +100,9 @@ input[type="time"] {
     height: 50px;
 }
 
-/* Styling for Date and Time Inputs */
 input[type="date"], 
 input[type="time"] {
-    width: 100%; /* Define o width como 100% para ocupar o espaço do contêiner */
+    width: 100%;
 }
 
 .check {
@@ -142,6 +140,7 @@ input[type="radio"]{
     font-size: 20px;
     color: white;
     border: none;
+    cursor: pointer;
 }
 
 .buttons button a {
@@ -162,4 +161,38 @@ input[type="radio"]{
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
+}
+
+/*Locais disponiveis*/
+
+.locais{
+    width: 0 0 30%;
+    max-width: 30%;
+    height: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+#resultados-radio {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.locais {
+    width: 100%;
+    height: 300px; 
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px; /* Adicione um pouco de padding interno */
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px;
+}
+
+.locais h2{
+    color: #1E603D;
+}
+
+h3{
+    color: #2C5555;
+    font-size: 20px;
+    font-weight: 900;
 }

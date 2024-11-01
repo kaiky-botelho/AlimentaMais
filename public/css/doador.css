@@ -32,9 +32,9 @@ header {
     margin-right: 0;
 }
 
-.logout a {
+.logout img {
     color: white;
-    font-size: 30px;
+    width: 2vw;
     text-decoration: none;
 }
 

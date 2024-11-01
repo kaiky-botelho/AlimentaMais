@@ -27,13 +27,11 @@
 
                 <input type="text" id="password" name="password" placeholder="Senha" required>
 
+                <input type="text" id="cep" name="cep" placeholder="CEP" required onblur="buscaCep(this.value)">
+                
                 <input type="text" id="cidade" name="cidade" placeholder="Cidade" required>
 
-                <input type="text" id="cep" name="cep" placeholder="CEP" required>
-
-                <select name="UF" id="UF">
-                    <option value="UF">UF</option>
-                </select>
+                <input type="text" id="uf" name="uf" placeholder="Estado" required>
 
                 <input type="text" id="endereco" name="endereco" placeholder="Endereço">
 
@@ -84,6 +82,9 @@
             </form>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script src="/js/form.js"></script>
 </body>
 
 </html>
