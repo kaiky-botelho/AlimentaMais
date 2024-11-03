@@ -100,6 +100,8 @@ h3 {
     padding: 15px;
     background-color: #d97b5e;
     color: white;
+    text-align: center;
+    text-decoration: none;
     border: none;
     border-radius: 5px;
     font-size: 18px;
@@ -109,11 +111,6 @@ h3 {
 
 .botao:hover {
     background-color: #c56653;
-}
-
-.botao a{
-    text-decoration: none;
-    color: white;
 }
 
 .container-consentimento {

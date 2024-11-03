@@ -1,12 +1,12 @@
 CREATE TABLE cadastro_doador (
-	id_doador INT NOT NULL PRIMARY KEY,
+	id_doador SERIAL NOT NULL PRIMARY KEY,
 	nome_razao VARCHAR(200),
     doador_documento VARCHAR(14) NOT NULL UNIQUE,
-	doador_telefone VARCHAR(11),
+	doador_telefone VARCHAR(15),
 	doador_data_nasc DATE,
 	doador_email VARCHAR(100),
 	doador_senha VARCHAR(15),
-	doador_cep CHAR(8),
+	doador_cep VARCHAR(10),
 	doador_cidade VARCHAR(100),
 	doador_UF CHAR(2),
 	doador_endereco VARCHAR(100),
@@ -20,14 +20,14 @@ CREATE TABLE cadastro_doador (
 SELECT * FROM cadastro_doador;
 
 CREATE TABLE cadastro_beneficiario (
-	id_beneficiario INT NOT NULL PRIMARY KEY,
+	id_beneficiario SERIAL NOT NULL PRIMARY KEY,
 	nome VARCHAR(200),
     benef_documento VARCHAR(14) NOT NULL UNIQUE,
-	benef_telefone VARCHAR(11),
+	benef_telefone VARCHAR(15),
 	benef_data_nasc DATE,
 	benef_email VARCHAR(100),
 	benef_senha VARCHAR(15),
-	benef_cep CHAR(8),
+	benef_cep VARCHAR(8),
 	benef_cidade VARCHAR(100),
 	benef_UF CHAR(2),
 	benef_endereco VARCHAR(100),
@@ -40,7 +40,7 @@ CREATE TABLE cadastro_beneficiario (
 SELECT * FROM cadastro_beneficiario;
 
 CREATE TABLE solicitacao (
-	id_solicitacao INT NOT NULL PRIMARY KEY,
+	id_solicitacao SERIAL NOT NULL PRIMARY KEY,
 	solicitacao_alimento VARCHAR(100),
 	solicitacao_qtd VARCHAR(50),
 	solicitacao_obs VARCHAR(100),
@@ -52,7 +52,7 @@ CREATE TABLE solicitacao (
 SELECT * FROM solicitacao;
 
 CREATE TABLE doacao (
-	id_docao INT NOT NULL PRIMARY KEY,
+	id_docao SERIAL NOT NULL PRIMARY KEY,
 	doacao_alimento VARCHAR(100),
 	doacao_qtd VARCHAR(50),
 	doacao_obs VARCHAR(100),

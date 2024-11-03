@@ -12,6 +12,8 @@ const solicitar = require ('./routes/beneficiarioRoutes');
 
 const app = express ();
 
+app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 
