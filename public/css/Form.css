@@ -100,6 +100,8 @@ h3 {
     padding: 15px;
     background-color: #d97b5e;
     color: white;
+    text-align: center;
+    text-decoration: none;
     border: none;
     border-radius: 5px;
     font-size: 18px;
@@ -111,16 +113,11 @@ h3 {
     background-color: #c56653;
 }
 
-.botao a{
-    text-decoration: none;
-    color: white;
-}
-
 .container-consentimento {
     display: flex;
-    flex-direction: column; /* Alinha verticalmente os elementos */
-    width: 100%; /* Para ocupar toda a largura disponível */
-    margin-top: 15px; /* Espaçamento superior */
+    flex-direction: column; 
+    width: 100%;
+    margin-top: 15px;
 }
 
 h3 {
@@ -130,10 +127,10 @@ h3 {
 }
 
 .checkbox- {
-    display: flex; /* Alinhamento horizontal dos checkbox e label */
+    display: flex; 
     flex-direction: column;
-    align-items: center; /* Alinha verticalmente */
-    margin-bottom: 10px; /* Espaçamento entre cada checkbox-label */
+    align-items: center; 
+    margin-bottom: 10px; 
 }
 
 input[type="checkbox"]{
@@ -143,3 +140,4 @@ input[type="checkbox"]{
 .check{
     margin-bottom: 10px;
 }
+

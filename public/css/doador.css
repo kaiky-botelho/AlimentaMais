@@ -22,7 +22,7 @@ header {
 
 .logo {
     width: 15vw;
-    margin-left: 0;
+    margin-left:0 ;
 }
 
 .logout {
@@ -32,9 +32,9 @@ header {
     margin-right: 0;
 }
 
-.logout a {
+.logout img {
     color: white;
-    font-size: 30px;
+    width: 2vw;
     text-decoration: none;
 }
 
@@ -51,12 +51,16 @@ header {
     font-size: 75px;
     color: #2C5555;
     margin-bottom: 20px;
+    margin-left: 0;
 }
 
 /* Container Styling */
-.container-funcoes, .container-historico {
+.container-funcoes, .container-solicitado {
     display: flex;
     gap: 20px; /* Espaço entre os elementos */
+}
+
+.container-funcoes{
     margin-bottom: 40px;
 }
 
@@ -97,6 +101,7 @@ header {
     justify-content: center;
     width: 20vw;
     height: 450px;
+    overflow: hidden;
 }
 
 .atalho {

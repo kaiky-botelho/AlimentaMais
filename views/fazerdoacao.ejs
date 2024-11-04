@@ -5,32 +5,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/doacao.css">
+    <link rel="stylesheet" href="/css/solicitar.css">
 </head>
 
 <body>
     <header>
         <img class="logo" src="/img/logoV3.png" alt="">
-        <button class="logout"><a href="/">Sair</a></button>
+        <button class="logout"><a href="/"><img src="/img/sair.svg" alt=""></a></button>
     </header>
     <div class="main-section">
         <h2 class="titulo">Fazer Doação</h2>
-        <form action="/fazerDocao" method="post">
-            <div class="form-group">
-                <label for="alimento">Alimento</label>
-                <input type="text" id="alimento" name="alimento" required>
+        <form action="/fazerDoacao" method="post">
+            <div class="informacao-alimento">
+                <div class="form-group">
+                    <label for="alimento">Alimento</label>
+                    <input type="text" id="doacao_alimento" name="doacao_alimento" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantidade">Quantidade ou peso em KG</label>
+                    <input type="text" id="doacao_qtd" name="doacao_qtd" required>
+                </div>
+                <div class="form-group">
+                    <label for="observacao">Observação</label>
+                    <input type="text" id="doacao_obs" name="doacao_obs">
+                </div>
             </div>
-            <div class="form-group">
-                <label for="quantidade">Quantidade ou peso em KG</label>
-                <input type="text" id="quantidade" name="quantidade" required>
+            <h2 class="titulo">Informação da Coleta</h2>
+            <label>Opções de entrega</label>
+            <div class="check">
+                <div>
+                    <label for="entregar-pessoalmente"> 
+                        <input type="radio" id="entregar-pessoalmente" name="entregaColeta" value="entrega" onchange="exibir()"> 
+                        Entregar pessoalmente
+                    </label>
+                </div>
+                <div>
+                    <label for="retirar-endereco"> 
+                        <input type="radio" id="retirar-endereco" name="entregaColeta" value="retirar" onchange="exibir()"> 
+                        Retirar no endereço
+                    </label>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="observacao">Observação</label>
-                <input type="text" id="observacao" name="observacao" required>
+            <div class="informacao-entrega">
+                <div class="form-dateTime">
+                    <label for="data-coleta">Data</label>
+                    <input type="date" id="doacao_data" name="doacao_data" required>
+                </div>
+                <div class="form-dateTime">
+                    <label for="hora-coleta">Horário</label>
+                    <input type="time" id="doacao_horario" name="doacao_horario" required>
+                </div>
+                <div id="resultados-radio"></div>
+            </div>
+            <div class="buttons">
+                <button class="voltar"><a href="/doadorHome">Voltar</a></button>
+                <button class="doar" type="submit">Doar</button>
             </div>
         </form>
-        
     </div>
+    <script src="/js/script.js"></script>
 </body>
+
 
 </html>

@@ -8,8 +8,11 @@ const doadorHome = require ('./routes/doadorRoutes');
 const fazerdoacao = require ('./routes/doadorRoutes');
 const beneficiarioRoutes = require ('./routes/beneficiarioRoutes');
 const beneficiarioHome = require ('./routes/beneficiarioRoutes');
+const solicitar = require ('./routes/beneficiarioRoutes');
 
 const app = express ();
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
@@ -24,6 +27,7 @@ app.use(doadorHome);
 app.use(fazerdoacao);
 app.use(beneficiarioRoutes);
 app.use(beneficiarioHome);
+app.use(solicitar);
 
 app.listen(3000, () => {
     console.log("Servidor rodando na porta 3000 ");

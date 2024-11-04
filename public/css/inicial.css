@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("/img/fundo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow-x: hidden;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blur-container {
+    background-color: #ffffff9f;
+    backdrop-filter: blur(10px);
+    width: 40vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;}
+
+.logo{
+    width: 15vw;
+    margin-bottom: 20px;
+    margin: 0 auto 20px;
+}
+
+.blur-container h4{
+    color: #1E603D;
+    font-size: 24px;
+}
+
+.blur-container .texto-inicial{
+    line-height: 20px;
+    text-align: justify;
+    margin: 12px ;
+    font-size: 16px;
+}
+
+.blur-container .texto-login{
+    color: rgb(36, 36, 36);
+    line-height: 20px;
+    text-align: justify;
+    margin: 12px ;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.buttons{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.buttons button{
+    width: 15vw;
+    height: 7vh;
+    margin: 0 auto;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+
+.buttons button:hover{
+    transform: rotate(3deg);
+}
+
+.buttons button a{
+    text-decoration: none;
+    color: white;
+}
+
+
+.buttons .loginDoador{
+    background: rgb(253,178,51);
+    background: linear-gradient(90deg, rgba(253,178,51,1) 35%, rgba(254,177,97,1) 100%);
+}
+
+.buttons .loginBenf{
+    background: rgb(223,91,53);
+    background: linear-gradient(90deg, rgba(223,91,53,1) 35%, rgba(240,127,95,1) 100%);
+}

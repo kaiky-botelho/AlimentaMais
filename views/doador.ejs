@@ -5,78 +5,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doador</title>
-    <link rel="stylesheet" href="/css/login_formulario.css">
-    <link rel="stylesheet" href="/css/Form.css">
+    <link rel="stylesheet" href="css/login_formulario.css">
+    <link rel="stylesheet" href="css/Form.css">
 </head>
 
 <body>
     <div class="container">
         <div class="container-form">
-            <img src="/img/logov2.png" alt="Logo" class="logo">
+            <img src="img/logov2.png" alt="Logo" class="logo">
             <h2>FORMULÁRIO DOADOR</h2>
             <form action='/cadastroDoador' method='post'>
-                <input type="text" id="name" name="name" placeholder="Nome Completo ou Razão Social" required>
+                <input type="text" id="nome_razao" name="nome_razao" placeholder="Nome Completo ou Razão Social"
+                    required>
 
-                <input type="text" id="cpf" name="cpf" placeholder="CPF OU CNPJ" required>
+                <input type="text" id="doador_documento" name="doador_documento" placeholder="CPF OU CNPJ" required>
 
-                <input type="text" id="telefone" name="telefone" placeholder="Telefone" required>
+                <input type="text" id="doador_telefone" name="doador_telefone" placeholder="Telefone" required>
 
-                <input type="date" id="dataNascimento" name="dataNascimento" placeholder="data de Nascimento" required>
+                <input type="date" id="doador_data_nasc" name="doador_data_nasc" placeholder="data de Nascimento"
+                    required>
 
-                <input type="email" id="email" name="email" placeholder="E-mail" required>
+                <input type="email" id="doador_email" name="doador_email" placeholder="E-mail" required>
 
-                <input type="text" id="password" name="password" placeholder="Senha" required>
+                <input type="text" id="doador_senha" name="doador_senha" placeholder="Senha" required>
 
-                <input type="text" id="cidade" name="cidade" placeholder="Cidade" required>
+                <input type="text" id="doador_cep" name="doador_cep" placeholder="CEP" required
+                    onblur="buscaCep(this.value)">
 
-                <input type="text" id="cep" name="cep" placeholder="CEP" required>
+                <input type="text" id="doador_cidade" name="doador_cidade" placeholder="Cidade" required>
 
-                <select name="UF" id="UF">
-                    <option value="UF">UF</option>
-                </select>
+                <input type="text" id="doador_UF" name="doador_UF" placeholder="Estado" required>
 
-                <input type="text" id="endereco" name="endereco" placeholder="Endereço">
+                <input type="text" id="doador_endereco" name="doador_endereco" placeholder="Endereço">
 
-                <input type="text" id="numero" name="numero" placeholder="Nº">
+                <input type="text" id="doador_numero" name="doador_numero" placeholder="Nº">
 
-                <input type="text" id="bairro" name="bairro" placeholder="Bairro">
+                <input type="text" id="doador_bairro" name="doador_bairro" placeholder="Bairro">
 
-                <input type="text" id="complemento" name="complemento" placeholder="Complemento">
+                <input type="text" id="doador_complemento" name="doador_complemento" placeholder="Complemento">
 
                 <div class="container-doacoes">
                     <h3>Frequência das Doações</h3>
                     <div class="checkbox-label">
-                        <input type="checkbox" name="unica" id="unica">
+                        <input type="radio" name="frequencia_doacao" id="unica" value="Unica">
                         <label for="unica">Única</label>
                     </div>
                     <div class="checkbox-label">
-                        <input type="checkbox" name="recorrente" id="recorrente">
+                        <input type="radio" name="frequencia_doacao" id="recorrente" value="Recorrente">
                         <label for="recorrente">Recorrente</label>
                     </div>
                 </div>
-
+                
                 <div class="container-contato">
                     <h3>Preferência de Contato</h3>
                     <div class="checkbox-label">
-                        <input type="checkbox" name="whatsapp" id="whatsapp">
+                        <input type="radio" name="preferencia_contato" id="whatsapp" value="Whatsapp">
                         <label for="whatsapp">Whatsapp</label>
                     </div>
                     <div class="checkbox-label">
-                        <input type="checkbox" name="sms" id="sms">
+                        <input type="radio" name="preferencia_contato" id="sms" value="SMS">
                         <label for="sms">SMS</label>
                     </div>
                 </div>
-
-                <div class="container-permisao">
-                    <div class="check">
-                        <input type="checkbox" name="privacidade" id="privacidade">
-                        <label for="privacidade">Política de privacidade e termos de uso: Consentimento explícito para uso de dados.</label>
-                    </div>
-                    <div class="check">
-                        <input type="checkbox" name="receber" id="receber">
-                        <label for="receber">Receber E-mails de atualizações. </label>
-                    </div>
-                </div>  
+                
 
                 <button type="submit" class="botao">Concluir</button>
                 <button type="submit" class="botao"><a href="/cadastro">Voltar</a></button>
@@ -84,6 +75,9 @@
             </form>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+    <script src="/js/form.js"></script>
 </body>
 
 </html>
