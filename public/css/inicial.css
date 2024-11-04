@@ -5,11 +5,8 @@
 }
 
 body {
-<<<<<<< HEAD
     background-image: url("/img/fundo.jpg");
-=======
     background-image: url("img/fundo.jpg");
->>>>>>> 64f797ad41eef9396dfcb384545287a6a1ae65ab
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

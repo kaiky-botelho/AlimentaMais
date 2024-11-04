@@ -21,15 +21,13 @@ function buscaCep(cep) {
         });
 }
 
-<<<<<<< HEAD
-=======
+
 // Mascaras doador
 
 $('#doador_cep').mask('00000-000');
 $('#doador_documento').mask('000.000.000-00', {reverse: true});
 $('#doador_telefone').mask('(00) 0 0000-0000');
 
->>>>>>> 64f797ad41eef9396dfcb384545287a6a1ae65ab
 //buscar cep beneficiario
 
 function buscaCep(cep) {
@@ -53,7 +51,6 @@ function buscaCep(cep) {
         });
 }
 
-<<<<<<< HEAD
 const documento = document.getElementById('doador_documento').value;
 
 const doador_documento = documento.length;
@@ -64,16 +61,12 @@ if (doador_documento === 11) {
     $('#doador_documento').mask('00.000.000/0000-00', {reverse: true}); 
 }
 
-=======
->>>>>>> 64f797ad41eef9396dfcb384545287a6a1ae65ab
 // Mascaras beneficiario
 
 $('#benef_cep').mask('00000-000');
 $('#benef_documento').mask('000.000.000-00', {reverse: true});
 $('#benef_telefone').mask('(00) 0 0000-0000');
 
-
-<<<<<<< HEAD
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -106,6 +99,4 @@ app.post('/submit', (req, res) => {
 
     res.send('Opções salvas com sucesso!');
 });
-=======
->>>>>>> 64f797ad41eef9396dfcb384545287a6a1ae65ab
 
