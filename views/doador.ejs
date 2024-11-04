@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="PT-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doador</title>
-    <link rel="stylesheet" href="css/login_formulario.css">
     <link rel="stylesheet" href="css/Form.css">
 </head>
 
@@ -53,12 +52,6 @@
                     <div class="checkbox-label">
                         <input type="radio" name="frequencia_doacao" id="recorrente" value="Recorrente">
                         <label for="recorrente">Recorrente</label>
-                        <label for="unica"> <input type="checkbox" name="frequencia_doacao[]" id="unica" value="Unica">
-                            Única</label>
-                    </div>
-                    <div class="checkbox-label">
-                        <label for="recorrente"> <input type="checkbox" name="frequencia_doacao[]" id="recorrente"
-                                value="Recorrente"> Recorrente</label>
                     </div>
                 </div>
                 
@@ -66,23 +59,18 @@
                     <h3>Preferência de Contato</h3>
                     <div class="checkbox-label">
                         <input type="radio" name="preferencia_contato" id="whatsapp" value="Whatsapp">
-                        <label for="whatsapp">Whatsapp</label>
+                        <label for="whatsapp">Email</label>
                     </div>
                     <div class="checkbox-label">
                         <input type="radio" name="preferencia_contato" id="sms" value="SMS">
                         <label for="sms">SMS</label>
                     </div>
                 </div>
-                        <label for="whatsapp"> <input type="checkbox" name="preferencia_contato[]" id="whatsapp"
-                                value="Whatsapp"> Whatsapp</label>
-                    </div>
-                    <div class="checkbox-label">
-                        <label for="sms"> <input type="checkbox" name="preferencia_contato[]" id="sms" value="SMS">
-                            SMS</label>
-                    </div>
+                
+                <div class="buttons">
+                    <a href="/cadastro" class="botao laranja">Voltar</a>
+                    <button type="submit" class="botao verde">Concluir</button>
                 </div>
-                <button type="submit" class="botao">Concluir</button>
-                <button type="submit" class="botao"><a href="/cadastro">Voltar</a></button>
 
             </form>
         </div>
