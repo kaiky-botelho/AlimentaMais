@@ -24,8 +24,17 @@ function buscaCep(cep) {
 
 // Mascaras doador
 
+const documento = document.getElementById('doador_documento').value;
+
+const doador_documento = documento.length;
+
+if (doador_documento === 11) {
+    $('#doador_documento').mask('000.000.000-00', {reverse: true});
+} else if (doador_documento === 14) {
+    $('#doador_documento').mask('00.000.000/0000-00', {reverse: true}); 
+}
+
 $('#doador_cep').mask('00000-000');
-$('#doador_documento').mask('000.000.000-00', {reverse: true});
 $('#doador_telefone').mask('(00) 0 0000-0000');
 
 //buscar cep beneficiario
@@ -49,16 +58,6 @@ function buscaCep(cep) {
         .catch(error => {
             console.log("Erro:", error);
         });
-}
-
-const documento = document.getElementById('doador_documento').value;
-
-const doador_documento = documento.length;
-
-if (doador_documento === 11) {
-    $('#doador_documento').mask('000.000.000-00', {reverse: true});
-} else if (doador_documento === 14) {
-    $('#doador_documento').mask('00.000.000/0000-00', {reverse: true}); 
 }
 
 // Mascaras beneficiario
