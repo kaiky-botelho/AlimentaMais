@@ -14,7 +14,7 @@ CREATE TABLE cadastro_doador (
 	doador_bairro VARCHAR(100),
 	doador_complemento VARCHAR(100),
 	frequencia_doacao VARCHAR(10) CHECK (frequencia_doacao IN ('Unica', 'Recorrente')), 
-    preferencia_contato VARCHAR(10) CHECK (preferencia_contato IN ('Whatsapp', 'SMS'))
+    preferencia_contato VARCHAR(10) CHECK (preferencia_contato IN ('Email', 'SMS'))
 );
 
 SELECT * FROM cadastro_doador;
@@ -62,3 +62,6 @@ CREATE TABLE doacao (
 );
 
 SELECT * FROM doacao;
+
+
+
