@@ -9,8 +9,8 @@
 </head>
 
 <body>
-        <header>
-        <img class="logo" src="img/logoV3.png" alt="">
+    <header>
+        <img class="logo" src="/img/logoV3.png" alt="">
         <button class="profile" id="profile"><img src="/img/perfil.svg" alt=""></button>
         <button class="logout"><a href="/"><img src="/img/sair.svg" alt=""></a></button>
     </header>
@@ -38,6 +38,11 @@
         </div>
     </div>
 
+
+    <div class="resultado-mostrar" id="resultado-mostrar">
+
+    </div>
+
     <div class="perfil" id="perfil">
         <h4>SEU PERFIL</h4>
         <img src="img/profile.png" alt="">
@@ -51,12 +56,13 @@
             <label>ENDEREÇO</label>
         </div>
         <div class="buttons-perfil">
-            <button onclick="mostrar()" class="editar"><img src="/img/editar.svg" alt="">EDITAR</button>
-            <button class="deletar"><img src="/img/trash.svg" alt="">DELETAR</button>
+            <button onclick="mostrar('editar')" class="editar" id="editar"></img src="img/editar.svg"
+                    alt="">EDITAR</button>
+            <button onclick="mostrar('deletar')" class="deletar" id="deletar"></img src="img/trash.svg"
+                    alt="">DELETAR</button>
         </div>
     </div>
     <script src="/js/doador.js"></script>
-
 </body>
 
 </html>
