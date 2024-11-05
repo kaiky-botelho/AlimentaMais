@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="/css/login_formulario.css">
+    <script src="/js/recoverPassword.js" defer></script> <!-- Certifique-se que o caminho está correto -->
 </head>
 <body>
     <div class="container">
-            <img src="
-            /img/logo.png" alt="" class="logo">
-            <form action="/loginBenef" method="post">
-                <h2>LOGIN BENEFICIÁRIO</h2>
-                <input class="input-login" type="email" id="email" name="email" required placeholder="Digite seu E-mail"><br>
-                <input class="input-login" type="password" id="password" name="password" required placeholder="Digite sua Senha"><br>
-                <a href="/esqueceu" class="esqueceu">Esqueceu a senha?</a>
-                <button type="submit" class="botao">Entrar</button> <br>
-                <a href="/beneficiario" class="cadastro">Cadastre-se aqui</a>
-            </form>
+        <img src="/img/logo.png" alt="Logo" class="logo">
+        <form action="/loginBenef" method="post">
+            <h2>LOGIN BENEFICIÁRIO</h2>
+            <input class="input-login" type="email" id="email" name="email" required placeholder="Digite seu E-mail"><br>
+            <input class="input-login" type="password" id="password" name="password" required placeholder="Digite sua Senha"><br>
+            <a href="/esqueceu" class="esqueceu">Esqueceu a senha?</a>
+            <button type="submit" class="botao">Entrar</button><br>
+            <a href="/beneficiario" class="cadastro">Cadastre-se aqui</a>
+        </form>
     </div>
 </body>
 </html>

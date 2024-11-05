@@ -71,12 +71,12 @@ body {
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     border-radius: 10px;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-
-.buttons button:hover{
-    transform: rotate(3deg);
+.buttons button:hover {
+    transform: scale(1.0) translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
 .buttons button a{
