@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // Para analisar dados de fo
 
 // Configuração de arquivos estáticos
 app.use(express.static('public'));
+app.use(express.static('models'));
 
 // Configuração de visualização
 app.set('view engine', 'ejs');
