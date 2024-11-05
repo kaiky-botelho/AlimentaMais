@@ -188,3 +188,42 @@ button {
     width: 10vw;
     margin: 36px auto 36px auto;
 }
+
+.info-perfil{
+    margin-bottom:24px;
+}
+
+.buttons-perfil {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons-perfil button {
+    display: flex;                   
+    align-items: center;             
+    justify-content: center;         
+    width: 8vw;
+    height: 5vh;
+    border: none;
+    color: white;
+    margin-right: 5px;
+    margin-right: 5px;
+    padding: 10px;
+    font-size: 10px;           
+}
+
+.buttons-perfil button img {
+    width: 1.5vw;
+    margin-right: 5px;               /* Espaçamento entre imagem e texto */
+    object-fit: contain;             /* Garante que a imagem se ajuste bem ao tamanho */
+}
+
+.buttons-perfil .editar {
+    background-color: #FDB233;
+}
+
+.buttons-perfil .deletar {
+    background-color: #DF5B35;
+}
+
+
