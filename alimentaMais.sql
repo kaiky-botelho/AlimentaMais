@@ -5,7 +5,7 @@ CREATE TABLE cadastro_doador (
 	doador_telefone VARCHAR(20),
 	doador_data_nasc DATE,
 	doador_email VARCHAR(100),
-	doador_senha VARCHAR(15),
+	doador_senha VARCHAR(60),
 	doador_cep VARCHAR(10),
 	doador_cidade VARCHAR(100),
 	doador_UF CHAR(2),

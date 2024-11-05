@@ -5,6 +5,15 @@
     font-family: Arial, sans-serif;
 }
 
+body{
+    background-image: url("/img/fundo.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
 .container {
     display: flex;
     justify-content: center;

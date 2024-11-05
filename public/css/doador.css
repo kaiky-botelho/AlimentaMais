@@ -8,35 +8,52 @@
 
 body{
     background-color: #F0F0F0;
+    overflow-x: hidden;
 }
 
 /* Header Styling */
+/* CSS do cabeçalho */
 header {
     width: 100vw;
     height: 10vh;
     background-color: #2C5555;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0 30px;
 }
 
 .logo {
     width: 15vw;
-    margin-left:0 ;
+    margin-left: 0;
 }
 
-.logout {
+button {
     background-color: transparent;
     border: none;
-    margin-left: auto;
-    margin-right: 0;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
 }
 
-.logout img {
-    color: white;
+.profile, .logout {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+    padding: 0;
+}
+
+.profile img, .logout img {
     width: 2vw;
+    margin: 0;
+}
+
+.logout a {
+    display: flex;
+    align-items: center;
     text-decoration: none;
 }
+
 
 /* Main Section Styling */
 .main-section {
@@ -141,3 +158,33 @@ header {
     margin-bottom: 10px;
 }
 
+.perfil {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 20vw;
+    height: 100vh;
+    position: absolute;
+    top: 10vh;
+    right: 0;
+    transform: translateX(100%); 
+    opacity: 0; 
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    box-shadow: rgb(0 0 0 / 25%) -13px 1px 28px, rgb(0 0 0 / 22%) -7px 5px 10px;
+}
+
+.perfil.aparecer {
+    transform: translateX(0);
+    opacity: 1; 
+}
+
+
+.perfil h4{
+    font-size: 28px;
+    margin-top: 36px;
+}
+
+.perfil img{
+    width: 10vw;
+    margin: 36px auto 36px auto;
+}

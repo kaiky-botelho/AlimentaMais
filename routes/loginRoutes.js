@@ -11,8 +11,8 @@ router.get('/', (req, res) => {
     res.render('inicial');  
 });
 
-router.get('/loginBenf', (req, res) => {
-    res.render('loginBenf');  
+router.get('/loginBenef', (req, res) => {
+    res.render('loginBenef');  
 });
 
 router.get('/loginDoador', (req, res) => {
