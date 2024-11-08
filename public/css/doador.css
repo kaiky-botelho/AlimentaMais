@@ -8,24 +8,21 @@
 
 body{
     background-color: #F0F0F0;
-    overflow-x: hidden;
 }
 
 /* Header Styling */
-/* CSS do cabeçalho */
 header {
     width: 100vw;
     height: 10vh;
     background-color: #2C5555;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 0 30px;
 }
 
 .logo {
     width: 15vw;
-    margin-left: 0;
+    margin-left:0 ;
 }
 
 button {
@@ -54,7 +51,6 @@ button {
     text-decoration: none;
 }
 
-
 /* Main Section Styling */
 .main-section {
     display: flex;
@@ -74,7 +70,7 @@ button {
 /* Container Styling */
 .container-funcoes, .container-solicitado {
     display: flex;
-    gap: 20px;
+    gap: 20px; /* Espaço entre os elementos */
 }
 
 .container-funcoes{
@@ -83,9 +79,9 @@ button {
 
 .container-atalho, .container-notificacao, .historico, .mais-solicitado {
     background-color: white;
-    border-radius: 10px;
+    border-radius: 40px;
     padding: 20px;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .container-notificacao{
@@ -94,15 +90,21 @@ button {
 }
 
 .historico{
-    width: 20vw;
+    width: 60vw;
     height: 450px;
     margin-right: 40px;
 }
 
 .mais-solicitado{
+    display: flex;
+    justify-content: center;
     width: 40vw;
-    height: 400px;
+    height: 450px;
     margin: 0 auto;
+}
+
+.mais-solicitado h3{
+    font-size: 25px;
 }
 
 /* Section Titles */
@@ -113,6 +115,9 @@ button {
 }
 
 .container-atalho {
+    border: none;
+    background: rgb(223,91,53);
+    background: linear-gradient(27deg, rgba(223,91,53,1) 0%, rgba(240,127,95,1) 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -121,41 +126,29 @@ button {
     overflow: hidden;
 }
 
-.atalho {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-}
-
-.atalho button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 300px;
-    height: 300px;
-    border: none;
-    cursor: pointer;
-    background: linear-gradient(27deg, rgba(211, 205, 205, 1) 0%, rgba(241, 241, 241, 1) 100%);
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.atalho button a {
+.container-atalho a {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-decoration: none;
     font-size: 20px;
-    color: #2C5555;
+    color: #ffffff;
     padding: 10px;
 }
 
-.atalho button img {
-    width: 150px;
+.container-atalho img {
+    width: 200px;
     margin-bottom: 10px;
+}
+
+.container-notificacao{
+    display: flex;
+    align-items: center;
+}
+
+.container-notificacao p{
+    font-size: 20px;
+    color: rgb(74, 74, 74);
 }
 
 .perfil {
@@ -243,7 +236,7 @@ button {
     display: flex;
     flex-direction: column;
     width:25vw;
-    height: 55vh;
+    height: 30vh;
     background-color: #ffffff;
     position: absolute;
     top: 50%;
@@ -305,7 +298,7 @@ button {
     display: flex;
     flex-direction: column;
     width: 30vw;
-    height: 35vh;
+    height: 25vh;
     background-color: white;
     padding: 28px;
     border-radius: 8px;
