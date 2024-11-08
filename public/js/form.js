@@ -1,4 +1,5 @@
 //buscar cep dodador
+
 function buscaCep(cep) {
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
         .then(response => {

@@ -74,6 +74,8 @@ router.post('/cadastroDoador', async (req, res) => {
     res.render('doadorHome');  
   });
 
+//rota para informações do perfil do usuario
+
   //Listar Informações
 
   router.get('/fazerdoacao', (req, res) => { 
