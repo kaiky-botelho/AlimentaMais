@@ -34,15 +34,18 @@ router.post('/loginDoador', async (req, res) => {
             const isMatch = await bcrypt.compare(doador_senha, doador.doador_senha);
 
             if (isMatch) {
+                // Armazenar o ID do usuário na sessão
+                req.session.userId = doador.id_doador;
+
                 // Redireciona para a página principal do doador
                 res.redirect('/doadorHome');
             } else {
                 // Passa a mensagem de erro para a view caso a senha esteja incorreta
-                res.render('loginDoador', { errorMessage: 'Senha incorreta.' });
+                res.render('loginDoador', { errorMessage: 'Credenciais incorretas.' });
             }
         } else {
             // Passa a mensagem de erro para a view caso o usuário não seja encontrado
-            res.render('loginDoador', { errorMessage: 'Usuário não encontrado.' });
+            res.render('loginDoador', { errorMessage: 'Credenciais incorretas.' });
         }
     } catch (err) {
         console.error('Erro no login:', err);
@@ -50,9 +53,31 @@ router.post('/loginDoador', async (req, res) => {
     }
 });
 
+
 // Página inicial após login
-router.get('/doadorHome', (req, res) => { 
-    res.render('doadorHome');  
+router.get('/doadorHome', async (req, res) => {
+    // Verificar se o ID do usuário está na sessão
+    if (!req.session.userId) {
+        return res.redirect('/loginDoador');  // Redireciona para a página de login se não estiver autenticado
+    }
+
+    const userId = req.session.userId;
+
+    try {
+        const query = 'SELECT nome_razao FROM cadastro_doador WHERE id_doador = $1';
+        const result = await pool.query(query, [userId]);
+
+        if (result.rows.length > 0) {
+            const nomeUsuario = result.rows[0].nome_razao;
+            res.render('doadorHome', { nome: nomeUsuario });
+        } else {
+            res.status(404).send('Usuário não encontrado');
+        }
+    } catch (error) {
+        console.error('Erro ao consultar o banco de dados:', error);
+        res.status(500).send('Erro ao buscar informações do usuário');
+    }
 });
+
 
 module.exports = router;

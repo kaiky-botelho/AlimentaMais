@@ -1,7 +1,7 @@
 CREATE TABLE cadastro_doador (
 	id_doador SERIAL NOT NULL PRIMARY KEY,
 	nome_razao VARCHAR(200),
-    doador_documento VARCHAR(14) NOT NULL UNIQUE,
+  doador_documento VARCHAR(14) NOT NULL UNIQUE,
 	doador_telefone VARCHAR(20),
 	doador_data_nasc DATE,
 	doador_email VARCHAR(100),
