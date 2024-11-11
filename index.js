@@ -1,5 +1,4 @@
 const express = require('express');
-const session = require('express-session');
 const bodyParser = require('body-parser');
 const loginRoutes = require('./routes/loginRoutes');
 const esqueceuRoutes = require('./routes/esqueceuRoutes');
@@ -7,14 +6,6 @@ const doadorRoutes = require('./routes/doadorRoutes');
 const beneficiarioRoutes = require('./routes/beneficiarioRoutes');
 
 const app = express();
-
-// Configuração do express-session (antes das rotas)
-app.use(session({
-    secret: 'seu-segredo-aqui',  // Uma chave secreta para assinar o ID da sessão
-    resave: false,               // Não resalvar sessão se não houver alterações
-    saveUninitialized: true,     // Salvar a sessão mesmo se não tiver dados
-    cookie: { secure: false }    // Usar "true" em produção com HTTPS
-}));
 
 // Configuração do body-parser para tratar dados do formulário
 app.use(bodyParser.json()); // Para analisar JSON
