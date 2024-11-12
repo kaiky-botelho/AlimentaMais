@@ -1,25 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const { auth } = require('./firebase'); // Importa a instância de autenticação configurada
+const { auth } = require('../config/firebase');  // Importando a configuração do Firebase
 const { sendPasswordResetEmail } = require("firebase/auth");
 
-// Rota para solicitar a redefinição de senha
+// Rota POST para enviar o e-mail de redefinição de senha
 router.post('/esqueceu', async (req, res) => {
-    const { email } = req.body;
+  const { email } = req.body;  // Obtém o e-mail da requisição
 
-    try {
-        // Usa o Firebase Auth para enviar o e-mail de redefinição
-        await sendPasswordResetEmail(auth, email);
-        console.log('E-mail de redefinição enviado para:', email);
-        res.status(200).send('E-mail de redefinição enviado com sucesso');
-    } catch (error) {
-        console.error('Erro ao enviar e-mail de redefinição:', error);
-        if (error.code === 'auth/user-not-found') {
-            res.status(400).send('Usuário não encontrado');
-        } else {
-            res.status(500).send('Erro ao enviar e-mail de redefinição');
-        }
-    }
+  if (!email) {
+    return res.status(400).json({ error: 'E-mail não fornecido' });
+  }
+
+  try {
+    // Envia o e-mail de redefinição de senha
+    await sendPasswordResetEmail(auth, email);
+    res.status(200).json({ message: 'E-mail de redefinição de senha enviado com sucesso!' });
+  } catch (error) {
+    console.error("Erro ao enviar e-mail de redefinição:", error.message);
+    res.status(500).json({ error: 'Erro ao enviar o e-mail de redefinição' });
+  }
 });
 
 module.exports = router;
