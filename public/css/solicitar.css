@@ -105,6 +105,17 @@ input[type="time"] {
     width: 100%;
 }
 
+select{
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px;
+    font-size: 16px;
+    width: 100%; 
+    height: 50px;
+}
+
 .check {
     display: flex;
     gap: 20px;
@@ -123,6 +134,14 @@ input[type="radio"]{
 
 .check div label{
     padding-left: 10px;
+}
+
+.locais .checkbox-container label{
+    color: black;
+}
+
+.locais .checkbox-container div input{
+    margin: 10px 5px 10px 0
 }
 
 .buttons {
@@ -168,9 +187,10 @@ input[type="radio"]{
 .locais{
     width: 0 0 30%;
     max-width: 30%;
-    height: 20px;
+    height: auto;
     background-color: white;
     border-radius: 10px;
+    padding: 60px;
 }
 
 #resultados-radio {
