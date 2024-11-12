@@ -17,6 +17,34 @@ router.get('/loginBenef', (req, res) => {
     res.render('loginBenef');  
 });
 
+router.post('/loginBenef', async (req, res) => {
+    const { benef_email, benef_senha } = req.body;
+
+    try {
+        const query = 'SELECT * FROM cadastro_beneficiario WHERE benef_email = $1';
+        const result = await pool.query(query, [benef_email]);
+
+        if (result.rows.length > 0) {
+            const benef = result.rows[0];
+            const isMatch = await bcrypt.compare(doador_senha, benef.benef_senha);
+
+            if (isMatch) {
+                // Redireciona para a página principal do doador
+                res.redirect('/beneficiarioHome');
+            } else {
+                // Passa a mensagem de erro para a view caso a senha esteja incorreta
+                res.render('loginBenef', { errorMessage: 'Senha incorreta.' });
+            }
+        } else {
+            // Passa a mensagem de erro para a view caso o usuário não seja encontrado
+            res.render('loginBenef', { errorMessage: 'Usuário não encontrado.' });
+        }
+    } catch (err) {
+        console.error('Erro no login:', err);
+        res.status(500).send('Erro ao realizar o login');
+    }
+});
+
 
 router.get('/loginDoador', (req, res) => {
     res.render('loginDoador');  
