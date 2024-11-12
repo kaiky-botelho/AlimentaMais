@@ -1,7 +1,7 @@
 CREATE TABLE cadastro_doador (
 	id_doador SERIAL NOT NULL PRIMARY KEY,
 	nome_razao VARCHAR(200),
-  doador_documento VARCHAR(14) NOT NULL UNIQUE,
+  	doador_documento VARCHAR(14) NOT NULL UNIQUE,
 	doador_telefone VARCHAR(20),
 	doador_data_nasc DATE,
 	doador_email VARCHAR(100),
@@ -26,7 +26,7 @@ CREATE TABLE cadastro_beneficiario (
 	benef_telefone VARCHAR(20),
 	benef_data_nasc DATE,
 	benef_email VARCHAR(100),
-	benef_senha VARCHAR(15),
+	benef_senha VARCHAR(60),
 	benef_cep VARCHAR(10),
 	benef_cidade VARCHAR(100),
 	benef_UF CHAR(2),
@@ -46,22 +46,24 @@ CREATE TABLE solicitacao (
 	solicitacao_obs VARCHAR(100),
 	solicitacao_entrega VARCHAR(50) CHECK (solicitacao_entrega IN ('Entregar pessoalmente', 'Retirar no endereço')), 
 	solicitacao_data DATE,
-	solicitacao_horario VARCHAR(5)
+	solicitacao_horario VARCHAR(5),
+	id_beneficiario INTEGER,  -- Adicionando a coluna para chave estrangeira
+	FOREIGN KEY (id_beneficiario) REFERENCES cadastro_beneficiario(id_beneficiario)  -- Referência correta para chave estrangeira
 );
 
 SELECT * FROM solicitacao;
 
 CREATE TABLE doacao (
-	id_docao SERIAL NOT NULL PRIMARY KEY,
+	id_doacao SERIAL NOT NULL PRIMARY KEY,
 	doacao_alimento VARCHAR(100),
 	doacao_qtd VARCHAR(50),
 	doacao_obs VARCHAR(100),
 	doacao_entrega VARCHAR(50) CHECK (doacao_entrega IN ('Entregar pessoalmente', 'Retirar no endereço')), 
 	doacao_data DATE,
-	doacao_horario VARCHAR(5)
+	doacao_horario VARCHAR(5),
+	id_doador INTEGER,  -- Adicionando a coluna para chave estrangeira
+	FOREIGN KEY (id_doador) REFERENCES cadastro_doador(id_doador)  -- Referência correta para chave estrangeira
 );
 
 SELECT * FROM doacao;
-
-
 

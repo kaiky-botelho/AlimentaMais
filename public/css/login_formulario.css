@@ -146,3 +146,11 @@ p{
     outline: none;
     border-color: #007BFF;
 }
+
+/* Estilo para mensagens de erro */
+.error-message {
+    color: red;
+    font-size: 20px;
+    margin-left: 10px;
+    text-align: center;
+}

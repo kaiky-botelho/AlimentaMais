@@ -55,10 +55,10 @@ router.post('/loginBenef', async (req, res) => {
                 req.session.userType = 'beneficiario';
                 res.redirect('/beneficiarioHome');
             } else {
-                res.render('loginBenef', { errorMessage: 'Senha incorreta.' });
+                res.render('loginBenef', { errorMessage: 'Senha incorreta' });
             }
         } else {
-            res.render('loginBenef', { errorMessage: 'Usuário não encontrado.' });
+            res.render('loginBenef', { errorMessage: 'Usuário não encontrado' });
         }
     } catch (err) {
         console.error('Erro no login:', err);
@@ -86,10 +86,10 @@ router.post('/loginDoador', async (req, res) => {
                 req.session.userType = 'doador';
                 res.redirect('/doadorHome');
             } else {
-                res.render('loginDoador', { errorMessage: 'Senha incorreta.' });
+                res.render('loginDoador', { errorMessage: 'Senha incorreta' });
             }
         } else {
-            res.render('loginDoador', { errorMessage: 'Usuário não encontrado.' });
+            res.render('loginDoador', { errorMessage: 'Usuário não encontrado' });
         }
     } catch (err) {
         console.error('Erro no login:', err);
@@ -106,4 +106,5 @@ router.get('/doadorHome', checkDoador, (req, res) => {
     res.render('doadorHome');
 });
 
-module.export0s = router;
+// Corrigido a exportação
+module.exports = router;
