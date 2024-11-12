@@ -42,5 +42,4 @@ router.get('/beneficiario', (req, res) => {
         res.status(500).send('Erro ao carregar doações');
     }
 });
-
-module.exports = router;
+  module.exports = router;

@@ -104,6 +104,12 @@ router.get('/fazerdoacao', (req, res) => {
 // Rota para processar a doação
 router.post('/fazerDoacao', async (req, res) => {
     const { doacao_alimento, doacao_qtd, doacao_obs, entregaColeta, doacao_data, doacao_horario } = req.body; 
+
+    // Verifica se o valor de entregaColeta é válido
+    if (!['Entregar pessoalmente', 'Retirar no endereço'].includes(entregaColeta)) {
+        return res.send(`<script>alert('Valor inválido para entrega. Selecione entre "Entregar pessoalmente" ou "Retirar no endereço".'); window.location.href = '/fazerdoacao';</script>`);
+    }
+
     try { 
         const query = 'INSERT INTO doacao (doacao_alimento, doacao_qtd, doacao_obs, doacao_entrega, doacao_data, doacao_horario) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id_doacao'; 
         const values = [doacao_alimento, doacao_qtd, doacao_obs, entregaColeta, doacao_data, doacao_horario]; 

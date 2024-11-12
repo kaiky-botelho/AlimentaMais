@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const loginRoutes = require('./routes/loginRoutes');
-const esqueceuRoutes = require('./routes/esqueceuRoutes');
 const doadorRoutes = require('./routes/doadorRoutes');
 const beneficiarioRoutes = require('./routes/beneficiarioRoutes');
 
@@ -20,7 +19,6 @@ app.set('view engine', 'ejs');
 
 // Configuração das rotas
 app.use('/', loginRoutes);
-app.use('/', esqueceuRoutes);
 app.use('/', doadorRoutes);
 app.use('/', beneficiarioRoutes);
 
