@@ -9,56 +9,67 @@
 </head>
 
 <body>
+    <!--Cabeçalho-->
     <header>
-        <img class="logo" src="/img/logoV3.png" alt="">
-        <button class="profile" id="profile"><img src="/img/perfil.svg" alt=""></button>
-        <button class="logout"><a href="/"><img src="/img/sair.svg" alt=""></a></button>
+        <img src="/img/logoV3.png" alt="Logo do Alimenta Mais" class="logo">
+        <div class="buttons-nav">
+            <a id="profile"><img src="/img/perfil.svg" alt="Icone de perfil"></a>
+            <a href="/"><img src="/img/sair.svg" alt="Icone para Sair"></a>
+        </div>
     </header>
-    <div class="main-section">
-        <h2 class="titulo">Inicio</h2>
-        <div class="container-funcoes">
-                    <button class="container-atalho"><a href="/fazerdoacao"><img src="/img/doacao.svg" alt=""><br>Fazer Doação</a></button>
-                    <div class="historico">
-                        <h3 class="funcoes">Histórico de Solicitações</h3>
-                    </div>
-                </div>
-    <div class="container-solicitado">
-            <div class="container-notificacao">
-                <div class="notificacao">
-                    <p>Não há notificações do sistema no momento</p>
-                </div>
+    <!--Sessão Inicial-->
+    <section>
+        <h2 class="titulo-inicial">Olá, Bem Vindo(a)</h2>
+        <div class="doacao-historico">
+            <div class="doacao">
+                <a href="/doacao"><img src="/img/doacao.svg" alt="">Fazer Doação</a>
             </div>
-            <div class="mais-solicitado">
-                <h3 class="funcoes">Quantidade de Doação por Mês</h3>
+            <div class="historico">
+                <h3 class="titulo-containeir">HISTÓRICO</h3>
             </div>
         </div>
-    </div>
+        <div class="notificacao">
+            <div class="container-notificacao">
+                <p>Não há notificações do sistema no momento</p>
+            </div>
+        </div>
+    </section>
 
+    <!--Resultado-->
 
     <div class="resultado-mostrar" id="resultado-mostrar">
-
     </div>
+
+    <!--Perfil-->
 
     <div class="perfil" id="perfil">
-        <h4>SEU PERFIL</h4>
-        <img src="img/profile.png" alt="">
-        <div class="info-perfil">
-            <label>NOME</label>
-        </div>
-        <div class="info-perfil">
-            <label>EMAIL</label>
-        </div>
-        <div class="info-perfil">
-            <label>ENDEREÇO</label>
-        </div>
-        <div class="buttons-perfil">
-            <button onclick="mostrar('editar')" class="editar" id="editar"></img src="img/editar.svg"
-                    alt="">EDITAR</button>
-            <button onclick="mostrar('deletar')" class="deletar" id="deletar"></img src="img/trash.svg"
-                    alt="">DELETAR</button>
+        <div class="container-perfil">
+            <h4>SEU PERFIL</h4>
+            <img src="/img/profile.png" alt="">
+            <div class="infos">
+                <div class="info">
+                    <h5>NOME</h5>
+                    <p>Nome de Exemplo</p>
+                </div>
+                <hr>
+                <div class="info">
+                    <h5>EMAIL</h5>
+                    <p>email23@example.com</p>
+                </div>
+                <hr>
+                <div class="info">
+                    <h5>ENDEREÇO</h5>
+                    <p>Rua de Exemplo</p>
+                </div>
+            </div>
+            <div class="buttons-perfil">
+                <button onclick="mostrar('editar')" class="editar" id="editar">Atualizar</button>
+                <button onclick="mostrar('deletar')" class="deletar" id="deletar">Deletar</button>
+            </div>
         </div>
     </div>
-    <script src="/js/home.js"></script>
+
+    <script src="/js/homeDoador.js"></script>
 </body>
 
 </html>
