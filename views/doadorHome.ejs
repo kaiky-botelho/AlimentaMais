@@ -20,19 +20,22 @@
     <!--Sessão Inicial-->
     <section>
         <h2 class="titulo-inicial">Olá, Bem Vindo(a)</h2>
+        <div class="notificacao">
+            <swiper-container class="mySwiper" pagination="true" pagination-clickable="true" navigation="true"
+                space-between="30" loop="true">
+                <swiper-slide><img src="/img/partoArte.jpg" alt=""></swiper-slide>
+                <swiper-slide><img src="/img/mulher.jpg" alt=""></swiper-slide>
+            </swiper-container>
+        </div>
         <div class="doacao-historico">
             <div class="doacao">
-                <a href="/doacao"><img src="/img/doacao.svg" alt="">Fazer Doação</a>
+                <a href="/fazerdoacao"><img src="/img/doacao.svg" alt="">Fazer Doação</a>
             </div>
             <div class="historico">
                 <h3 class="titulo-containeir">HISTÓRICO</h3>
             </div>
         </div>
-        <div class="notificacao">
-            <div class="container-notificacao">
-                <p>Não há notificações do sistema no momento</p>
-            </div>
-        </div>
+
     </section>
 
     <!--Resultado-->
@@ -70,6 +73,7 @@
     </div>
 
     <script src="/js/homeDoador.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
 </body>
 
 </html>
