@@ -46,9 +46,9 @@ header {
 }
 
 .titulo {
-    font-size: 75px;
+    font-size: 45px;
     color: #2C5555;
-    margin-bottom: 20px;
+    margin: 20px;
 }
 
 /* Form Styling */

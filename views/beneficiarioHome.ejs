@@ -17,42 +17,49 @@
         <div class="container-funcoes">
                     <button class="container-atalho"><a href="/solicitar"><img src="/img/solicitar.svg" alt=""><br>Solicitar Doação</a></button>
                     <button class="container-atalho"><a href="https://www.gov.br/saude/pt-br/assuntos/saude-brasil"><img src="/img/dica.svg" alt=""><br>Dicas de Nutrição</a></button>
-            <div class="container-notificacao">
-                <div class="notificacao">
-                    <p>Não há notificações do sistema no momento</p>
-                </div>
-            </div>
         </div>
         <div class="container-historico">
             <div class="historico">
                 <h3 class="funcoes">Histórico de Solicitações</h3>
             </div>
         </div>
+        
     </div>
 
-    <div class="resultado-mostrar" id="resultado-mostrar">
+<!--Resultado-->
+    
+<div class="resultado-mostrar" id="resultado-mostrar">
 
-    </div>
+</div>
 
-    <div class="perfil" id="perfil">
+<!--Perfil-->
+
+<div class="perfil" id="perfil">
+    <div class="container-perfil">
         <h4>SEU PERFIL</h4>
-        <img src="img/profile.png" alt="">
-        <div class="info-perfil">
-            <label>NOME</label>
-        </div>
-        <div class="info-perfil">
-            <label>EMAIL</label>
-        </div>
-        <div class="info-perfil">
-            <label>ENDEREÇO</label>
+        <img src="/img/profile.png" alt="">
+        <div class="infos">
+            <div class="info">
+                <h5>NOME</h5>
+                <p>Nome de Exemplo</p>
+            </div>
+            <hr>
+            <div class="info">
+                <h5>EMAIL</h5>
+                <p>email23@example.com</p>
+            </div>
+            <hr>
+            <div class="info">
+                <h5>ENDEREÇO</h5>
+                <p>Rua de Exemplo</p>
+            </div>
         </div>
         <div class="buttons-perfil">
-            <button onclick="mostrar('editar')" class="editar" id="editar"></img src="img/editar.svg"
-                    alt="">EDITAR</button>
-            <button onclick="mostrar('deletar')" class="deletar" id="deletar"></img src="img/trash.svg"
-                    alt="">DELETAR</button>
+            <button onclick="mostrar('editar')" class="editar" id="editar">Atualizar</button>
+            <button onclick="mostrar('deletar')" class="deletar" id="deletar">Deletar</button>
         </div>
     </div>
+</div>
 
     <script src="/js/home.js"></script>
 </body>

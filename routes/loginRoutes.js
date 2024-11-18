@@ -36,6 +36,7 @@ router.get('/', (req, res) => {
 });
 
 // Login Beneficiário
+// Login Beneficiário
 router.get('/loginBenef', (req, res) => {
     res.render('loginBenef');
 });
@@ -53,6 +54,7 @@ router.post('/loginBenef', async (req, res) => {
 
             if (isMatch) {
                 req.session.userType = 'beneficiario';
+                req.session.userId = benef.id_beneficiario; // Armazena o ID do beneficiário na sessão
                 res.redirect('/beneficiarioHome');
             } else {
                 res.render('loginBenef', { errorMessage: 'Senha incorreta' });
@@ -84,6 +86,7 @@ router.post('/loginDoador', async (req, res) => {
 
             if (isMatch) {
                 req.session.userType = 'doador';
+                req.session.userId = doador.id_doador; // Armazena o ID do doador na sessão
                 res.redirect('/doadorHome');
             } else {
                 res.render('loginDoador', { errorMessage: 'Senha incorreta' });
@@ -97,14 +100,6 @@ router.post('/loginDoador', async (req, res) => {
     }
 });
 
-// Páginas principais protegidas
-router.get('/beneficiarioHome', checkBeneficiario, (req, res) => {
-    res.render('beneficiarioHome');
-});
-
-router.get('/doadorHome', checkDoador, (req, res) => {
-    res.render('doadorHome');
-});
 
 // Corrigido a exportação
 module.exports = router;

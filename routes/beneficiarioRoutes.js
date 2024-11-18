@@ -42,4 +42,43 @@ router.get('/beneficiario', (req, res) => {
         res.status(500).send('Erro ao carregar doações');
     }
 });
+
+router.post('/fazerSolicitacao', async (req, res) => {
+  const { solicitacao_alimento, solicitacao_qtd, solicitacao_obs, solicitacao_entrega, solicitacao_data, solicitacao_horario } = req.body;
+
+  console.log('Valor recebido para solicitacao_entrega:', solicitacao_entrega); // Log para depuração
+
+  if (!['Entregar pessoalmente', 'Retirar no endereço'].includes(solicitacao_entrega)) {
+      return res.send(`<script>alert('Valor inválido para entrega. Selecione entre "Entregar pessoalmente" ou "Retirar no endereço".'); window.location.href = '/solicitar';</script>`);
+  }
+
+  try {
+      const query = `
+          INSERT INTO solicitacao (solicitacao_alimento, solicitacao_qtd, solicitacao_obs, solicitacao_entrega, solicitacao_data, solicitacao_horario)
+          VALUES ($1, $2, $3, $4, $5, $6) RETURNING id_solicitacao
+      `;
+      const values = [solicitacao_alimento, solicitacao_qtd, solicitacao_obs, solicitacao_entrega, solicitacao_data, solicitacao_horario];
+      const result = await pool.query(query, values);
+
+      // Apagar a doação correspondente à solicitação feita
+      const deleteQuery = `
+          DELETE FROM doacao
+          WHERE id_doacao = (
+              SELECT id_doacao
+              FROM doacao
+              WHERE doacao_alimento = $1
+              AND doacao_qtd >= $2
+              LIMIT 1
+          );
+      `;
+      const deleteValues = [solicitacao_alimento, solicitacao_qtd];
+      await pool.query(deleteQuery, deleteValues);
+
+      res.send(`<script>alert('Solicitação cadastrada com sucesso! ID: ${result.rows[0].id_solicitacao}'); window.location.href = '/solicitar';</script>`);
+  } catch (error) {
+      console.error('Erro ao cadastrar a solicitação:', error.message);
+      res.status(500).send(`<script>alert('Erro ao cadastrar a solicitação. Tente novamente.'); window.location.href = '/solicitar';</script>`);
+  }
+});
+
   module.exports = router;

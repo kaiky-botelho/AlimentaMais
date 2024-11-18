@@ -16,39 +16,40 @@
 
     <div class="main-section">
         <h2 class="titulo">Solicitar Doação</h2>
-        <form action="/fazerDoacao" method="post">
+        <form action="/fazerSolicitacao" method="post">
             <div class="informacao-alimento">
                 <div class="form-group">
                     <label for="alimento">Alimento</label> <br>
                     <select name="solicitacao_alimento" id="solicitacao_alimento" onchange="preencherQuantidade()">
                         <option value="" disabled selected>Selecione o alimento</option>
                         <% if (doacoes.length === 0) { %>
-                          <option disabled>Nenhuma doação disponível no momento</option>
+                            <option disabled>Nenhuma doação disponível no momento</option>
                         <% } else { %>
-                          <% doacoes.forEach(doacao => { %>
-                            <option value="<%= doacao.id_doacao %>" data-qtd="<%= doacao.doacao_qtd %>"><%= doacao.doacao_alimento %></option>
-                          <% }) %>
+                            <% doacoes.forEach(doacao => { %>
+                                <option value="<%= doacao.doacao_alimento %>" data-qtd="<%= doacao.doacao_qtd %>"><%= doacao.doacao_alimento %></option>
+                            <% }) %>
                         <% } %>
                     </select>
                 </div>
+                
                 <div class="form-group">
                     <label for="quantidade">Quantidade ou peso em KG</label>
-                    <input type="text" id="quantidade" name="quantidade" required readonly>
+                    <input type="text" id="quantidade" name="solicitacao_qtd" required readonly>
                 </div>
                 <div class="form-group">
                     <label for="observacao">Observação</label>
-                    <input type="text" id="observacao" name="observacao" required>
+                    <input type="text" id="observacao" name="solicitacao_obs">
                 </div>
             </div>
 
             <div class="informacao-entrega">
                 <div class="form-dateTime">
                     <label for="data-coleta">Data</label>
-                    <input type="date" id="data-coleta" name="data_coleta" required>
+                    <input type="date" id="data-coleta" name="solicitacao_data" required>
                 </div>
                 <div class="form-dateTime">
                     <label for="hora-coleta">Horário</label>
-                    <input type="time" id="hora-coleta" name="hora_coleta" required>
+                    <input type="time" id="hora-coleta" name="solicitacao_horario" required>
                 </div>
             </div>
 
@@ -56,15 +57,14 @@
             <label>Opções de entrega</label>
             <div class="check">
                 <div>
-                    <input type="radio" id="retirar-endereco" name="entregaColeta" value="retirar" onchange="exibir()" required checked>
+                    <input type="radio" id="retirar-endereco" name="solicitacao_entrega" value="Retirar no endereço" required checked onchange="exibir()">
                     <label for="retirar-endereco">Retirar no Local</label>
                 </div>
                 <div>
-                    <input type="radio" id="entregar-pessoalmente" name="entregaColeta" value="entrega" onchange="exibir()" required>
+                    <input type="radio" id="entregar-pessoalmente" name="solicitacao_entrega" value="Entregar pessoalmente" required onchange="exibir()">
                     <label for="entregar-pessoalmente">Entregar no meu endereço</label>
                 </div>
-            </div>
-
+            </div>            
             <div id="resultados-radio">
                 <div class="locais">
                     <h2>Locais disponíveis para retirada</h2>

@@ -32,7 +32,6 @@ router.post('/cadastroDoador', async (req, res) => {
     const preferenciaContatoString = Array.isArray(preferencia_contato) ? preferencia_contato.join(', ') : preferencia_contato;
 
     try {
-        // Criptografa a senha antes de armazená-la
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(doador_senha, saltRounds);
 
@@ -71,22 +70,31 @@ router.post('/cadastroDoador', async (req, res) => {
 });
 
 // Rota para exibir a página principal do doador
+// Rota para a página principal do doador
 router.get('/doadorHome', async (req, res) => { 
     const userId = req.session.userId;
     
     if (!userId) {
-        return res.redirect('/login'); // Se o usuário não estiver logado, redireciona para o login
+        return res.redirect('/loginDoador');
     }
     
     try {
-        // Consultar o nome do usuário no banco de dados
-        const query = 'SELECT nome_razao FROM cadastro_doador WHERE id_doador = $1';
+        const query = 'SELECT nome_razao, doador_email, doador_endereco, doador_bairro, doador_cidade, doador_UF, doador_cep FROM cadastro_doador WHERE id_doador = $1';
         const result = await pool.query(query, [userId]);
 
         if (result.rows.length > 0) {
-            const nomeUsuario = result.rows[0].nome_razao;
-            // Passar o nome do usuário para a página EJS
-            res.render('doadorHome', { nome_razao: nomeUsuario });
+            const doador = result.rows[0];
+
+            // Passando dados para o EJS, agora com o bairro
+            res.render('doadorHome', { 
+                nome_razao: doador.nome_razao,
+                doador_email: doador.doador_email,
+                doador_endereco: doador.doador_endereco,
+                doador_bairro: doador.doador_bairro, // Aqui está a correção
+                doador_cidade: doador.doador_cidade,
+                doador_UF: doador.doador_UF,
+                doador_cep: doador.doador_cep
+            });
         } else {
             res.send('Usuário não encontrado');
         }
@@ -95,6 +103,7 @@ router.get('/doadorHome', async (req, res) => {
         res.send('Erro ao buscar informações do usuário');
     }
 });
+
 
 // Rota para a página de doação
 router.get('/fazerdoacao', (req, res) => { 
@@ -105,7 +114,6 @@ router.get('/fazerdoacao', (req, res) => {
 router.post('/fazerDoacao', async (req, res) => {
     const { doacao_alimento, doacao_qtd, doacao_obs, entregaColeta, doacao_data, doacao_horario } = req.body; 
 
-    // Verifica se o valor de entregaColeta é válido
     if (!['Entregar pessoalmente', 'Retirar no endereço'].includes(entregaColeta)) {
         return res.send(`<script>alert('Valor inválido para entrega. Selecione entre "Entregar pessoalmente" ou "Retirar no endereço".'); window.location.href = '/fazerdoacao';</script>`);
     }
@@ -119,6 +127,77 @@ router.post('/fazerDoacao', async (req, res) => {
     } catch (error) { 
         console.error('Erro ao realizar a doação:', error); 
         res.send(`<script>alert('Erro ao realizar a doação. Tente novamente.'); window.location.href = '/fazerdoacao';</script>`); 
+    }
+});
+
+
+// Rota para editar a conta do doador
+router.post('/editarDoador', async (req, res) => {
+    const { id_doador, nome_razao, doador_email, doador_endereco, doador_cidade, doador_UF, doador_bairro, doador_cep } = req.body;
+
+    console.log('Dados recebidos:', req.body); // Verificando o corpo da requisição
+
+    const dadosAtualizados = {
+        nome_razao,
+        doador_email,
+        doador_endereco,
+        doador_cidade,
+        doador_UF,
+        doador_bairro,
+        doador_cep
+    };
+
+    try {
+        const query = `
+            UPDATE cadastro_doador 
+            SET nome_razao = $1, 
+                doador_email = $2, 
+                doador_endereco = $3, 
+                doador_cidade = $4, 
+                doador_UF = $5, 
+                doador_bairro = $6, 
+                doador_cep = $7
+            WHERE id_doador = $8
+        `;
+
+        const values = [
+            nome_razao, 
+            doador_email, 
+            doador_endereco, 
+            doador_cidade, 
+            doador_UF, 
+            doador_bairro, 
+            doador_cep,
+            id_doador // Aqui está o ID do doador
+        ];
+
+        console.log("Executando query com os valores:", values); // Verificando os valores enviados à consulta
+
+        // Executa a consulta no banco de dados
+        await pool.query(query, values);
+
+        // Enviar resposta de sucesso
+        res.send(`<script>alert('Conta editada com sucesso!'); window.location.href = '/doadorHome';</script>`);
+    } catch (error) {
+        console.error('Erro ao editar conta do doador:', error);
+        res.send(`<script>alert('Erro ao editar conta. Tente novamente.'); window.location.href = '/doadorHome';</script>`);
+    }
+});
+
+
+
+
+// Rota para deletar a conta do doador
+router.post('/deletarDoador', async (req, res) => {
+    const { id_doador } = req.body;
+
+    try {
+        const query = 'DELETE FROM cadastro_doador WHERE id_doador = $1';
+        await pool.query(query, [id_doador]);
+        res.send(`<script>alert('Conta deletada com sucesso!'); window.location.href = '/';</script>`);
+    } catch (error) {
+        console.error('Erro ao deletar conta do doador:', error);
+        res.send(`<script>alert('Erro ao deletar conta. Tente novamente.'); window.location.href = '/doadorHome';</script>`);
     }
 });
 
