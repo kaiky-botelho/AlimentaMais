@@ -106,6 +106,17 @@ section .titulo-inicial{
     font-size: 18px;
 }
 
+.historico .historico-lista table {
+    width: 100%;
+}
+
+.historico .historico-lista table th,
+.historico .historico-lista table td {
+    padding: 10px;
+    text-align: left;
+    border: 2px solid black;
+}
+
 .banner{
     margin-bottom: 20px;
 }
