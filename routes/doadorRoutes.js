@@ -92,7 +92,7 @@ router.get('/doadorHome', async (req, res) => {
 
         // Consultar doações associadas ao doador
         const doacoesQuery = `
-            SELECT doacao_alimento, doacao_qtd, doacao_obs, doacao_entrega, doacao_data, doacao_horario 
+            SELECT doacao_alimento, doacao_qtd, doacao_obs, doacao_data, doacao_horario 
             FROM doacao 
             WHERE id_doador = $1
         `;

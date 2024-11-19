@@ -190,24 +190,25 @@ router.post('/fazerSolicitacao', async (req, res) => {
     }
 });
 
-//Editar Beneficiario
 
-router.get('/editarBenef', async(req, res)=> {
+router.get('/editarBenef', async (req, res) => {
     const userId = req.session.userId;
+    console.log('userId:', userId); // Debug
     if (!userId) {
         return res.redirect('/loginBenef');
     }
 
     try {
         const query = `
-        SELECT nome, benef_email, benef_endereco, benef_cidade, benef_UF, benef_cep
-        FROM cadastro_beneficiario
-        WHERE id_beneficiario = $1
+            SELECT nome, benef_email, benef_endereco, benef_bairro, benef_cidade, benef_UF, benef_cep
+            FROM cadastro_beneficiario
+            WHERE id_beneficiario = $1
         `;
         const result = await pool.query(query, [userId]);
+        console.log('Result rows:', result.rows); // Debug
 
-        if(result.rows.lenght > 0){
-            const doador = result.rows[0];
+        if (result.rows.length > 0) {
+            const beneficiario = result.rows[0];
             res.render('editarBenef', {
                 userId,
                 nome: beneficiario.nome,
@@ -219,13 +220,16 @@ router.get('/editarBenef', async(req, res)=> {
                 benef_cep: beneficiario.benef_cep,
             });
         } else {
-            res.send('Usuário não encontrada');
+            console.log('Usuário não encontrado');
+            res.send('Usuário não encontrado');
         }
-    } catch (error){
+    } catch (error) {
         console.error('Erro ao buscar informações do usuário:', error);
         res.send('Erro ao carregar informações do usuário.');
     }
 });
+
+
 
 
     module.exports = router;
