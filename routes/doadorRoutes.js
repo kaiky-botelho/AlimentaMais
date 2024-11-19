@@ -69,7 +69,6 @@ router.post('/cadastroDoador', async (req, res) => {
     }
 });
 
-// Rota para exibir a página principal do doador
 // Rota para a página principal do doador
 router.get('/doadorHome', async (req, res) => { 
     const userId = req.session.userId;
@@ -104,7 +103,6 @@ router.get('/doadorHome', async (req, res) => {
     }
 });
 
-
 // Rota para a página de doação
 router.get('/fazerdoacao', (req, res) => { 
     const userId = req.session.userId; // Certifique-se de que o ID do usuário está na sessão
@@ -137,8 +135,6 @@ router.post('/fazerDoacao', async (req, res) => {
         res.send(`<script>alert('Erro ao realizar a doação. Tente novamente.'); window.location.href = '/fazerdoacao';</script>`); 
     }
 });
-
-
 
 // Rota para editar a conta do doador
 router.post('/editarDoador', async (req, res) => {
@@ -190,20 +186,6 @@ router.post('/editarDoador', async (req, res) => {
     } catch (error) {
         console.error('Erro ao editar conta do doador:', error);
         res.send(`<script>alert('Erro ao editar conta. Tente novamente.'); window.location.href = '/doadorHome';</script>`);
-    }
-});
-
-// Rota para deletar a conta do doador
-router.post('/deletarDoador', async (req, res) => {
-    const { id_doador } = req.body;
-
-    try {
-        const query = 'DELETE FROM cadastro_doador WHERE id_doador = $1';
-        await pool.query(query, [id_doador]);
-        res.send(`<script>alert('Conta deletada com sucesso!'); window.location.href = '/';</script>`);
-    } catch (error) {
-        console.error('Erro ao deletar conta do doador:', error);
-        res.send(`<script>alert('Erro ao deletar conta. Tente novamente.'); window.location.href = '/doadorHome';</script>`);
     }
 });
 
