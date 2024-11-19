@@ -229,7 +229,54 @@ router.get('/editarBenef', async (req, res) => {
     }
 });
 
+router.post('/editarBeneficiario', async (req, res) => {
+    const { id_beneficiario, benef_email, benef_endereco, benef_cidade, benef_UF, benef_bairro, benef_cep } = req.body;
 
+    console.log('Dados recebidos:', req.body); // Verificando o corpo da requisição
+
+    const dadosAtualizados = {
+        benef_email, 
+        benef_endereco, 
+        benef_cidade, 
+        benef_UF, 
+        benef_bairro, 
+        benef_cep
+    };
+
+    try {
+        const query = `
+            UPDATE cadastro_beneficiario 
+            SET benef_email = $1, 
+                benef_endereco = $2, 
+                benef_cidade = $3, 
+                benef_UF = $4, 
+                benef_bairro = $5, 
+                benef_cep = $6
+            WHERE id_beneficiario = $7
+        `;
+
+        const values = [
+            benef_email, 
+            benef_endereco, 
+            benef_cidade, 
+            benef_UF, 
+            benef_bairro, 
+            benef_cep,
+            id_beneficiario
+        ];
+
+        console.log("Executando query com os valores:", values);
+
+        // Executa a consulta no banco de dados
+        await pool.query(query, values);
+
+        // Enviar resposta de sucesso
+        res.send(`<script>alert('Conta editada com sucesso!'); window.location.href = '/beneficiarioHome';</script>`);
+    } catch (error) {
+        console.error('Erro ao editar conta do beneficiário:', error);
+        res.send(`<script>alert('Erro ao editar conta. Tente novamente.'); window.location.href = '/beneficiarioHome';</script>`);
+    }
+});
 
 
     module.exports = router;

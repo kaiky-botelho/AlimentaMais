@@ -57,6 +57,7 @@ CREATE TABLE doacao (
 	doacao_alimento VARCHAR(100),
 	doacao_qtd VARCHAR(50),
 	doacao_obs VARCHAR(100),
+	doacao_data date,
 	doacao_horario VARCHAR(5),
 	id_doador INTEGER,  -- Adicionando a coluna para chave estrangeira
 	FOREIGN KEY (id_doador) REFERENCES cadastro_doador(id_doador)  -- Referência correta para chave estrangeira
