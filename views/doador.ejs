@@ -43,29 +43,11 @@
 
                 <input type="text" id="doador_complemento" name="doador_complemento" placeholder="Complemento">
 
-                <div class="container-doacoes">
-                    <h3>Frequência das Doações</h3>
-                    <div class="checkbox-label">
-                        <input type="radio" name="frequencia_doacao" id="unica" value="Unica">
-                        <label for="unica">Única</label>
-                    </div>
-                    <div class="checkbox-label">
-                        <input type="radio" name="frequencia_doacao" id="recorrente" value="Recorrente">
-                        <label for="recorrente">Recorrente</label>
-                    </div>
-                </div>
-                
-                <div class="container-contato">
-                    <h3>Preferência de Contato</h3>
-                    <div class="checkbox-label">
-                        <input type="radio" name="preferencia_contato" id="Email" value="Email">
-                        <label for="Email">Email</label>
-                    </div>
-                    <div class="checkbox-label">
-                        <input type="radio" name="preferencia_contato" id="sms" value="SMS">
-                        <label for="sms">SMS</label>
-                    </div>
-                </div>
+                <select name="frequencia_doacao" id="rendaFamiliar">
+                    <option value="frequencia_doacao">Frequência das Doações</option>
+                    <option name="frequencia_doacao">única</option>
+                    <option name="frequencia_doacao">Recorrente</option>
+                </select>
                 
                 <div class="buttons">
                     <a href="/loginDoador" class="botao laranja">Voltar</a>

@@ -13,8 +13,7 @@ CREATE TABLE cadastro_doador (
 	doador_numero VARCHAR(5),
 	doador_bairro VARCHAR(100),
 	doador_complemento VARCHAR(100),
-	frequencia_doacao VARCHAR(10) CHECK (frequencia_doacao IN ('Unica', 'Recorrente')), 
-    preferencia_contato VARCHAR(10) CHECK (preferencia_contato IN ('Email', 'SMS'))
+	frequencia_doacao VARCHAR(10)
 );
 
 SELECT * FROM cadastro_doador;
@@ -58,8 +57,6 @@ CREATE TABLE doacao (
 	doacao_alimento VARCHAR(100),
 	doacao_qtd VARCHAR(50),
 	doacao_obs VARCHAR(100),
-	doacao_entrega VARCHAR(50) CHECK (doacao_entrega IN ('Entregar pessoalmente', 'Retirar no endereço')), 
-	doacao_data DATE,
 	doacao_horario VARCHAR(5),
 	id_doador INTEGER,  -- Adicionando a coluna para chave estrangeira
 	FOREIGN KEY (id_doador) REFERENCES cadastro_doador(id_doador)  -- Referência correta para chave estrangeira
