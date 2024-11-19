@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Doação</title>
+    <link rel="stylesheet" href="/css/solicitar.css">
+</head>
+
+<body>
+    <header>
+        <img class="logo" src="/img/logoV3.png" alt="">
+        <button class="logout"><a href="/"><img src="/img/sair.svg" alt=""></a></button>
+    </header>
+    <div class="main-section">
+        <h2 class="titulo">Editar Doação</h2>
+        <form action="/atualizarDoacao/<%= doacao.id_doacao %>" method="post">
+            <input type="hidden" name="id_doador" value="<%= userId %>"> <!-- id_doador sendo passado -->
+            <div class="informacao-alimento">
+                <div class="form-group">
+                    <label for="alimento">Alimento</label>
+                    <input type="text" id="doacao_alimento" name="doacao_alimento" value="<%= doacao.doacao_alimento %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantidade">Quantidade ou peso em KG</label>
+                    <input type="text" id="doacao_qtd" name="doacao_qtd" value="<%= doacao.doacao_qtd %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="observacao">Observação</label>
+                    <input type="text" id="doacao_obs" name="doacao_obs" value="<%= doacao.doacao_obs %>">
+                </div>
+            </div>
+            <h2 class="titulo">Informação da Coleta</h2>
+            <label>Opções de entrega</label>
+            <div class="check">
+                <div>
+                    <label for="entregar-pessoalmente"> 
+                        <input type="radio" id="entregar-pessoalmente" name="entregaColeta" value="Entregar pessoalmente" <%= doacao.entregaColeta === 'Entregar pessoalmente' ? 'checked' : '' %> onchange="exibir()"> 
+                        Entregar pessoalmente
+                    </label>
+                </div>
+                <div>
+                    <label for="retirar-endereco"> 
+                        <input type="radio" id="retirar-endereco" name="entregaColeta" value="Retirar no endereço" <%= doacao.entregaColeta === 'Retirar no endereço' ? 'checked' : '' %> onchange="exibir()"> 
+                        Retirar no endereço
+                    </label>
+                </div>
+            </div>
+            
+            <div class="informacao-entrega">
+                <div class="form-dateTime">
+                    <label for="data-coleta">Data</label>
+                    <input type="date" id="doacao_data" name="doacao_data" value="<%= doacao.doacao_data %>" required>
+                </div>
+                <div class="form-dateTime">
+                    <label for="hora-coleta">Horário</label>
+                    <input type="time" id="doacao_horario" name="doacao_horario" value="<%= doacao.doacao_horario %>" required>
+                </div>
+                <div id="resultados-radio"></div>
+            </div>
+            <div class="buttons">
+                <button class="voltar"><a href="/doadorHome">Voltar</a></button>
+                <button class="doar" type="submit">Atualizar</button>
+            </div>
+        </form>
+    </div>
+    
+    <script src="/js/script.js"></script>
+</body>
+
+</html>

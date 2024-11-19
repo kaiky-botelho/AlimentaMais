@@ -16,6 +16,7 @@
     <div class="main-section">
         <h2 class="titulo">Fazer Doação</h2>
         <form action="/fazerDoacao" method="post">
+            <input type="hidden" name="id_doador" value="<%= userId %>"> <!-- id_doador sendo passado -->
             <div class="informacao-alimento">
                 <div class="form-group">
                     <label for="alimento">Alimento</label>
@@ -63,7 +64,7 @@
                 <button class="doar" type="submit">Doar</button>
             </div>
         </form>
-    </div>
+        
     <script src="/js/script.js"></script>
 </body>
 
