@@ -247,22 +247,4 @@ router.post('/editarDoador', async (req, res) => {
     }
 });
 
-<<<<<<< HEAD
-//editar doacao
-=======
-// Rota para deletar a conta do doador
-router.post('/deletarDoador', async (req, res) => {
-    const { id_doador } = req.body;
-
-    try {
-        const query = 'DELETE FROM cadastro_doador WHERE id_doador = $1';
-        await pool.query(query, [id_doador]);
-        res.send(`<script>alert('Conta deletada com sucesso!'); window.location.href = '/';</script>`);
-    } catch (error) {
-        console.error('Erro ao deletar conta do doador:', error);
-        res.send(`<script>alert('Erro ao deletar conta. Tente novamente.'); window.location.href = '/doadorHome';</script>`);
-    }
-});
->>>>>>> a551f2f85d569a9f44873d0be30e86ca90f58266
-
 module.exports = router;

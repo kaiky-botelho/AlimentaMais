@@ -170,11 +170,7 @@ section .titulo-inicial{
     margin: 14px 0 14px;
 }
 
-<<<<<<< HEAD
 .editar{
-=======
-button{
->>>>>>> a551f2f85d569a9f44873d0be30e86ca90f58266
     background-color: transparent;
     width: 100px;
     height: 40px;
@@ -184,10 +180,7 @@ button{
     cursor: pointer;
     background-color: #FDB233;
     text-align: center;
-<<<<<<< HEAD
     text-decoration: none;
-=======
->>>>>>> a551f2f85d569a9f44873d0be30e86ca90f58266
 }
 
 .informacao-section{
