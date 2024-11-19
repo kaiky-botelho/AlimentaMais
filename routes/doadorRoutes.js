@@ -141,7 +141,7 @@ router.post('/fazerDoacao', async (req, res) => {
             INSERT INTO doacao (doacao_alimento, doacao_qtd, doacao_obs, doacao_data, doacao_horario, id_doador) 
             VALUES ($1, $2, $3, $4, $5, $6) 
             RETURNING id_doacao`; 
-        const values = [doacao_alimento, doacao_qtd, doacao_obs, , doacao_data, doacao_horario, id_doador]; 
+        const values = [doacao_alimento, doacao_qtd, doacao_obs, doacao_data, doacao_horario, id_doador]; 
         const result = await pool.query(query, values); 
         
         res.send(`<script>alert('Doação realizada! ID: ${result.rows[0].id_doacao}'); window.location.href = '/fazerdoacao';</script>`); 
@@ -150,6 +150,7 @@ router.post('/fazerDoacao', async (req, res) => {
         res.send(`<script>alert('Erro ao realizar a doação. Tente novamente.'); window.location.href = '/fazerdoacao';</script>`); 
     }
 });
+
 
 router.get('/editar', async (req, res) => {
     const userId = req.session.userId;
