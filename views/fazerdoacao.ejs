@@ -32,22 +32,6 @@
                 </div>
             </div>
             <h2 class="titulo">Informação da Coleta</h2>
-            <label>Opções de entrega</label>
-            <div class="check">
-                <div>
-                    <label for="entregar-pessoalmente"> 
-                        <input type="radio" id="entregar-pessoalmente" name="entregaColeta" value="Entregar pessoalmente" onchange="exibir()"> 
-                        Entregar pessoalmente
-                    </label>
-                </div>
-                <div>
-                    <label for="retirar-endereco"> 
-                        <input type="radio" id="retirar-endereco" name="entregaColeta" value="Retirar no endereço" onchange="exibir()"> 
-                        Retirar no endereço
-                    </label>
-                </div>
-            </div>
-            
             <div class="informacao-entrega">
                 <div class="form-dateTime">
                     <label for="data-coleta">Data</label>
@@ -60,7 +44,7 @@
                 <div id="resultados-radio"></div>
             </div>
             <div class="buttons">
-                <button class="voltar"><a href="/doadorHome">Voltar</a></button>
+                <a href="/doadorHome" class="voltar">Voltar</a>
                 <button class="doar" type="submit">Doar</button>
             </div>
         </form>

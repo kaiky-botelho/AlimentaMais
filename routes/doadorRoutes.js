@@ -27,11 +27,7 @@ router.post('/cadastroDoador', async (req, res) => {
         doador_bairro, 
         doador_complemento, 
         frequencia_doacao, 
-        preferencia_contato 
     } = req.body;
-
-    const frequenciaDoacaoString = Array.isArray(frequencia_doacao) ? frequencia_doacao.join(', ') : frequencia_doacao;
-    const preferenciaContatoString = Array.isArray(preferencia_contato) ? preferencia_contato.join(', ') : preferencia_contato;
 
     try {
         const saltRounds = 10;
@@ -39,8 +35,8 @@ router.post('/cadastroDoador', async (req, res) => {
 
         const query = `
             INSERT INTO cadastro_doador 
-            (nome_razao, doador_documento, doador_telefone, doador_data_nasc, doador_email, doador_senha, doador_cep, doador_cidade, doador_UF, doador_endereco, doador_numero, doador_bairro, doador_complemento, frequencia_doacao, preferencia_contato) 
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) 
+            (nome_razao, doador_documento, doador_telefone, doador_data_nasc, doador_email, doador_senha, doador_cep, doador_cidade, doador_UF, doador_endereco, doador_numero, doador_bairro, doador_complemento, frequencia_doacao) 
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) 
             RETURNING id_doador
         `;
         
@@ -58,8 +54,7 @@ router.post('/cadastroDoador', async (req, res) => {
             doador_numero, 
             doador_bairro, 
             doador_complemento, 
-            frequenciaDoacaoString, 
-            preferenciaContatoString
+            frequencia_doacao
         ];
 
         const result = await pool.query(query, values);
@@ -137,18 +132,14 @@ router.get('/fazerdoacao', (req, res) => {
 
 // Rota para processar a doação
 router.post('/fazerDoacao', async (req, res) => {
-    const { doacao_alimento, doacao_qtd, doacao_obs, entregaColeta, doacao_data, doacao_horario, id_doador } = req.body; 
-
-    if (!['Entregar pessoalmente', 'Retirar no endereço'].includes(entregaColeta)) {
-        return res.send(`<script>alert('Valor inválido para entrega. Selecione entre "Entregar pessoalmente" ou "Retirar no endereço".'); window.location.href = '/fazerdoacao';</script>`);
-    }
+    const { doacao_alimento, doacao_qtd, doacao_obs, doacao_data, doacao_horario, id_doador } = req.body; 
 
     try { 
         const query = `
-            INSERT INTO doacao (doacao_alimento, doacao_qtd, doacao_obs, doacao_entrega, doacao_data, doacao_horario, id_doador) 
-            VALUES ($1, $2, $3, $4, $5, $6, $7) 
+            INSERT INTO doacao (doacao_alimento, doacao_qtd, doacao_obs, doacao_data, doacao_horario, id_doador) 
+            VALUES ($1, $2, $3, $4, $5, $6) 
             RETURNING id_doacao`; 
-        const values = [doacao_alimento, doacao_qtd, doacao_obs, entregaColeta, doacao_data, doacao_horario, id_doador]; 
+        const values = [doacao_alimento, doacao_qtd, doacao_obs, doacao_data, doacao_horario, id_doador]; // corrigido aqui
         const result = await pool.query(query, values); 
         
         res.send(`<script>alert('Doação realizada! ID: ${result.rows[0].id_doacao}'); window.location.href = '/fazerdoacao';</script>`); 

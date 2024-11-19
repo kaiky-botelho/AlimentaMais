@@ -151,7 +151,7 @@ input[type="radio"]{
     margin-bottom: 20px;
 }
 
-.buttons button {
+.buttons button, .buttons a {
     flex: 0 0 20%;
     max-width: 20%;
     height: 60px;
@@ -168,11 +168,16 @@ input[type="radio"]{
 }
 
 .buttons .voltar {
+    display: flex;
     background-color: #FDB233;
     color: #ffffff;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .buttons .doar {
