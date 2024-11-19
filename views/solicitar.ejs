@@ -18,6 +18,7 @@
         <h2 class="titulo">Solicitar Doação</h2>
         <form action="/fazerSolicitacao" method="post">
             <div class="informacao-alimento">
+                <input type="hidden" name="id_beneficiario" value="<%= userId %>">
                 <div class="form-group">
                     <label for="alimento">Alimento</label> <br>
                     <select name="solicitacao_alimento" id="solicitacao_alimento" onchange="preencherQuantidade()">

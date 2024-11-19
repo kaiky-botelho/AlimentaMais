@@ -1,65 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beneficiario</title>
-    <link rel="stylesheet" href="/css/beneficiario.css">
+    <link rel="stylesheet" href="/css/Beneficiario.css">
 </head>
+
 <body>
+    <!--Cabeçalho-->
     <header>
-        <img class="logo" src="/img/logoV3.png" alt="">
-        <button class="profile" id="profile"><img src="/img/perfil.svg" alt=""></button>
-        <button class="logout"><a href="/"><img src="/img/sair.svg" alt=""></a></button>
+        <img src="/img/logoV3.png" alt="Logo do Alimenta Mais" class="logo">
+        <div class="buttons-nav">
+            <a id="profile"><img src="/img/perfil.svg" alt="Icone de perfil"></a>
+            <a href="/"><img src="/img/sair.svg" alt="Icone para Sair"></a>
+        </div>
     </header>
-    <div class="main-section">
-        <h2 class="titulo">Inicio</h2>
-        <div class="container-funcoes">
-                    <button class="container-atalho"><a href="/solicitar"><img src="/img/solicitar.svg" alt=""><br>Solicitar Doação</a></button>
-                    <button class="container-atalho"><a href="https://www.gov.br/saude/pt-br/assuntos/saude-brasil"><img src="/img/dica.svg" alt=""><br>Dicas de Nutrição</a></button>
-        </div>
-        <div class="container-historico">
-            <div class="historico">
-                <h3 class="funcoes">Histórico de Solicitações</h3>
+
+    <!--Sessão Inicial-->
+    <section>
+        <h2 class="titulo-inicial">Olá, <%= nome%>
+        </h2> <!-- Nome do Doador -->
+        <div class="container-solicitar">
+            <div class="solicitar">
+                <a href="/solicitar"><img src="/img/solicitar.svg" alt="">Solicitar</a>
+            </div>
+            <div class="solicitar">
+                <a href="https://www.gov.br/saude/pt-br/assuntos/saude-brasil"><img src="/img/dica.svg" alt="">Dicas</a>
             </div>
         </div>
-        
+
+
+        <div class="historico">
+            <h3 class="titulo-containeir">HISTÓRICO</h3>
+            <div class="historico-lista">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Alimento</th>
+                            <th>Quantidade</th>
+                            <th>Observação</th>
+                            <th>Data</th>
+                            <th>Horário</th>
+                            <th>Entrega</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (solicitacoes.length > 0) { %>
+                            <% solicitacoes.forEach(solicitacao => { %>
+                                <tr>
+                                    <td><%= solicitacao.solicitacao_alimento %></td>
+                                    <td><%= solicitacao.solicitacao_qtd %></td>
+                                    <td><%= solicitacao.solicitacao_obs %></td>
+                                    <td><%= solicitacao.solicitacao_data %></td>
+                                    <td><%= solicitacao.solicitacao_horario %></td>
+                                    <td><%= solicitacao.solicitacao_entrega %></td>
+                                </tr>
+                            <% }) %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="6">Nenhuma solicitação registrada.</td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>                
+            </div>
+
+        </div>
+    </section>
+
+    <!--Resultado-->
+
+    <!--Perfil-->
+    <div class="perfil" id="perfil">
+        <div class="container-perfil">
+            <h4>SEU PERFIL</h4>
+            <img src="/img/profile.png" alt="">
+            <div class="infos">
+                <div class="info">
+                    <h5>NOME</h5>
+                    <p><%= nome%></p> <!-- Nome do Doador -->
+                </div>
+                <hr>
+                <div class="info">
+                    <h5>EMAIL</h5>
+                    <p><%= benef_email %></p> <!-- E-mail do Doador -->
+                </div>
+                <hr>
+                <div class="info">
+                    <h5>ENDEREÇO</h5>
+                    <p>
+                        <%= benef_endereco %>, <br>
+                        <%= benef_bairro || 'Bairro não informado' %>, <br> 
+                        <%= benef_cidade %>, <br>
+                        <%= benef_UF %> 
+                        <%= benef_cep || 'CEP não informado' %> 
+                    </p> <!-- Endereço do Doador -->
+                </div>
+            </div>
+                <a href="/editarBenef" class="editar" id="editar">Atualizar</a>
+        </div>
     </div>
 
-<!--Resultado-->
-    
-<div class="resultado-mostrar" id="resultado-mostrar">
-
-</div>
-
-<!--Perfil-->
-
-<div class="perfil" id="perfil">
-    <div class="container-perfil">
-        <h4>SEU PERFIL</h4>
-        <img src="/img/profile.png" alt="">
-        <div class="infos">
-            <div class="info">
-                <h5>NOME</h5>
-                <p>Nome de Exemplo</p>
-            </div>
-            <hr>
-            <div class="info">
-                <h5>EMAIL</h5>
-                <p>email23@example.com</p>
-            </div>
-            <hr>
-            <div class="info">
-                <h5>ENDEREÇO</h5>
-                <p>Rua de Exemplo</p>
-            </div>
-        </div>
-        <div class="buttons-perfil">
-            <button onclick="mostrar('deletar')" class="deletar" id="deletar">Deletar</button>
-        </div>
-    </div>
-</div>
-
-    <script src="/js/home.js"></script>
+    <script src="/js/homeDoador.js"></script>
 </body>
+
 </html>
