@@ -35,8 +35,9 @@
                 <h3 class="titulo-containeir">HISTÓRICO</h3>
                 <!-- Exibindo Histórico de Doações (se disponível) -->
                 <div class="historico-lista">
-                  
+
                 </div>
+                
             </div>
         </div>
     </section>
@@ -63,18 +64,15 @@
                 <div class="info">
                     <h5>ENDEREÇO</h5>
                     <p>
-                        <%= doador_endereco %>, 
-                        <%= doador_bairro || 'Bairro não informado' %>, 
-                        <%= doador_cidade %>, 
-                        <%= doador_UF %> - 
-                        <%= doador_cep || 'CEP não informado' %>
+                        <%= doador_endereco %>, <br>
+                        <%= doador_bairro || 'Bairro não informado' %>, <br> 
+                        <%= doador_cidade %>, <br>
+                        <%= doador_UF %> 
+                        <%= doador_cep || 'CEP não informado' %> 
                     </p> <!-- Endereço do Doador -->
                 </div>
             </div>
-            <div class="buttons-perfil">
-                <button onclick="mostrar('editar')" class="editar" id="editar">Atualizar</button>
-                <button onclick="mostrar('deletar')" class="deletar" id="deletar">Deletar</button>
-            </div>
+                <button class="editar" id="editar">Atualizar</button>
         </div>
     </div>
 

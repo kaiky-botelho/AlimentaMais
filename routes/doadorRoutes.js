@@ -107,20 +107,28 @@ router.get('/doadorHome', async (req, res) => {
 
 // Rota para a página de doação
 router.get('/fazerdoacao', (req, res) => { 
-    res.render('fazerdoacao');  
+    const userId = req.session.userId; // Certifique-se de que o ID do usuário está na sessão
+    if (!userId) {
+        return res.redirect('/loginDoador');
+    }
+    res.render('fazerdoacao', { userId });  // Passa o ID para o formulário
 });
+
 
 // Rota para processar a doação
 router.post('/fazerDoacao', async (req, res) => {
-    const { doacao_alimento, doacao_qtd, doacao_obs, entregaColeta, doacao_data, doacao_horario } = req.body; 
+    const { doacao_alimento, doacao_qtd, doacao_obs, entregaColeta, doacao_data, doacao_horario, id_doador } = req.body; 
 
     if (!['Entregar pessoalmente', 'Retirar no endereço'].includes(entregaColeta)) {
         return res.send(`<script>alert('Valor inválido para entrega. Selecione entre "Entregar pessoalmente" ou "Retirar no endereço".'); window.location.href = '/fazerdoacao';</script>`);
     }
 
     try { 
-        const query = 'INSERT INTO doacao (doacao_alimento, doacao_qtd, doacao_obs, doacao_entrega, doacao_data, doacao_horario) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id_doacao'; 
-        const values = [doacao_alimento, doacao_qtd, doacao_obs, entregaColeta, doacao_data, doacao_horario]; 
+        const query = `
+            INSERT INTO doacao (doacao_alimento, doacao_qtd, doacao_obs, doacao_entrega, doacao_data, doacao_horario, id_doador) 
+            VALUES ($1, $2, $3, $4, $5, $6, $7) 
+            RETURNING id_doacao`; 
+        const values = [doacao_alimento, doacao_qtd, doacao_obs, entregaColeta, doacao_data, doacao_horario, id_doador]; 
         const result = await pool.query(query, values); 
         
         res.send(`<script>alert('Doação realizada! ID: ${result.rows[0].id_doacao}'); window.location.href = '/fazerdoacao';</script>`); 
@@ -129,6 +137,7 @@ router.post('/fazerDoacao', async (req, res) => {
         res.send(`<script>alert('Erro ao realizar a doação. Tente novamente.'); window.location.href = '/fazerdoacao';</script>`); 
     }
 });
+
 
 
 // Rota para editar a conta do doador
@@ -183,9 +192,6 @@ router.post('/editarDoador', async (req, res) => {
         res.send(`<script>alert('Erro ao editar conta. Tente novamente.'); window.location.href = '/doadorHome';</script>`);
     }
 });
-
-
-
 
 // Rota para deletar a conta do doador
 router.post('/deletarDoador', async (req, res) => {

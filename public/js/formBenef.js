@@ -1,5 +1,4 @@
 //buscar cep beneficiario
-
 function buscaCep(cep) {
   fetch(`https://viacep.com.br/ws/${cep}/json/`)
       .then(response => {
@@ -22,7 +21,6 @@ function buscaCep(cep) {
 }
 
 // Mascaras beneficiario
-
 $('#benef_cep').mask('00000-000');
 $('#benef_documento').mask('000.000.000-00', {reverse: true});
 $('#benef_telefone').mask('(00) 0 0000-0000');

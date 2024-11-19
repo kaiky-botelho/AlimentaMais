@@ -1,6 +1,5 @@
 //buscar cep dodador
-
-function buscaCep(cep) {
+function buscarCep(cep) {
     fetch(`https://viacep.com.br/ws/${cep}/json/`)
         .then(response => {
             if (!response.ok) {
@@ -31,11 +30,11 @@ $(document).ready(function() {
 
         // Verifica o comprimento do documento e aplica a máscara apropriada
         if (doador_documento > 11) {
-            $(this).mask('00.000.000/0000-00', {reverse: true}); // Aplica a máscara para CNPJ
+            $(this).mask('000.000.000-00', {reverse: true}); // Aplica a máscara para CNPJ
         } else {
-            $(this).mask('000.000.000-00', {reverse: true}); // Retorna para a máscara de CPF
+            $(this).mask('00.000.000/0000-00', {reverse: true}); // Retorna para a máscara de CPF
         }
-    });
+    }); 
 });
 
 

@@ -36,7 +36,6 @@ router.get('/', (req, res) => {
 });
 
 // Login Beneficiário
-// Login Beneficiário
 router.get('/loginBenef', (req, res) => {
     res.render('loginBenef');
 });
@@ -57,14 +56,29 @@ router.post('/loginBenef', async (req, res) => {
                 req.session.userId = benef.id_beneficiario; // Armazena o ID do beneficiário na sessão
                 res.redirect('/beneficiarioHome');
             } else {
-                res.render('loginBenef', { errorMessage: 'Senha incorreta' });
+                res.send(`
+                    <script>
+                        alert('Senha incorreta');
+                        window.location.href = '/loginBenef';
+                    </script>
+                `);
             }
         } else {
-            res.render('loginBenef', { errorMessage: 'Usuário não encontrado' });
+            res.send(`
+                <script>
+                    alert('Usuário não encontrado');
+                    window.location.href = '/loginBenef';
+                </script>
+            `);
         }
     } catch (err) {
         console.error('Erro no login:', err);
-        res.status(500).send('Erro ao realizar o login');
+        res.status(500).send(`
+            <script>
+                alert('Erro ao realizar o login. Tente novamente.');
+                window.location.href = '/loginBenef';
+            </script>
+        `);
     }
 });
 
@@ -89,17 +103,31 @@ router.post('/loginDoador', async (req, res) => {
                 req.session.userId = doador.id_doador; // Armazena o ID do doador na sessão
                 res.redirect('/doadorHome');
             } else {
-                res.render('loginDoador', { errorMessage: 'Senha incorreta' });
+                res.send(`
+                    <script>
+                        alert('Senha incorreta.');
+                        window.location.href = '/loginDoador';
+                    </script>
+                `);
             }
         } else {
-            res.render('loginDoador', { errorMessage: 'Usuário não encontrado' });
+            res.send(`
+                <script>
+                    alert('Usuário não encontrado.');
+                    window.location.href = '/loginDoador';
+                </script>
+            `);
         }
     } catch (err) {
         console.error('Erro no login:', err);
-        res.status(500).send('Erro ao realizar o login');
+        res.send(`
+            <script>
+                alert('Erro ao realizar o login. Tente novamente.');
+                window.location.href = '/loginDoador';
+            </script>
+        `);
     }
 });
-
 
 // Corrigido a exportação
 module.exports = router;
