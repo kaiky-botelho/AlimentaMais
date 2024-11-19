@@ -66,7 +66,6 @@ router.post('/cadastroDoador', async (req, res) => {
     }
 });
 
-// Rota para exibir a página principal do doador
 // Rota para a página principal do doador
 router.get('/doadorHome', async (req, res) => {
     const userId = req.session.userId;
@@ -120,7 +119,6 @@ router.get('/doadorHome', async (req, res) => {
         res.send('Erro ao buscar informações do usuário');
     }
 });
-
 
 // Rota para a página de doação
 router.get('/fazerdoacao', (req, res) => { 
@@ -185,8 +183,6 @@ router.get('/editar', async (req, res) => {
         res.send('Erro ao carregar informações do usuário.');
     }
 });
-
-
 
 // Rota para editar a conta do doador
 router.post('/editarDoador', async (req, res) => {
