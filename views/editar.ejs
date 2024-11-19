@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Informações</title>
+  <link rel="stylesheet" href="/css/editar.css">
+</head>
+
+<body>
+  <header>
+    <img src="/img/logoV3.png" alt="Logo do Alimenta Mais" class="logo">
+    <div class="buttons-nav">
+      <a id="profile"><img src="/img/perfil.svg" alt="Ícone de perfil"></a>
+      <a href="/"><img src="/img/sair.svg" alt="Ícone para Sair"></a>
+    </div>
+  </header>
+  <section>
+    <div class="container-edicao">
+      <h4>Editar Informações de <span><%= nome_razao %></span></h4>
+      <form action="/editarDoador" method="POST">
+        <input type="hidden" name="id_doador" value="<%= userId %>">
+
+        <label for="doador_email">Email:</label>
+        <input type="email" id="doador_email" name="doador_email" value="<%= doador_email %>">
+
+        <label for="doador_endereco">Endereço:</label>
+        <input type="text" id="doador_endereco" name="doador_endereco" value="<%= doador_endereco %>">
+
+        <label for="doador_bairro">Bairro:</label>
+        <input type="text" id="doador_bairro" name="doador_bairro" value="<%= doador_bairro %>">
+
+        <label for="doador_cidade">Cidade:</label>
+        <input type="text" id="doador_cidade" name="doador_cidade" value="<%= doador_cidade %>">
+
+        <label for="doador_UF">Estado (UF):</label>
+        <input type="text" id="doador_UF" name="doador_UF" value="<%= doador_UF %>" maxlength="2">
+
+        <label for="doador_cep">CEP:</label>
+        <input type="text" id="doador_cep" name="doador_cep" value="<%= doador_cep %>">
+
+        <div class="buttons">
+          <a href="/doadorHome">Voltar</a>
+          <button type="submit" class="btn-editar">Salvar Alterações</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</body>
+
+</html>

@@ -33,9 +33,38 @@
             </div>
             <div class="historico">
                 <h3 class="titulo-containeir">HISTÓRICO</h3>
-                <!-- Exibindo Histórico de Doações (se disponível) -->
                 <div class="historico-lista">
-
+                    <table border="1">
+                        <thead>
+                            <tr>
+                                <th>Alimento</th>
+                                <th>Quantidade</th>
+                                <th>Observação</th>
+                                <th>Entrega</th>
+                                <th>Data</th>
+                                <th>Horário</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (doacoes.length > 0) { %>
+                                <% doacoes.forEach(doacao => { %>
+                                    <tr>
+                                        <td><%= doacao.doacao_alimento %></td>
+                                        <td><%= doacao.doacao_qtd %></td>
+                                        <td><%= doacao.doacao_obs %></td>
+                                        <td><%= doacao.doacao_entrega %></td>
+                                        <td><%= doacao.doacao_data %></td>
+                                        <td><%= doacao.doacao_horario %></td>
+                                    </tr>
+                                <% }) %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="7">Nenhuma doação registrada.</td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                        
+                    </table>
                 </div>
                 
             </div>
@@ -43,7 +72,6 @@
     </section>
 
     <!--Resultado-->
-    <div class="resultado-mostrar" id="resultado-mostrar"></div>
 
     <!--Perfil-->
     <div class="perfil" id="perfil">
@@ -72,7 +100,7 @@
                     </p> <!-- Endereço do Doador -->
                 </div>
             </div>
-                <button class="editar" id="editar">Atualizar</button>
+                <a href="/editar" class="editar" id="editar">Atualizar</a>
         </div>
     </div>
 

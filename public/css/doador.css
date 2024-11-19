@@ -97,12 +97,24 @@ section .titulo-inicial{
     border-radius: 24px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     padding: 20px;
+    overflow-y: scroll;
 }
 
 .doacao-historico .historico .titulo-containeir{
     color: #2C5555;
     font-weight: 900;
     font-size: 18px;
+}
+
+.historico .historico-lista table {
+    width: 100%;
+}
+
+.historico .historico-lista table th,
+.historico .historico-lista table td {
+    padding: 10px;
+    text-align: left;
+    border: 2px solid black;
 }
 
 .banner{
@@ -169,7 +181,7 @@ section .titulo-inicial{
     margin: 14px 0 14px;
 }
 
-button{
+.editar{
     background-color: transparent;
     width: 100px;
     height: 40px;
@@ -179,6 +191,7 @@ button{
     cursor: pointer;
     background-color: #FDB233;
     text-align: center;
+    text-decoration: none;
 }
 
 .informacao-section{
