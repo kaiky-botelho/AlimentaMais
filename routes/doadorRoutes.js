@@ -2,8 +2,22 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
 const { format } = require('date-fns');
-const { ptBR } = require('date-fns/locale'); 
+const { ptBR } = require('date-fns/locale');
 const pool = require('../config/database');
+
+// Função para calcular a idade
+function calcularIdade(dataNasc) {
+    const hoje = new Date();
+    const nascimento = new Date(dataNasc);
+    let idade = hoje.getFullYear() - nascimento.getFullYear();
+    const mes = hoje.getMonth() - nascimento.getMonth();
+
+    if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
+        idade--;
+    }
+
+    return idade;
+}
 
 // Rota para exibir o formulário de doador
 router.get('/doador', (req, res) => {
@@ -30,6 +44,13 @@ router.post('/cadastroDoador', async (req, res) => {
     } = req.body;
 
     try {
+        // Validar idade
+        const idade = calcularIdade(doador_data_nasc);
+        if (idade < 18) {
+            return res.send(`<script>alert('Cadastro permitido apenas para maiores de 18 anos.'); window.location.href = '/doador';</script>`);
+        }
+
+        // Hash da senha
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(doador_senha, saltRounds);
 
@@ -63,179 +84,6 @@ router.post('/cadastroDoador', async (req, res) => {
     } catch (error) {
         console.error('Erro ao cadastrar doador:', error);
         res.send(`<script>alert('Erro ao cadastrar doador. Tente novamente.'); window.location.href = '/doador';</script>`);
-    }
-});
-
-// Rota para exibir a página principal do doador
-// Rota para a página principal do doador
-router.get('/doadorHome', async (req, res) => {
-    const userId = req.session.userId;
-
-    if (!userId) {
-        return res.redirect('/loginDoador');
-    }
-
-    try {
-        // Consultar informações do doador
-        const doadorQuery = `
-            SELECT nome_razao, doador_email, doador_endereco, doador_bairro, doador_cidade, doador_UF, doador_cep 
-            FROM cadastro_doador 
-            WHERE id_doador = $1
-        `;
-        const doadorResult = await pool.query(doadorQuery, [userId]);
-
-        if (doadorResult.rows.length === 0) {
-            return res.send('Usuário não encontrado');
-        }
-
-        const doador = doadorResult.rows[0];
-
-        // Consultar doações associadas ao doador
-        const doacoesQuery = `
-            SELECT doacao_alimento, doacao_qtd, doacao_obs, doacao_data, doacao_horario 
-            FROM doacao 
-            WHERE id_doador = $1
-        `;
-        const doacoesResult = await pool.query(doacoesQuery, [userId]);
-
-        // Formatar as datas antes de enviar para o EJS
-        const doacoes = doacoesResult.rows.map(doacao => ({
-            ...doacao,
-            doacao_data: doacao.doacao_data ? format(new Date(doacao.doacao_data), 'dd/MM/yyyy', { locale: ptBR }) : '' // Formata a data
-        }));
-
-        // Renderizar página com os dados
-        res.render('doadorHome', { 
-            nome_razao: doador.nome_razao,
-            doador_email: doador.doador_email,
-            doador_endereco: doador.doador_endereco,
-            doador_bairro: doador.doador_bairro,
-            doador_cidade: doador.doador_cidade,
-            doador_UF: doador.doador_UF,
-            doador_cep: doador.doador_cep,
-            doacoes // Passando as doações formatadas para o EJS
-        });
-    } catch (error) {
-        console.error('Erro ao consultar o banco de dados:', error);
-        res.send('Erro ao buscar informações do usuário');
-    }
-});
-
-
-// Rota para a página de doação
-router.get('/fazerdoacao', (req, res) => { 
-    const userId = req.session.userId; // Certifique-se de que o ID do usuário está na sessão
-    if (!userId) {
-        return res.redirect('/loginDoador');
-    }
-    res.render('fazerdoacao', { userId });  // Passa o ID para o formulário
-});
-
-
-// Rota para processar a doação
-router.post('/fazerDoacao', async (req, res) => {
-    const { doacao_alimento, doacao_qtd, doacao_obs, doacao_data, doacao_horario, id_doador } = req.body; 
-
-    try { 
-        const query = `
-            INSERT INTO doacao (doacao_alimento, doacao_qtd, doacao_obs, doacao_data, doacao_horario, id_doador) 
-            VALUES ($1, $2, $3, $4, $5, $6) 
-            RETURNING id_doacao`; 
-        const values = [doacao_alimento, doacao_qtd, doacao_obs, doacao_data, doacao_horario, id_doador]; 
-        const result = await pool.query(query, values); 
-        
-        res.send(`<script>alert('Doação realizada! ID: ${result.rows[0].id_doacao}'); window.location.href = '/fazerdoacao';</script>`); 
-    } catch (error) { 
-        console.error('Erro ao realizar a doação:', error); 
-        res.send(`<script>alert('Erro ao realizar a doação. Tente novamente.'); window.location.href = '/fazerdoacao';</script>`); 
-    }
-});
-
-
-router.get('/editar', async (req, res) => {
-    const userId = req.session.userId;
-    if (!userId) {
-        return res.redirect('/loginDoador');
-    }
-
-    try {
-        const query = `
-            SELECT nome_razao, doador_email, doador_endereco, doador_bairro, doador_cidade, doador_UF, doador_cep 
-            FROM cadastro_doador 
-            WHERE id_doador = $1
-        `;
-        const result = await pool.query(query, [userId]);
-
-        if (result.rows.length > 0) {
-            const doador = result.rows[0];
-            res.render('editar', { 
-                userId,
-                nome_razao: doador.nome_razao,
-                doador_email: doador.doador_email,
-                doador_endereco: doador.doador_endereco,
-                doador_bairro: doador.doador_bairro,
-                doador_cidade: doador.doador_cidade,
-                doador_UF: doador.doador_UF,
-                doador_cep: doador.doador_cep
-            });
-        } else {
-            res.send('Usuário não encontrado.');
-        }
-    } catch (error) {
-        console.error('Erro ao buscar informações do usuário:', error);
-        res.send('Erro ao carregar informações do usuário.');
-    }
-});
-
-
-
-// Rota para editar a conta do doador
-router.post('/editarDoador', async (req, res) => {
-    const { id_doador, doador_email, doador_endereco, doador_cidade, doador_UF, doador_bairro, doador_cep } = req.body;
-
-    console.log('Dados recebidos:', req.body); // Verificando o corpo da requisição
-
-    const dadosAtualizados = {
-        doador_email,
-        doador_endereco,
-        doador_cidade,
-        doador_UF,
-        doador_bairro,
-        doador_cep
-    };
-
-    try {
-        const query = `
-            UPDATE cadastro_doador 
-            SET doador_email = $1, 
-                doador_endereco = $2, 
-                doador_cidade = $3, 
-                doador_UF = $4, 
-                doador_bairro = $5, 
-                doador_cep = $6
-            WHERE id_doador = $7
-        `;
-
-        const values = [
-            doador_email, 
-            doador_endereco, 
-            doador_cidade, 
-            doador_UF, 
-            doador_bairro, 
-            doador_cep,
-            id_doador
-        ];
-
-        console.log("Executando query com os valores:", values);
-
-        // Executa a consulta no banco de dados
-        await pool.query(query, values);
-
-        // Enviar resposta de sucesso
-        res.send(`<script>alert('Conta editada com sucesso!'); window.location.href = '/doadorHome';</script>`);
-    } catch (error) {
-        console.error('Erro ao editar conta do doador:', error);
-        res.send(`<script>alert('Erro ao editar conta. Tente novamente.'); window.location.href = '/doadorHome';</script>`);
     }
 });
 

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
-const session = require('express-session'); // Para gerenciamento de sessão
+const session = require('express-session'); 
 const { Pool } = require('pg');
 const pool = require('../config/database');
 

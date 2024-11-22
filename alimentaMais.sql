@@ -21,7 +21,7 @@ SELECT * FROM cadastro_doador;
 CREATE TABLE cadastro_beneficiario (
 	id_beneficiario SERIAL NOT NULL PRIMARY KEY,
 	nome VARCHAR(200),
-  benef_documento VARCHAR(20) NOT NULL UNIQUE,
+  	benef_documento VARCHAR(20) NOT NULL UNIQUE,
 	benef_telefone VARCHAR(20),
 	benef_data_nasc DATE,
 	benef_email VARCHAR(100),
