@@ -19,6 +19,11 @@ function calcularIdade(dataNasc) {
     return idade;
 }
 
+// Função para validar a categoria de renda
+function determinarCategoriaRenda(renda) {
+    return renda <= 1 ? 'Até 1 Salário Mínimo' : '2 ou mais Salários Mínimos';
+}
+
 // Rota para exibir o formulário de cadastro de beneficiário
 router.get('/beneficiario', (req, res) => {
     res.render('beneficiario');
@@ -50,6 +55,12 @@ router.post('/cadastroBeneficiario', async (req, res) => {
             return res.send(`<script>alert('Cadastro permitido apenas para maiores de 18 anos.'); window.location.href = '/beneficiario';</script>`);
         }
 
+        // Determinar a categoria de renda
+        const categoriaRenda = determinarCategoriaRenda(renda);
+        if (categoriaRenda === '2 ou mais Salários Mínimos') {
+            return res.send(`<script>alert('Cadastro permitido apenas para pessoas com renda de até 1 salário mínimo.'); window.location.href = '/beneficiario';</script>`);
+        }
+
         // Hash da senha
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(benef_senha, saltRounds);
@@ -75,7 +86,7 @@ router.post('/cadastroBeneficiario', async (req, res) => {
             benef_numero, 
             benef_bairro, 
             benef_complemento, 
-            renda
+            categoriaRenda
         ];
 
         const result = await pool.query(query, values);
@@ -87,8 +98,7 @@ router.post('/cadastroBeneficiario', async (req, res) => {
     }
 });
 
-module.exports = router;
-
+// Rota para exibir informações de beneficiário para edição
 router.get('/editarBenef', async (req, res) => {
     const userId = req.session.userId;
     console.log('userId:', userId); // Debug
@@ -127,6 +137,7 @@ router.get('/editarBenef', async (req, res) => {
     }
 });
 
+// Rota para processar edição de beneficiários
 router.post('/editarBeneficiario', async (req, res) => {
     const { id_beneficiario, benef_email, benef_endereco, benef_cidade, benef_UF, benef_bairro, benef_cep } = req.body;
 
