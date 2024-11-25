@@ -3,25 +3,25 @@
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-}
-
-body{
+  }
+  
+  body{
     background-image: url("/img/fundo.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh;
     overflow-x: hidden;
-}
-
-.container {
+  }
+  
+  .container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
-
-.container-form {
+  }
+  
+  .container-form {
     background-color: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente */
     backdrop-filter: blur(15px); /* Fundo desfocado */
     -webkit-backdrop-filter: blur(15px); /* Suporte para Safari */
@@ -30,89 +30,63 @@ body{
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
     width: 60vw;
     max-width: 900px;
-}
-
-.logo {
+  }
+  
+  .logo {
     display: block;
     margin: 0 auto 20px;
     width: 150px;
-}
-
-h2 {
+  }
+  
+  h2 {
     text-align: center;
     color: #234d20;
     font-weight: bold;
     margin-bottom: 20px;
-}
-
-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-input,
-select {
-    width: 48%; /* Ajuste para que todos os campos tenham a mesma largura */
+  }
+  
+  .form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  
+  .inputDiv{
+    max-width: 100%;
+  }
+  
+  .inputDiv input, .inputDiv select{
+    width: 100%; /* Ajuste para que todos os campos tenham a mesma largura */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-}
-
-/* Ajustes para os campos específicos */
-input[type="text"]:nth-child(4),
-input[type="date"]:nth-child(5),
-input[type="email"]:nth-child(6),
-input[type="text"]:nth-child(10),
-input[type="text"]:nth-child(11),
-select {
-    width: 48%; /* Garantindo que select tenha o mesmo tamanho */
-}
-
-input[type="text"]:nth-child(12) { /* Para o campo complemento */
-    width: 48%; /* Garantindo que tenha a mesma largura */
-}
-
-/* Container para os grupos de doações, contato, horário e interesse */
-.container-group {
+  }
+  
+  input.invalid {
+    border: 2px solid red;
+  }
+  
+  
+  input.invalid + span {
+    display: block;
+    font-size: 12px;
+  }
+  
+  span {
+    display: none;
+    text-align: center;
+    margin: 5px;
+    font-size: 12px;
+    color: red;
+  }
+  
+  .buttons {
     display: flex;
-    justify-content: space-between; /* Para distribuir igualmente o espaço entre os itens */
-    width: 100%;
-    margin-top: 15px;
-}
-
-.container-doacoes,
-.container-contato,
-.container-horario,
-.container-interesse {
-    flex: 1; /* Faz com que cada container ocupe o mesmo espaço */
-    margin-right: 10px; /* Espaçamento entre os containers */
-}
-
-h3 {
-    margin-bottom: 10px;
-    font-size: 16px;
-    color: #234d20;
-}
-
-/* Ajuste para labels de radio */
-.checkbox-label {
-    display: flex; /* Alinhamento horizontal */
-    align-items: center; /* Alinha verticalmente */
-    margin-bottom: 10px; /* Espaçamento entre cada checkbox-label */
-}
-
-.checkbox-label input[type="radio"] {
-    margin-right: 0px; /* Espaço entre o input radio e a label */
-}
-
-.buttons {
-    display: flex;
-    margin: 0 auto;
-}
-
-.botao {
+    justify-content: center;
+  }
+  
+  .botao {
     width: 15vw;
     padding: 15px;
     color: white;
@@ -123,34 +97,13 @@ h3 {
     font-size: 18px;
     cursor: pointer;
     margin: 30px 20px 0 0; /* 20px à direita */
-}
-
-.laranja{
+  }
+  
+  .laranja{
     background-color: #d97b5e;;
-}
-
-.verde{
+  }
+  
+  .verde{
     background-color: #1E603D;
-}
-
-h3 {
-    margin-bottom: 10px;
-    font-size: 16px;
-    color: #234d20;
-}
-
-.checkbox- {
-    display: flex; 
-    flex-direction: column;
-    align-items: center; 
-    margin-bottom: 10px; 
-}
-
-input[type="radio"] {
-    width: 20px;
-    margin-right:16px;
-}
-
-.check {
-    margin-bottom: 10px;
-}
+  }
+  

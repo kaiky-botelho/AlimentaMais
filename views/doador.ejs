@@ -14,41 +14,62 @@
             <img src="img/logov2.png" alt="Logo" class="logo">
             <h2>FORMULÁRIO DOADOR</h2>
             <form action='/cadastroDoador' method='post' id="form">
-                <input type="text" id="nome_razao" name="nome_razao" placeholder="Nome Completo ou Razão Social"
-                    required>
 
-                <input type="text" id="doador_documento" name="doador_documento" placeholder="CPF OU CNPJ" >
+                <div class="form">
+                  <div class="inputDiv">
+                      <input type="text" id="nome_razao" name="nome_razao" placeholder="Nome Completo ou Razão Social">
+                      <span>Digite seu nome ou razão</span>
+                  </div>
+                  <div class="inputDiv">
+                      <input type="text" id="doador_documento" name="doador_documento" placeholder="CPF OU CNPJ">
+                      <span>Digite um doador_documento valido</span>
+                  </div>
+                  
+                  <div class="inputDiv">
+                      <input type="text" id="doador_telefone" name="doador_telefone" placeholder="Telefone">
+                  </div>
+                  <div class="inputDiv">
+                      <input type="date" id="doador_data_nasc" name="doador_data_nasc" placeholder="Data de Nascimento">
+                      <span>Para fazer cadastro é preciso ter mais de 18 anos</span>
+                  </div>
+                  <div class="inputDiv">
+                      <input type="email" id="doador_email" name="doador_email" placeholder="E-mail">
+                      <span>Digite um email valido</span>
+                  </div>
+                  <div class="inputDiv">
+                      <input type="password" id="doador_senha" name="doador_senha" placeholder="Senha">
+                      <span>Senha precisa ter mais de 6 caracteres</span>
+                  </div>
+                  <div class="inputDiv">
+                      <input type="text" id="doador_cep" name="doador_cep" placeholder="CEP" onblur="buscarCep(this.value)">
+                  </div>
+                  <div class="inputDiv">
+                      <input type="text" id="doador_cidade" name="doador_cidade" placeholder="Cidade">
+                  </div>
+                  <div class="inputDiv">
+                      <input type="text" id="doador_UF" name="doador_UF" placeholder="Estado">
+                  </div>
+                  <div class="inputDiv">
+                      <input type="text" id="doador_endereco" name="doador_endereco" placeholder="Endereço">
+                  </div>
+                  <div class="inputDiv">
+                      <input type="text" id="doador_numero" name="doador_numero" placeholder="Nº">
+                  </div>
+                  <div class="inputDiv">
+                      <input type="text" id="doador_bairro" name="doador_bairro" placeholder="Bairro">
+                  </div>
+                  <div class="inputDiv">
+                      <input type="text" id="doador_complemento" name="doador_complemento" placeholder="Complemento">
+                  </div>
+                  <div class="inputDiv">
+                      <select name="frequencia_doacao" id="frequencia_doacao">
+                          <option value="frequencia_doacao">Frequência das Doações</option>
+                          <option name="frequencia_doacao">Única</option>
+                          <option name="frequencia_doacao">Recorrente</option>
+                      </select>
+                  </div>
+                </div>
 
-                <input type="text" id="doador_telefone" name="doador_telefone" placeholder="Telefone" >
-
-                <input type="date" id="doador_data_nasc" name="doador_data_nasc" placeholder="data de Nascimento"
-                    >
-
-                <input type="email" id="doador_email" name="doador_email" placeholder="E-mail" >
-
-                <input type="password" id="doador_senha" name="doador_senha" placeholder="Senha" >
-
-                <input type="text" id="doador_cep" name="doador_cep" placeholder="CEP" 
-                    onblur="buscarCep(this.value)">
-
-                <input type="text" id="doador_cidade" name="doador_cidade" placeholder="Cidade" >
-
-                <input type="text" id="doador_UF" name="doador_UF" placeholder="Estado" >
-
-                <input type="text" id="doador_endereco" name="doador_endereco" placeholder="Endereço">
-
-                <input type="text" id="doador_numero" name="doador_numero" placeholder="Nº">
-
-                <input type="text" id="doador_bairro" name="doador_bairro" placeholder="Bairro">
-
-                <input type="text" id="doador_complemento" name="doador_complemento" placeholder="Complemento">
-
-                <select name="frequencia_doacao" id="frequencia_doacao">
-                    <option value="frequencia_doacao">Frequência das Doações</option>
-                    <option name="frequencia_doacao">Única</option>
-                    <option name="frequencia_doacao">Recorrente</option>
-                </select>
-                
                 <div class="buttons">
                     <a href="/loginDoador" class="botao laranja">Voltar</a>
                     <button type="submit" class="botao verde">Concluir</button>

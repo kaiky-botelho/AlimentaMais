@@ -14,38 +14,63 @@
         <div class="container-form">
             <img src="/img/logov2.png" alt="Logo" class="logo">
             <h2>FORMULÁRIO BENEFICIÁRIO</h2>
-            <form action='/cadastroBeneficiario' method='post'>
-                <input type="text" id="nome" name="nome" placeholder="Nome Completo do Responsável" required>
-
-                <input type="text" id="benef_documento" name="benef_documento" placeholder="CPF do Responsável" required>
-
-                <input type="text" id="benef_telefone" name="benef_telefone" placeholder="Telefone" required>
-
-                <input type="date" id="benef_data_nasc" name="benef_data_nasc" placeholder="data de Nascimento" required>
-
-                <input type="email" id="benef_email" name="benef_email" placeholder="E-mail" required>
-
-                <input type="password" id="benef_senha" name="benef_senha" placeholder="Senha" required>
-
-                <input type="text" id="benef_cep" name="benef_cep" placeholder="CEP" required onblur="buscaCep(this.value)">
+            <form action='/cadastroBeneficiario' method='post' id="form">
                 
-                <input type="text" id="benef_cidade" name="benef_cidade" placeholder="Cidade" required>
-
-                <input type="text" id="benef_UF" name="benef_UF" placeholder="Estado" required>
-
-                <input type="text" id="benef_endereco" name="benef_endereco" placeholder="Endereço">
-
-                <input type="text" id="benef_numero" name="benef_numero" placeholder="Nº">
-
-                <input type="text" id="benef_bairro" name="benef_bairro" placeholder="Bairro">
-
-                <input type="text" id="benef_complemento" name="benef_complemento" placeholder="Complemento">
-
-                <select name="renda" id="rendaFamiliar">
-                    <option value="renda">Renda Familiar</option>
-                    <option name="renda">Até 1 Salário Mínimo</option>
-                    <option name="renda">2 ou mais Salários Mínimos</option>
-                </select>
+                <div class="form">
+                    <div class="inputDiv">
+                        <input type="text" id="nome" name="nome" placeholder="Nome Completo do Responsável">
+                    <span>Digite seu nome ou razão</span>
+                    </div>
+                    <div class="inputDiv">
+                        <input type="text" id="benef_documento" name="benef_documento" placeholder="CPF do Responsável" >
+                      <span>Digite um doador_documento valido</span>
+                    </div>
+                    <div class="inputDiv">
+                        <input type="text" id="benef_telefone" name="benef_telefone" placeholder="Telefone">
+                    </div>
+                    <div class="inputDiv">
+                        <input type="date" id="benef_data_nasc" name="benef_data_nasc" placeholder="Data de Nascimento">
+                      <span>Para fazer cadastro é preciso ter mais de 18 anos</span>
+                    </div>
+                    <div class="inputDiv">
+                        <input type="email" id="benef_email" name="benef_email" placeholder="E-mail">
+                      <span>Digite um email valido</span>
+                    </div>
+                    <div class="inputDiv">
+                        <input type="password" id="benef_senha" name="benef_senha" placeholder="Senha">
+                      <span>Senha precisa ter mais de 6 caracteres</span>
+                    </div>
+                    <div class="inputDiv">
+                        <input type="text" id="benef_cep" name="benef_cep" placeholder="CEP" onblur="buscaCep(this.value)">
+                    </div>
+                    
+                    <div class="inputDiv">
+                        <input type="text" id="benef_cidade" name="benef_cidade" placeholder="Cidade">
+                    </div>
+                    <div class="inputDiv">
+                        <input type="text" id="benef_UF" name="benef_UF" placeholder="Estado">
+                    </div>
+                    <div class="inputDiv">
+                        <input type="text" id="benef_endereco" name="benef_endereco" placeholder="Endereço">
+                    </div>
+                    <div class="inputDiv">
+                        <input type="text" id="benef_numero" name="benef_numero" placeholder="Nº">
+                    </div>
+                    <div class="inputDiv">
+                        <input type="text" id="benef_bairro" name="benef_bairro" placeholder="Bairro">
+                    </div>
+                    <div class="inputDiv">
+                        <input type="text" id="benef_complemento" name="benef_complemento" placeholder="Complemento">
+                    </div>
+                    <div class="inputDiv">
+                        <select name="renda" id="rendaFamiliar">
+                            <option value="renda">Renda Familiar</option>
+                            <option name="renda">Até 1 Salário Mínimo</option>
+                            <option name="renda">2 ou mais Salários Mínimos</option>
+                        </select>
+                        <span>Cadastro permitido apenas para pessoas com renda de até 1 salário mínimo.</span>
+                    </div>
+                </div>
 
                 <div class="buttons">
                     <a href="/loginBenef" class="botao laranja">Voltar</a>

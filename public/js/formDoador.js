@@ -45,11 +45,11 @@ $('#doador_telefone').mask('(00) 0 0000-0000');
 //Validação Formulario
 
 const form = document.querySelector("#form");
-const nomeDoador = document.querySelector("#nome_razao");
-const emailDoador = document.querySelector("#doador_email");
-const senhaDoador = document.querySelector("#doador_senha");
-const doadorDocumento = document.querySelector("#doador_documento");
-const doadorDataNasc = document.querySelector("#doador_data_nasc");
+const nomeBeneficiario = document.querySelector("#nome_razao");
+const emailBeneficiario = document.querySelector("#doador_email");
+const senhaBeneficiario = document.querySelector("#doador_senha");
+const beneficiarioDocumento = document.querySelector("#doador_documento");
+const benefDataNasc = document.querySelector("#doador_data_nasc");
 
 form.addEventListener("submit", (event) => {
     // Impede o envio do formulário para validação
@@ -58,55 +58,69 @@ form.addEventListener("submit", (event) => {
     let isValid = true;
 
     // Validação do Nome/Razão Social
-    if (nomeDoador.value.trim() === "") {
-        nomeDoador.classList.add("invalid");
+    if (nomeBeneficiario.value.trim() === "") {
+        nomeBeneficiario.classList.add("invalid");
+        nomeBeneficiario.nextElementSibling.style.display = "block";  // Exibe o span
         isValid = false;
     } else {
-        nomeDoador.classList.remove("invalid");
+        nomeBeneficiario.classList.remove("invalid");
+        nomeBeneficiario.nextElementSibling.style.display = "none";  // Oculta o span
     }
 
     // Validação do E-mail
-    if (emailDoador.value.trim() === "") {
-        emailDoador.classList.add("invalid");
+    if (emailBeneficiario.value.trim() === "") {
+        emailBeneficiario.classList.add("invalid");
+        emailBeneficiario.nextElementSibling.style.display = "block";  // Exibe o span
         isValid = false;
-    } else if (!validateEmail(emailDoador.value)) {
-        emailDoador.classList.add("invalid");
+    } else if (!validateEmail(emailBeneficiario.value)) {
+        emailBeneficiario.classList.add("invalid");
+        emailBeneficiario.nextElementSibling.style.display = "block";  // Exibe o span
         isValid = false;
     } else {
-        emailDoador.classList.remove("invalid");
+        emailBeneficiario.classList.remove("invalid");
+        emailBeneficiario.nextElementSibling.style.display = "none";  // Oculta o span
     }
 
     // Validação da Senha
-    if (senhaDoador.value.trim() === "") {
-        senhaDoador.classList.add("invalid");
+    if (senhaBeneficiario.value.trim() === "") {
+        senhaBeneficiario.classList.add("invalid");
+        senhaBeneficiario.nextElementSibling.style.display = "block";  // Exibe o span
         isValid = false;
-    } else if (senhaDoador.value.length < 6) {
-        senhaDoador.classList.add("invalid");
+    } else if (senhaBeneficiario.value.length < 6) {
+        senhaBeneficiario.classList.add("invalid");
+        senhaBeneficiario.nextElementSibling.style.display = "block";  // Exibe o span
         isValid = false;
     } else {
-        senhaDoador.classList.remove("invalid");
+        senhaBeneficiario.classList.remove("invalid");
+        senhaBeneficiario.nextElementSibling.style.display = "none";  // Oculta o span
     }
 
     // Validação do Documento (CPF ou CNPJ)
-    if (doadorDocumento.value.trim() === "") {
-        doadorDocumento.classList.add("invalid");
+    if (beneficiarioDocumento.value.trim() === "") {
+        beneficiarioDocumento.classList.add("invalid");
+        beneficiarioDocumento.nextElementSibling.style.display = "block";  // Exibe o span
         isValid = false;
-    } else if (!validateDocumento(doadorDocumento.value)) {
-        doadorDocumento.classList.add("invalid");
+    } else if (!validateDocumento(beneficiarioDocumento.value)) {
+        beneficiarioDocumento.classList.add("invalid");
+        beneficiarioDocumento.nextElementSibling.style.display = "block";  // Exibe o span
         isValid = false;
     } else {
-        doadorDocumento.classList.remove("invalid");
+        beneficiarioDocumento.classList.remove("invalid");
+        beneficiarioDocumento.nextElementSibling.style.display = "none";  // Oculta o span
     }
 
     // Validação da Idade (Maior de 18 anos)
-    if (doadorDataNasc.value.trim() === "") {
-        doadorDataNasc.classList.add("invalid");
+    if (benefDataNasc.value.trim() === "") {
+        benefDataNasc.classList.add("invalid");
+        benefDataNasc.nextElementSibling.style.display = "block";  // Exibe o span
         isValid = false;
-    } else if (!validateIdade(doadorDataNasc.value)) {
-        doadorDataNasc.classList.add("invalid");
+    } else if (!validateIdade(benefDataNasc.value)) {
+        benefDataNasc.classList.add("invalid");
+        benefDataNasc.nextElementSibling.style.display = "block";  // Exibe o span
         isValid = false;
     } else {
-        doadorDataNasc.classList.remove("invalid");
+        benefDataNasc.classList.remove("invalid");
+        benefDataNasc.nextElementSibling.style.display = "none";  // Oculta o span
     }
 
     // Envia o formulário se tudo estiver válido

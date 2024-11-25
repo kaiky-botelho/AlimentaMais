@@ -5,20 +5,6 @@ const { format } = require('date-fns');
 const { ptBR } = require('date-fns/locale');
 const pool = require('../config/database');
 
-// Função para calcular a idade
-function calcularIdade(dataNasc) {
-    const hoje = new Date();
-    const nascimento = new Date(dataNasc);
-    let idade = hoje.getFullYear() - nascimento.getFullYear();
-    const mes = hoje.getMonth() - nascimento.getMonth();
-
-    if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
-        idade--;
-    }
-
-    return idade;
-}
-
 // Função para validar a categoria de renda
 function determinarCategoriaRenda(renda) {
     return renda <= 1 ? 'Até 1 Salário Mínimo' : '2 ou mais Salários Mínimos';
@@ -49,11 +35,6 @@ router.post('/cadastroBeneficiario', async (req, res) => {
     } = req.body;
 
     try {
-        // Validar idade
-        const idade = calcularIdade(benef_data_nasc);
-        if (idade < 18) {
-            return res.send(`<script>alert('Cadastro permitido apenas para maiores de 18 anos.'); window.location.href = '/beneficiario';</script>`);
-        }
 
         // Determinar a categoria de renda
         const categoriaRenda = determinarCategoriaRenda(renda);
