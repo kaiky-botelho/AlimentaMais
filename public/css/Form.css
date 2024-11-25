@@ -60,6 +60,10 @@ select {
     font-size: 16px;
 }
 
+input.invalid {
+    border: 2px solid red;
+}
+
 /* Ajustes para os campos específicos */
 input[type="text"]:nth-child(4),
 input[type="date"]:nth-child(5),

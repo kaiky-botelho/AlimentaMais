@@ -49,6 +49,7 @@ const nomeDoador = document.querySelector("#nome_razao");
 const emailDoador = document.querySelector("#doador_email");
 const senhaDoador = document.querySelector("#doador_senha");
 const doadorDocumento = document.querySelector("#doador_documento");
+const doadorDataNasc = document.querySelector("#doador_data_nasc");
 
 form.addEventListener("submit", (event) => {
     // Impede o envio do formulário para validação
@@ -58,35 +59,54 @@ form.addEventListener("submit", (event) => {
 
     // Validação do Nome/Razão Social
     if (nomeDoador.value.trim() === "") {
-        alert("O campo Nome/Razão Social é obrigatório.");
+        nomeDoador.classList.add("invalid");
         isValid = false;
+    } else {
+        nomeDoador.classList.remove("invalid");
     }
 
     // Validação do E-mail
     if (emailDoador.value.trim() === "") {
-        alert("O campo E-mail é obrigatório.");
+        emailDoador.classList.add("invalid");
         isValid = false;
     } else if (!validateEmail(emailDoador.value)) {
-        alert("Por favor, insira um endereço de e-mail válido.");
+        emailDoador.classList.add("invalid");
         isValid = false;
+    } else {
+        emailDoador.classList.remove("invalid");
     }
 
     // Validação da Senha
     if (senhaDoador.value.trim() === "") {
-        alert("O campo Senha é obrigatório.");
+        senhaDoador.classList.add("invalid");
         isValid = false;
     } else if (senhaDoador.value.length < 6) {
-        alert("A senha deve ter pelo menos 6 caracteres.");
+        senhaDoador.classList.add("invalid");
         isValid = false;
+    } else {
+        senhaDoador.classList.remove("invalid");
     }
 
     // Validação do Documento (CPF ou CNPJ)
     if (doadorDocumento.value.trim() === "") {
-        alert("O campo Documento é obrigatório.");
+        doadorDocumento.classList.add("invalid");
         isValid = false;
     } else if (!validateDocumento(doadorDocumento.value)) {
-        alert("Por favor, insira um CPF ou CNPJ válido.");
+        doadorDocumento.classList.add("invalid");
         isValid = false;
+    } else {
+        doadorDocumento.classList.remove("invalid");
+    }
+
+    // Validação da Idade (Maior de 18 anos)
+    if (doadorDataNasc.value.trim() === "") {
+        doadorDataNasc.classList.add("invalid");
+        isValid = false;
+    } else if (!validateIdade(doadorDataNasc.value)) {
+        doadorDataNasc.classList.add("invalid");
+        isValid = false;
+    } else {
+        doadorDataNasc.classList.remove("invalid");
     }
 
     // Envia o formulário se tudo estiver válido
@@ -110,4 +130,20 @@ function validateDocumento(documento) {
     
     // Verifica se o documento corresponde a CPF ou CNPJ
     return cpfRegex.test(documento) || cnpjRegex.test(documento);
+}
+
+function validateIdade(dataNasc) {
+    const dataNascimento = new Date(dataNasc);
+    const hoje = new Date();
+    
+    let idade = hoje.getFullYear() - dataNascimento.getFullYear();
+    const mes = hoje.getMonth() - dataNascimento.getMonth();
+    
+    // Se o mês atual for antes do mês de nascimento ou o mês for o mesmo, mas o dia for anterior
+    if (mes < 0 || (mes === 0 && hoje.getDate() < dataNascimento.getDate())) {
+        idade--;
+    }
+
+    // Verifica se a idade é maior ou igual a 18
+    return idade >= 18;
 }
