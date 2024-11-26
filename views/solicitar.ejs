@@ -21,16 +21,23 @@
                 <input type="hidden" name="id_beneficiario" value="<%= userId %>">
                 <div class="form-group">
                     <label for="alimento">Alimento</label> <br>
-                    <select name="solicitacao_alimento" id="solicitacao_alimento" onchange="preencherQuantidade()">
+                    <select name="solicitacao_alimento" id="solicitacao_alimento" onchange="preencherCampos()">
                         <option value="" disabled selected>Selecione o alimento</option>
                         <% if (doacoes.length === 0) { %>
                             <option disabled>Nenhuma doação disponível no momento</option>
                         <% } else { %>
                             <% doacoes.forEach(doacao => { %>
-                                <option value="<%= doacao.doacao_alimento %>" data-qtd="<%= doacao.doacao_qtd %>"><%= doacao.doacao_alimento %></option>
+                                <option 
+                                    value="<%= doacao.doacao_alimento %>" 
+                                    data-qtd="<%= doacao.doacao_qtd %>"
+                                    data-endereco="<%= doacao.doador_endereco %>"
+                                    data-data="<%= doacao.doacao_data.toISOString().split('T')[0] %>"
+                                    data-horario="<%= doacao.doacao_horario %>">
+                                    <%= doacao.doacao_alimento %>
+                                </option>
                             <% }) %>
                         <% } %>
-                    </select>
+                    </select>                    
                 </div>
                 
                 <div class="form-group">
@@ -38,8 +45,13 @@
                     <input type="text" id="quantidade" name="solicitacao_qtd" required readonly>
                 </div>
                 <div class="form-group">
+                    <label for="quantidade">Endereço para retirada</label>
+                    <input type="text" id="endereco" name="endereco_retirada" required readonly>
+                </div>
+                
+                <div class="form-group">
                     <label for="observacao">Observação</label>
-                    <input type="text" id="observacao" name="solicitacao_obs">
+                    <input type="text" id="observacao" name="solicitacao_obs" readonly>
                 </div>
             </div>
 
@@ -54,39 +66,6 @@
                 </div>
             </div>
 
-            <h2 class="titulo">Informação da Coleta</h2>
-            <label>Opções de entrega</label>
-            <div class="check">
-                <div>
-                    <input type="radio" id="retirar-endereco" name="solicitacao_entrega" value="Retirar no endereço" required checked onchange="exibir()">
-                    <label for="retirar-endereco">Retirar no Local</label>
-                </div>
-                <div>
-                    <input type="radio" id="entregar-pessoalmente" name="solicitacao_entrega" value="Entregar pessoalmente" required onchange="exibir()">
-                    <label for="entregar-pessoalmente">Entregar no meu endereço</label>
-                </div>
-            </div>            
-            <div id="resultados-radio">
-                <div class="locais">
-                    <h2>Locais disponíveis para retirada</h2>
-                    <div class="checkbox-container">
-                        <% if (doadores.length === 0) { %>
-                            <p>Nenhum local de retirada disponível.</p>
-                        <% } else { %>
-                            <% doadores.forEach(doador => { %>
-                                <div>
-                                    <input type="checkbox" id="doador_<%= doador.id_doador %>" name="doador_endereco[]" value="<%= doador.doador_endereco %>">
-                                    <label for="doador_<%= doador.id_doador %>"><%= doador.doador_endereco %></label>
-                                </div>
-                            <% }) %>
-                        <% } %>
-                    </div>
-                </div>
-                <div id="entrega-endereco" style="display:none;">
-                    <h3>A entrega será realizada no seu endereço.</h3>
-                </div>
-            </div>
-
             <div class="buttons">
                 <a href="/beneficiarioHome" class="voltar">Voltar</a>
                 <button class="doar" type="submit">Solicitar</button>
@@ -98,13 +77,22 @@
 
     <script>
         // Função para preencher a quantidade com base na opção selecionada
-        function preencherQuantidade() {
-            const select = document.getElementById('solicitacao_alimento');
-            const quantidadeInput = document.getElementById('quantidade');
-            const selectedOption = select.options[select.selectedIndex];
-            const quantidade = selectedOption.getAttribute('data-qtd');
-            quantidadeInput.value = quantidade || ''; // Se não houver quantidade, deixa em branco
-        }
+        function preencherCampos() {
+    const select = document.getElementById('solicitacao_alimento');
+    const selectedOption = select.options[select.selectedIndex];
+
+    const quantidadeInput = document.getElementById('quantidade');
+    const enderecoInput = document.getElementById('endereco');
+    const observacao = document.getElementById('observacao');
+    const dataInput = document.getElementById('data-coleta');
+    const horarioInput = document.getElementById('hora-coleta');
+
+    // Pegar os valores dos atributos data
+    quantidadeInput.value = selectedOption.getAttribute('data-qtd') || '';
+    enderecoInput.value = selectedOption.getAttribute('data-endereco') || '';
+    dataInput.value = selectedOption.getAttribute('data-data') || '';
+    horarioInput.value = selectedOption.getAttribute('data-horario') || '';
+}
     </script>
 </body>
 

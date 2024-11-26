@@ -1,7 +1,7 @@
 CREATE TABLE cadastro_doador (
 	id_doador SERIAL NOT NULL PRIMARY KEY,
 	nome_razao VARCHAR(200),
-  	doador_documento VARCHAR(14) NOT NULL UNIQUE,
+	doador_documento VARCHAR(14) NOT NULL UNIQUE,
 	doador_telefone VARCHAR(20) NOT NULL UNIQUE,
 	doador_data_nasc DATE,
 	doador_email VARCHAR(100) NOT NULL UNIQUE,
@@ -43,7 +43,7 @@ CREATE TABLE solicitacao (
 	solicitacao_alimento VARCHAR(100),
 	solicitacao_qtd VARCHAR(50),
 	solicitacao_obs VARCHAR(100),
-	solicitacao_entrega VARCHAR(50) CHECK (solicitacao_entrega IN ('Entregar pessoalmente', 'Retirar no endereço')), 
+	endereco_retirada VARCHAR(100),
 	solicitacao_data DATE,
 	solicitacao_horario VARCHAR(5),
 	id_beneficiario INTEGER,  -- Adicionando a coluna para chave estrangeira
@@ -58,6 +58,7 @@ CREATE TABLE doacao (
 	doacao_qtd VARCHAR(50),
 	doacao_obs VARCHAR(100),
 	doacao_horario VARCHAR(5),
+  doacao_data DATE,
 	id_doador INTEGER,  -- Adicionando a coluna para chave estrangeira
 	FOREIGN KEY (id_doador) REFERENCES cadastro_doador(id_doador)  -- Referência correta para chave estrangeira
 );

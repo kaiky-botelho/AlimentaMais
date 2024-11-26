@@ -19,25 +19,25 @@
             <input type="hidden" name="id_doador" value="<%= userId %>"> <!-- id_doador sendo passado -->
             <div class="informacao-alimento">
                 <div class="form-group">
-                    <label for="alimento">Alimento</label>
+                    <label for="alimento">Alimento</label> <br>
                     <input type="text" id="doacao_alimento" name="doacao_alimento" required>
                 </div>
                 <div class="form-group">
-                    <label for="quantidade">Quantidade ou peso em KG</label>
+                    <label for="quantidade">Quantidade ou peso em KG</label> <br>
                     <input type="text" id="doacao_qtd" name="doacao_qtd" required>
                 </div>
                 <div class="form-group">
-                    <label for="observacao">Observação</label>
+                    <label for="observacao">Observação</label> <br>
                     <input type="text" id="doacao_obs" name="doacao_obs">
                 </div>
             </div>
             <div class="informacao-entrega">
                 <div class="form-dateTime">
-                    <label for="data-coleta">Data</label>
+                    <label for="data-coleta">Data para a retirada</label> <br>
                     <input type="date" id="doacao_data" name="doacao_data" required>
                 </div>
                 <div class="form-dateTime">
-                    <label for="hora-coleta">Horário</label>
+                    <label for="hora-coleta">Horário para a retirada</label> <br>
                     <input type="time" id="doacao_horario" name="doacao_horario" required>
                 </div>
                 <div id="resultados-radio"></div>
@@ -49,6 +49,7 @@
         </form>
         
     <script src="/js/script.js"></script>
+
 </body>
 
 

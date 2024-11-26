@@ -43,7 +43,7 @@
                             <th>Observação</th>
                             <th>Data</th>
                             <th>Horário</th>
-                            <th>Entrega</th>
+                            <th>Retirada</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,7 +55,7 @@
                                     <td><%= solicitacao.solicitacao_obs %></td>
                                     <td><%= solicitacao.solicitacao_data %></td>
                                     <td><%= solicitacao.solicitacao_horario %></td>
-                                    <td><%= solicitacao.solicitacao_entrega %></td>
+                                    <td><%= solicitacao.endereco_retirada %></td>
                                 </tr>
                             <% }) %>
                         <% } else { %>

@@ -63,19 +63,8 @@ form.addEventListener("submit", (event) => {
         emailBeneficiario.nextElementSibling.style.display = "none";  // Oculta o span
     }
 
-    // Validação da Senha
-    if (senhaBeneficiario.value.trim() === "") {
-        senhaBeneficiario.classList.add("invalid");
-        senhaBeneficiario.nextElementSibling.style.display = "block";  // Exibe o span
-        isValid = false;
-    } else if (senhaBeneficiario.value.length < 6) {
-        senhaBeneficiario.classList.add("invalid");
-        senhaBeneficiario.nextElementSibling.style.display = "block";  // Exibe o span
-        isValid = false;
-    } else {
-        senhaBeneficiario.classList.remove("invalid");
-        senhaBeneficiario.nextElementSibling.style.display = "none";  // Oculta o span
-    }
+// Validação da Senha
+
 
     // Validação do Documento (CPF ou CNPJ)
     if (beneficiarioDocumento.value.trim() === "") {
@@ -105,13 +94,7 @@ form.addEventListener("submit", (event) => {
         benefDataNasc.nextElementSibling.style.display = "none";  // Oculta o span
     }
 
-    // Validação da Renda Familiar
-    if (rendaFamiliar.value === "Até 1 Salário Mínimo" && senhaBeneficiario.value.length < 8) {
-        // Senha deve ter pelo menos 8 caracteres se a renda for "Até 1 Salário Mínimo"
-        senhaBeneficiario.classList.add("invalid");
-        senhaBeneficiario.nextElementSibling.style.display = "block";  // Exibe o span
-        isValid = false;
-    }
+
 
 
         // Validação da Renda Familiar - Verifica se a renda é "Até 1 Salário Mínimo"

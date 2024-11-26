@@ -36,19 +36,9 @@ header {
     text-decoration: none;
 }
 
-.main-section {
-    display: flex;
-    flex-direction: column;
-    max-width: 95vw;
-    margin: 0 auto;
-    padding: 0 120px;
-    height: calc(100vh - 10vh); 
-}
-
 .titulo {
-    font-size: 45px;
+    font-size: 60px !important;
     color: #2C5555;
-    margin: 20px;
 }
 
 /* Form Styling */
@@ -57,98 +47,104 @@ form {
     flex-direction: column;
     gap: 20px;
     flex-wrap: wrap;
-    flex-grow: 1; /* Permite que o formulário cresça */
+    flex-grow: 1; 
 }
 
-.informacao-alimento {
+.main-section {
+    max-width: 800px;
+    justify-content: center;
+    padding: 20px;
+    align-items: center;
+    display: flex; /* Necessário para centralização */
+    flex-direction: column; /* Mantém a organização interna */
+    margin: auto; /* Centraliza horizontalmente */
+    position: absolute; /* Permite usar top, left, transform */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+
+
+.titulo {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #2C5555;
+}
+
+
+.titulo {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #2C5555;
+    font-weight: bold;
+}
+
+.informacao-alimento{
     display: flex;
-    gap: 40px; 
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Ajusta os campos para telas menores */
+    gap: 20px; /* Espaçamento consistente entre os campos */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* Faz com que cada grupo de formulário ocupe toda a largura disponível */
+}
+
+.form-group label {
+    font-size: 1em;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-group input, .form-group select {
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    font-size: 1em;
+    background: #f9f9f9;
+    transition: border 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #1E603D;
+    outline: none;
+    background: #ffffff;
 }
 
 .informacao-entrega {
-    display: flex;
-    gap: 10px; /* Reduz o espaçamento entre os campos */
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .form-dateTime {
     display: flex;
     flex-direction: column;
-    flex: 0 0 15%; /* Ajuste conforme necessário */
-    width: auto;
-    margin: 0;
+    width: 95%;
 }
 
-form label {
-    color: #2C5555;
-    font-weight: bold;
+.form-dateTime label {
+    font-size: 1em;
     margin-bottom: 5px;
-    font-size: 20px;
+    color: #555;
 }
 
-input[type="text"], 
-input[type="date"], 
-input[type="time"] {
-    background-color: white;
-    border: none;
-    border-radius: 5px;
+.form-dateTime input {
     padding: 10px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px;
-    font-size: 16px;
-    width: 100%; 
-    height: 50px;
-}
-
-input[type="date"], 
-input[type="time"] {
-    width: 100%;
-}
-
-select{
-    background-color: white;
-    border: none;
+    border: 1px solid #000000;
     border-radius: 5px;
-    padding: 10px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px;
-    font-size: 16px;
-    width: 100%; 
-    height: 50px;
-}
-
-.check {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
-.check div {
-    display: flex;
-    align-items: center;
-}
-
-input[type="radio"]{
-    width: 20px;
-    height: 20px;
-}
-
-.check div label{
-    padding-left: 10px;
-}
-
-.locais .checkbox-container label{
-    color: black;
-}
-
-.locais .checkbox-container div input{
-    margin: 10px 5px 10px 0
+    font-size: 1em;
+    background: #f9f9f9;
+    transition: border 0.3s ease;
 }
 
 .buttons {
+    width: 100%;
     display: flex;
     justify-content: center;
     margin-top: auto;
-    margin-bottom: 20px;
 }
 
 .buttons button, .buttons a {
@@ -185,39 +181,4 @@ input[type="radio"]{
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
-}
-
-/*Locais disponiveis*/
-
-.locais{
-    width: 0 0 30%;
-    max-width: 30%;
-    height: auto;
-    background-color: white;
-    border-radius: 10px;
-    padding: 60px;
-}
-
-#resultados-radio {
-    width: 100%;
-    margin-top: 20px;
-}
-
-.locais {
-    width: 100%;
-    height: 300px; 
-    background-color: white;
-    border-radius: 10px;
-    padding: 15px; /* Adicione um pouco de padding interno */
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px;
-}
-
-.locais h2{
-    color: #1E603D;
-}
-
-h3{
-    color: #2C5555;
-    font-size: 20px;
-    font-weight: 900;
 }
