@@ -46,7 +46,6 @@ header .buttons-nav a img{
 section{
     flex: 0 0 90%;
     max-width: 90%;
-    height: 125vh;
     display: flex;
     flex-direction: column;
 }
@@ -56,8 +55,14 @@ section .titulo-inicial{
     margin:20px;
 }
 
+.container-benef{
+    display: flex;
+    gap: 20px;
+}
+
 .container-solicitar{
     display: flex;
+    flex-direction: column;
     gap: 24px;
 }
 
@@ -89,35 +94,69 @@ section .titulo-inicial{
     width: 200px;
 }
 
+
+
 .historico{
     background: #ffffff;
     width: 1000px;
-    height: 350px;
+    height: 740px;
     border-radius: 24px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     padding: 20px;
     overflow-y: scroll;
 }
 
-.historico .titulo-containeir{
-    color: #2C5555;
-    font-weight: 900;
-    font-size: 18px;
+.historico::-webkit-scrollbar {
+    width: 10px; 
+    height: 20px;
+}
+
+.historico::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.historico::-webkit-scrollbar-thumb {
+    background-color: #2C5555;
+    border-radius: 10px; 
+}
+
+.historico .historico-lista {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .historico .historico-lista table {
     width: 100%;
+    border: none;
+    margin: 0 auto;
 }
 
 .historico .historico-lista table th,
 .historico .historico-lista table td {
-    padding: 10px;
-    text-align: left;
-    border: 2px solid black;
+    padding: 5px;
+    font-size: 20px;
+    text-align: center;
+    background-color: transparent;
+    border:none;
+    border-bottom: 1px solid #7e7e7e;
 }
 
+.historico .historico-lista .else-historico {
+    text-transform: uppercase;
+    color: #7e7e7e;
+    font-weight: 900;
+    text-align: center;
+}
 
-
+.historico .historico-lista table th {
+    text-transform: uppercase;
+    color: #2C5555;
+    font-size: 20px;
+    padding: 10px;
+    background-color: transparent;
+    text-align: center;
+}
 
 /*Perfil*/
 
@@ -174,23 +213,15 @@ section .titulo-inicial{
     color: #ffffff;
     cursor: pointer;
     background-color: #FDB233;
-    text-align: center;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.historico-lista table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.historico-lista table th, 
-.historico-lista table td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
-}
-
-.historico-lista table th {
-    background-color: #f4f4f4;
+.blur-container{
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff27;
+    backdrop-filter: blur(10px);
 }

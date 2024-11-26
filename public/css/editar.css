@@ -40,3 +40,103 @@ header .buttons-nav a{
 header .buttons-nav a img{
   width: 28px;
 }
+
+.titulo {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: #2C5555;
+  font-weight: bold;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-wrap: wrap;
+  flex-grow: 1; 
+}
+
+.edicao-section {
+  max-width: 800px;
+  justify-content: center;
+  padding: 20px;
+  align-items: center;
+  display: flex;
+  flex-direction: column; 
+  margin: auto; 
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+}
+
+input {
+  display: flex;
+  flex-direction: column;
+  width: 100%; 
+  padding: 10px;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  font-size: 1em;
+  background: #f9f9f9;
+  transition: border 0.3s ease;
+}
+
+label {
+  font-size: 1em;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+
+input:focus {
+  border-color: #1E603D;
+  outline: none;
+  background: #ffffff;
+}
+
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: 20px;
+}
+
+.buttons button, .buttons a {
+  flex: 0 0 20%;
+  max-width: 20%;
+  height: 60px;
+  margin-right: 10px;
+  font-size: 20px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.buttons button a {
+  text-decoration: none;
+  color: white;
+}
+
+.buttons .voltar {
+  display: flex;
+  background-color: #FDB233;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttons .doar {
+  background-color: #1E603D;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}

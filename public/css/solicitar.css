@@ -70,14 +70,6 @@ form {
     font-size: 30px;
     margin-bottom: 20px;
     color: #2C5555;
-}
-
-
-.titulo {
-    text-align: center;
-    font-size: 30px;
-    margin-bottom: 20px;
-    color: #2C5555;
     font-weight: bold;
 }
 
@@ -145,6 +137,7 @@ form {
     display: flex;
     justify-content: center;
     margin-top: auto;
+    margin-bottom: 20px;
 }
 
 .buttons button, .buttons a {

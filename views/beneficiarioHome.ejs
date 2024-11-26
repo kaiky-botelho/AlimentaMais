@@ -22,56 +22,54 @@
     <section>
         <h2 class="titulo-inicial">Olá, <%= nome%>
         </h2> <!-- Nome do Doador -->
-        <div class="container-solicitar">
-            <div class="solicitar">
-                <a href="/solicitar"><img src="/img/solicitar.svg" alt="">Solicitar</a>
+        <div class="container-benef">
+            <div class="container-solicitar">
+                <div class="solicitar">
+                    <a href="/solicitar"><img src="/img/solicitar.svg" alt="">Solicitar</a>
+                </div>
+                <div class="solicitar">
+                    <a href="https://www.gov.br/saude/pt-br/assuntos/saude-brasil"><img src="/img/dica.svg" alt="">Dicas</a>
+                </div>
             </div>
-            <div class="solicitar">
-                <a href="https://www.gov.br/saude/pt-br/assuntos/saude-brasil"><img src="/img/dica.svg" alt="">Dicas</a>
-            </div>
-        </div>
-
-
-        <div class="historico">
-            <h3 class="titulo-containeir">HISTÓRICO</h3>
-            <div class="historico-lista">
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th>Alimento</th>
-                            <th>Quantidade</th>
-                            <th>Observação</th>
-                            <th>Data</th>
-                            <th>Horário</th>
-                            <th>Retirada</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% if (solicitacoes.length > 0) { %>
-                            <% solicitacoes.forEach(solicitacao => { %>
-                                <tr>
-                                    <td><%= solicitacao.solicitacao_alimento %></td>
-                                    <td><%= solicitacao.solicitacao_qtd %></td>
-                                    <td><%= solicitacao.solicitacao_obs %></td>
-                                    <td><%= solicitacao.solicitacao_data %></td>
-                                    <td><%= solicitacao.solicitacao_horario %></td>
-                                    <td><%= solicitacao.endereco_retirada %></td>
-                                </tr>
-                            <% }) %>
-                        <% } else { %>
+            <div class="historico">
+                <div class="historico-lista">
+                    <table border="1">
+                        <thead>
                             <tr>
-                                <td colspan="6">Nenhuma solicitação registrada.</td>
+                                <th>Alimento</th>
+                                <th>Quantidade</th>
+                                <th>Observação</th>
+                                <th>Data</th>
+                                <th>Horário</th>
+                                <th>Retirada</th>
                             </tr>
-                        <% } %>
-                    </tbody>
-                </table>                
+                        </thead>
+                        <tbody>
+                            <% if (solicitacoes.length > 0) { %>
+                                <% solicitacoes.forEach(solicitacao => { %>
+                                    <tr>
+                                        <td><%= solicitacao.solicitacao_alimento %></td>
+                                        <td><%= solicitacao.solicitacao_qtd %></td>
+                                        <td><%= solicitacao.solicitacao_obs %></td>
+                                        <td><%= solicitacao.solicitacao_data %></td>
+                                        <td><%= solicitacao.solicitacao_horario %></td>
+                                        <td><%= solicitacao.endereco_retirada %></td>
+                                    </tr>
+                                <% }) %>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="6" class="else-historico">Nenhuma solicitação registrada.</td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-
         </div>
     </section>
 
     <!--Resultado-->
-
+    
     <!--Perfil-->
     <div class="perfil" id="perfil">
         <div class="container-perfil">

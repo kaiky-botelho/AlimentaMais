@@ -18,31 +18,26 @@
   </header>
   <section>
     <div class="container-edicao">
-      <h4>Editar Informações de <span><%= nome %></span></h4>
+      <h4 class="titulo">Editar Informações de <span><%= nome %></span></h4>
       <form action="/editarDoador" method="POST">
-        <input type="hidden" name="id_beneficiario" value="<%= userId %>">
-
-        <label for="benef_email">Email:</label>
-        <input type="email" id="benef_email" name="benef_email" value="<%= benef_email %>">
-
-        <label for="benef_endereco">Endereço:</label>
-        <input type="text" id="benef_endereco" name="benef_endereco" value="<%= benef_endereco %>">
-
-        <label for="benef_bairro">Bairro:</label>
-        <input type="text" id="benef_bairro" name="benef_bairro" value="<%= benef_bairro %>">
-
-        <label for="benef_cidade">Cidade:</label>
-        <input type="text" id="benef_cidade" name="benef_cidade" value="<%= benef_cidade %>">
-
-        <label for="benef_UF">Estado (UF):</label>
-        <input type="text" id="benef_UF" name="benef_UF" value="<%= benef_UF %>" maxlength="2">
-
-        <label for="benef_cep">CEP:</label>
-        <input type="text" id="benef_cep" name="benef_cep" value="<%= benef_cep %>">
-
-        <div class="buttons">
-          <a href="/beneficiarioHome">Voltar</a>
-          <button type="submit" class="btn-editar">Salvar Alterações</button>
+        <div class="edicao-section">
+          <input type="hidden" name="id_beneficiario" value="<%= userId %>">
+          <label for="benef_email">Email:</label>
+          <input type="email" id="benef_email" name="benef_email" value="<%= benef_email %>">
+          <label for="benef_endereco">Endereço:</label>
+          <input type="text" id="benef_endereco" name="benef_endereco" value="<%= benef_endereco %>">
+          <label for="benef_bairro">Bairro:</label>
+          <input type="text" id="benef_bairro" name="benef_bairro" value="<%= benef_bairro %>">
+          <label for="benef_cidade">Cidade:</label>
+          <input type="text" id="benef_cidade" name="benef_cidade" value="<%= benef_cidade %>">
+          <label for="benef_UF">Estado (UF):</label>
+          <input type="text" id="benef_UF" name="benef_UF" value="<%= benef_UF %>" maxlength="2">
+          <label for="benef_cep">CEP:</label>
+          <input type="text" id="benef_cep" name="benef_cep" value="<%= benef_cep %>">
+          <div class="buttons">
+            <a href="/beneficiarioHome">Voltar</a>
+            <button type="submit" class="btn-editar">Salvar Alterações</button>
+          </div>
         </div>
       </form>
     </div>
