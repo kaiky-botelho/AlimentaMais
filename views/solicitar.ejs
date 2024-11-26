@@ -32,11 +32,13 @@
                                     data-qtd="<%= doacao.doacao_qtd %>"
                                     data-endereco="<%= doacao.doador_endereco %>"
                                     data-data="<%= doacao.doacao_data.toISOString().split('T')[0] %>"
-                                    data-horario="<%= doacao.doacao_horario %>">
+                                    data-horario="<%= doacao.doacao_horario %>"
+                                    data-obs="<%= doacao.doacao_obs %>">
                                     <%= doacao.doacao_alimento %>
                                 </option>
                             <% }) %>
                         <% } %>
+                        
                     </select>                    
                 </div>
                 
@@ -77,19 +79,20 @@
 
     <script>
         // Função para preencher a quantidade com base na opção selecionada
-        function preencherCampos() {
+    function preencherCampos() {
     const select = document.getElementById('solicitacao_alimento');
     const selectedOption = select.options[select.selectedIndex];
 
     const quantidadeInput = document.getElementById('quantidade');
     const enderecoInput = document.getElementById('endereco');
-    const observacao = document.getElementById('observacao');
+    const observacaoInput = document.getElementById('observacao'); // Corrigido
     const dataInput = document.getElementById('data-coleta');
     const horarioInput = document.getElementById('hora-coleta');
 
-    // Pegar os valores dos atributos data
+    // Preencher os campos com os valores dos atributos data
     quantidadeInput.value = selectedOption.getAttribute('data-qtd') || '';
     enderecoInput.value = selectedOption.getAttribute('data-endereco') || '';
+    observacaoInput.value = selectedOption.getAttribute('data-obs') || ''; // Adicionado
     dataInput.value = selectedOption.getAttribute('data-data') || '';
     horarioInput.value = selectedOption.getAttribute('data-horario') || '';
 }
