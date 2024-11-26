@@ -192,8 +192,10 @@ section .titulo-inicial{
     background-color: #FDB233;
     text-align: center;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
 .historico-lista table {
     width: 100%;
     border-collapse: collapse;
