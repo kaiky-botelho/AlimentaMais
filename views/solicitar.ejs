@@ -23,21 +23,22 @@
                     <label for="alimento">Alimento</label> <br>
                     <select name="solicitacao_alimento" id="solicitacao_alimento" onchange="preencherCampos()">
                         <option value="" disabled selected>Selecione o alimento</option>
-                        <% if (doacoes.length===0) { %>
+                        <% if (doacoes.length === 0) { %>
                             <option disabled>Nenhuma doação disponível no momento</option>
-                            <% } else { %>
-                                <% doacoes.forEach(doacao=> { %>
-                                    <option value="<%= doacao.doacao_alimento %>" data-qtd="<%= doacao.doacao_qtd %>"
+                        <% } else { %>
+                            <% doacoes.forEach(doacao => { %>
+                                <option value="<%= doacao.doacao_alimento %>" 
+                                        data-qtd="<%= doacao.doacao_qtd %>"
                                         data-endereco="<%= doacao.doador_endereco %>"
-                                        data-data="<%= doacao.doacao_data.toISOString().split('T')[0] %>"
-                                        data-horario="<%= doacao.doacao_horario %>" data-obs="<%= doacao.doacao_obs %>"
+                                        data-data="<%= doacao.doacao_data %>"
+                                        data-horario="<%= doacao.doacao_horario %>"
+                                        data-obs="<%= doacao.doacao_obs %>"
                                         data-id="<%= doacao.id_doador %>">
-                                        <%= doacao.doacao_alimento %>
-                                    </option>                                    
-                                    <% }) %>
-                                        <% } %>
+                                    <%= doacao.doacao_alimento %>
+                                </option>                                    
+                            <% }) %>
+                        <% } %>
                     </select>
-
                 </div>
 
                 <div class="form-group">
@@ -76,27 +77,23 @@
     <script src="/js/script.js"></script>
 
     <script>
-function preencherCampos() {
-    const select = document.getElementById('solicitacao_alimento');
-    const selectedOption = select.options[select.selectedIndex];
+        function preencherCampos() {
+            const select = document.getElementById('solicitacao_alimento');
+            const selectedOption = select.options[select.selectedIndex];
 
-    const quantidadeInput = document.getElementById('quantidade');
-    const enderecoInput = document.getElementById('endereco');
-    const observacaoInput = document.getElementById('observacao');
-    const dataInput = document.getElementById('data-coleta');
-    const horarioInput = document.getElementById('hora-coleta');
+            const quantidadeInput = document.getElementById('quantidade');
+            const enderecoInput = document.getElementById('endereco');
+            const observacaoInput = document.getElementById('observacao');
+            const dataInput = document.getElementById('data-coleta');
+            const horarioInput = document.getElementById('hora-coleta');
 
-    // Log para verificar se o endereço está sendo acessado corretamente
-    console.log("Endereço selecionado: ", selectedOption.getAttribute('data-endereco'));
-
-    // Preencher os campos com os valores dos atributos data
-    quantidadeInput.value = selectedOption.getAttribute('data-qtd') || '';
-    enderecoInput.value = selectedOption.getAttribute('data-endereco') || '';
-    observacaoInput.value = selectedOption.getAttribute('data-obs') || '';
-    dataInput.value = selectedOption.getAttribute('data-data') || '';
-    horarioInput.value = selectedOption.getAttribute('data-horario') || '';
-}
-
+            // Preencher os campos com os valores dos atributos data
+            quantidadeInput.value = selectedOption.getAttribute('data-qtd') || '';
+            enderecoInput.value = selectedOption.getAttribute('data-endereco') || '';
+            observacaoInput.value = selectedOption.getAttribute('data-obs') || '';
+            dataInput.value = selectedOption.getAttribute('data-data') || '';
+            horarioInput.value = selectedOption.getAttribute('data-horario') || '';
+        }
     </script>
 </body>
 

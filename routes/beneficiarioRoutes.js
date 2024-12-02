@@ -125,17 +125,21 @@ router.get('/solicitar', verificarAutenticacao, async (req, res) => {
         const result = await pool.query(query);
 
         const doacoesDisponiveis = result.rows.filter((doacao) => !doacoesSolicitadasIds.includes(doacao.id_doacao));
+
+        // Garantir que doacao_data seja um objeto Date e formatar corretamente
         const doacoesFormatadas = doacoesDisponiveis.map((doacao) => ({
             ...doacao,
-            doacao_data: formataData(doacao.doacao_data),
+            doacao_data: new Date(doacao.doacao_data).toISOString().split('T')[0], // Formato yyyy-mm-dd
         }));
 
-        res.render('solicitar', { doacoes: doacoesFormatadas });
+        // Passar userId e doações formatadas para o EJS
+        res.render('solicitar', { doacoes: doacoesFormatadas, userId: userId });
     } catch (error) {
         console.error('Erro ao consultar o banco de dados:', error);
         res.status(500).send('Erro ao carregar doações');
     }
 });
+
 
 // Rota: Processar solicitação
 router.post('/fazerSolicitacao', verificarAutenticacao, async (req, res) => {
@@ -158,5 +162,96 @@ router.post('/fazerSolicitacao', verificarAutenticacao, async (req, res) => {
         res.status(500).send('<script>alert("Erro ao cadastrar a solicitação. Tente novamente mais tarde."); window.location.href = "/solicitar";</script>');
     }
 });
+
+// Rota para exibir informações de beneficiário para edição
+router.get('/editarBenef', async (req, res) => {
+    const userId = req.session.userId;
+    console.log('userId:', userId); // Debug
+    if (!userId) {
+        return res.redirect('/loginBenef');
+    }
+
+    try {
+        const query = `
+            SELECT nome, benef_email, benef_endereco, benef_bairro, benef_cidade, benef_UF, benef_cep
+            FROM cadastro_beneficiario
+            WHERE id_beneficiario = $1
+        `;
+        const result = await pool.query(query, [userId]);
+        console.log('Result rows:', result.rows); // Debug
+
+        if (result.rows.length > 0) {
+            const beneficiario = result.rows[0];
+            res.render('editarBenef', {
+                userId,
+                nome: beneficiario.nome,
+                benef_email: beneficiario.benef_email,
+                benef_endereco: beneficiario.benef_endereco,
+                benef_bairro: beneficiario.benef_bairro,
+                benef_cidade: beneficiario.benef_cidade,
+                benef_UF: beneficiario.benef_UF,
+                benef_cep: beneficiario.benef_cep,
+            });
+        } else {
+            console.log('Usuário não encontrado');
+            res.send('Usuário não encontrado');
+        }
+    } catch (error) {
+        console.error('Erro ao buscar informações do usuário:', error);
+        res.send('Erro ao carregar informações do usuário.');
+    }
+});
+
+// Rota para processar edição de beneficiários
+router.post('/editarBeneficiario', async (req, res) => {
+    const { id_beneficiario, benef_email, benef_endereco, benef_cidade, benef_UF, benef_bairro, benef_cep } = req.body;
+
+    console.log('Dados recebidos:', req.body); // Verificando o corpo da requisição
+
+    const dadosAtualizados = {
+        benef_email, 
+        benef_endereco, 
+        benef_cidade, 
+        benef_UF, 
+        benef_bairro, 
+        benef_cep
+    };
+
+    try {
+        const query = `
+            UPDATE cadastro_beneficiario 
+            SET benef_email = $1, 
+                benef_endereco = $2, 
+                benef_cidade = $3, 
+                benef_UF = $4, 
+                benef_bairro = $5, 
+                benef_cep = $6
+            WHERE id_beneficiario = $7
+        `;
+
+        const values = [
+            benef_email, 
+            benef_endereco, 
+            benef_cidade, 
+            benef_UF, 
+            benef_bairro, 
+            benef_cep,
+            id_beneficiario
+        ];
+
+        console.log("Executando query com os valores:", values);
+
+        // Executa a consulta no banco de dados
+        await pool.query(query, values);
+
+        // Enviar resposta de sucesso
+        res.send(`<script>alert('Conta editada com sucesso!'); window.location.href = '/beneficiarioHome';</script>`);
+    } catch (error) {
+        console.error('Erro ao editar conta do beneficiário:', error);
+        res.send(`<script>alert('Erro ao editar conta. Tente novamente.'); window.location.href = '/beneficiarioHome';</script>`);
+    }
+});
+
+module.exports = router;
 
 module.exports = router;
