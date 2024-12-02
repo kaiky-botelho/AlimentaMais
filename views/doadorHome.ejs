@@ -25,6 +25,7 @@
             <div class="mySwiper">
                 <img src="/img/partoArte.jpg" alt="">
             </div>
+            </div>
         </div>
 
         <div class="doacao-historico">
@@ -32,37 +33,23 @@
                 <a href="/fazerdoacao"><img src="/img/doacao.svg" alt="">Fazer Doação</a>
             </div>
             <div class="historico">
-                <h3 class="titulo-containeir">HISTÓRICO</h3>
-                <div class="historico-lista">
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th>Alimento</th>
-                                <th>Quantidade</th>
-                                <th>Observação</th>
-                                <th>Data</th>
-                                <th>Horário</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% if (doacoes.length > 0) { %>
-                                <% doacoes.forEach(doacao => { %>
-                                    <tr>
-                                        <td><%= doacao.doacao_alimento %></td>
-                                        <td><%= doacao.doacao_qtd %></td>
-                                        <td><%= doacao.doacao_obs %></td>
-                                        <td><%= doacao.doacao_data %></td>
-                                        <td><%= doacao.doacao_horario %></td>
-                                    </tr>
-                                <% }) %>
-                            <% } else { %>
-                                <tr>
-                                    <td colspan="5" class="else-historico">Nenhuma doação registrada.</td>
-                                </tr>
-                            <% } %>
-                        </tbody>
-                        
-                    </table>
+                <div class="doacao-notificacao">
+                    <h3 class="titulo-containeir">notificações</h3>
+                    <div class="notificacao">
+                        <% if (notificacoes.length === 0) { %>
+                            <p class="semNot">Não há notificações no momento.</p>
+                        <% } else { %>
+                            <% notificacoes.forEach(function(notificacao) { %>
+                                <div class="notificacao-item">
+                                    <p><%= notificacao.notificacao_texto %></p>
+                                    <form action="/notificacao/lida/<%= notificacao.id_notificacao %>" method="POST">
+                                        <button type="submit">Alimento Resgatado</button>
+                                    </form>
+                                </div>
+                                <hr>
+                            <% }); %>
+                        <% } %>
+                    </div>
                 </div>
                 
             </div>
@@ -75,7 +62,6 @@
     <div class="perfil" id="perfil">
         <div class="container-perfil">
             <h4>SEU PERFIL</h4>
-            <img src="/img/profile.png" alt="">
             <div class="infos">
                 <div class="info">
                     <h5>NOME</h5>

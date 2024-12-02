@@ -82,23 +82,23 @@ input {
 }
 
 
-#doador_UF{
+#doador_UF, #benef_UF{
   width: 120px;
 }
 
-#doador_telefone{
+#doador_telefone, #benef_telefone{
   width: 400px;
 }
 
-#doador_senha{
+#doador_senha, #benef_senha{
   width: 400px;
 }
 
-#doador_endereco{
+#doador_endereco, #benef_endereco{
   width: 650px;
 }
 
-#doador_email{
+#doador_email, #benef_email{
   width: 650px;
 }
 

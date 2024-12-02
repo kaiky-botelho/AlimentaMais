@@ -7,8 +7,8 @@ const beneficiarioRoutes = require('./routes/beneficiarioRoutes');
 const app = express();
 
 // Configuração do body-parser para tratar dados do formulário
-app.use(bodyParser.json()); // Para analisar JSON
-app.use(bodyParser.urlencoded({ extended: true })); // Para analisar dados de formulário URL-encoded
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Configuração de arquivos estáticos
 app.use(express.static('public'));

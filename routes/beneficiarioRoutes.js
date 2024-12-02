@@ -122,14 +122,25 @@ router.post('/cadastroBeneficiario', async (req, res) => {
     }
 });
 
+// Rota para exibir o formulário de solicitação
+// Rota para exibir o formulário de solicitação
 router.get('/solicitar', async (req, res) => {
-    const userId = req.session.userId; // Certifique-se de que o ID do usuário está na sessão
+    const userId = req.session.userId;
     if (!userId) {
         return res.redirect('/loginBenef');
     }
 
     try {
-        // Consultar doações e informações do doador relacionadas
+        // Buscar os IDs das doações já solicitadas
+        const solicitadosQuery = `
+            SELECT id_doacao 
+            FROM solicitacao 
+            WHERE id_beneficiario = $1
+        `;
+        const solicitadosResult = await pool.query(solicitadosQuery, [userId]);
+        const doacoesSolicitadasIds = solicitadosResult.rows.map(row => row.id_doacao);
+
+        // Buscar as doações disponíveis
         const query = `
             SELECT 
                 doacao.id_doacao,
@@ -147,25 +158,35 @@ router.get('/solicitar', async (req, res) => {
         const result = await pool.query(query);
         const doacoes = result.rows || [];
 
-        res.render('solicitar', { doacoes, userId });
+        // Filtrar as doações para remover as que já foram solicitadas
+        const doacoesDisponiveis = doacoes.filter(doacao => !doacoesSolicitadasIds.includes(doacao.id_doacao));
+
+        // Garantir que a data seja um objeto Date válido antes de enviar
+        const doacoesComDataFormatada = doacoesDisponiveis.map(doacao => {
+            return {
+                ...doacao,
+                doacao_data: doacao.doacao_data ? new Date(doacao.doacao_data) : null // Verifica se a data é válida
+            };
+        });
+
+        res.render('solicitar', { doacoes: doacoesComDataFormatada, userId });
     } catch (error) {
         console.error('Erro ao consultar o banco de dados:', error);
         res.status(500).send('Erro ao carregar doações');
     }
 });
 
+
 // Rota para processar a solicitação
 router.post('/fazerSolicitacao', async (req, res) => {
     const { solicitacao_alimento, solicitacao_qtd, solicitacao_obs, endereco_retirada, solicitacao_data, solicitacao_horario } = req.body;
 
-    // Obter o ID do beneficiário da sessão
     const userId = req.session?.userId; 
     if (!userId) {
         return res.redirect('/loginBenef');
     }
 
     try {
-        // Inserir a solicitação no banco de dados
         const insertQuery = `
             INSERT INTO solicitacao (solicitacao_alimento, solicitacao_qtd, solicitacao_obs, endereco_retirada, solicitacao_data, solicitacao_horario, id_beneficiario)
             VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id_solicitacao
@@ -173,23 +194,14 @@ router.post('/fazerSolicitacao', async (req, res) => {
         const insertValues = [solicitacao_alimento, solicitacao_qtd, solicitacao_obs, endereco_retirada, solicitacao_data, solicitacao_horario, userId];
         const result = await pool.query(insertQuery, insertValues);
 
-        // Verificar se há doação suficiente e excluir se necessário
-        const deleteQuery = `
-            DELETE FROM doacao
-            WHERE id_doacao = (
-                SELECT id_doacao
-                FROM doacao
-                WHERE doacao_alimento = $1
-                AND doacao_qtd >= $2
-                LIMIT 1
-            )
-            RETURNING id_doacao
+        const doadorQuery = `
+            SELECT id_doador, id_doacao FROM doacao 
+            WHERE doacao_alimento = $1 AND doacao_qtd >= $2
+            LIMIT 1
         `;
-        const deleteValues = [solicitacao_alimento, solicitacao_qtd];
-        const deleteResult = await pool.query(deleteQuery, deleteValues);
+        const doadorResult = await pool.query(doadorQuery, [solicitacao_alimento, solicitacao_qtd]);
 
-        // Verificar se a doação foi processada corretamente
-        if (deleteResult.rowCount === 0) {
+        if (doadorResult.rowCount === 0) {
             return res.status(400).send(`
                 <script>
                     alert('Não foi possível encontrar uma doação correspondente. Verifique os dados e tente novamente.');
@@ -198,7 +210,40 @@ router.post('/fazerSolicitacao', async (req, res) => {
             `);
         }
 
-        // Resposta de sucesso
+        const idDoador = doadorResult.rows[0].id_doador;
+        const idDoacao = doadorResult.rows[0].id_doacao;
+
+        const beneficiarioQuery = `
+            SELECT nome FROM cadastro_beneficiario 
+            WHERE id_beneficiario = $1
+        `;
+        const beneficiarioResult = await pool.query(beneficiarioQuery, [userId]);
+
+        if (beneficiarioResult.rowCount === 0) {
+            return res.status(400).send('Beneficiário não encontrado');
+        }
+
+        const beneficiarioNome = beneficiarioResult.rows[0].nome;
+
+        // Formatar a data para pt-BR
+        const dataFormatada = format(new Date(solicitacao_data), 'dd/MM/yyyy', { locale: ptBR });
+
+        // Criar notificação para o doador
+        const notificacaoTexto = `
+            ${beneficiarioNome} irá resgatar o ${solicitacao_alimento} no dia ${dataFormatada} no horário ${solicitacao_horario}.
+        `;
+        const insertNotificacaoQuery = `
+            INSERT INTO notificacao (id_doador, id_solicitacao, notificacao_texto)
+            VALUES ($1, $2, $3)
+        `;
+        await pool.query(insertNotificacaoQuery, [idDoador, result.rows[0].id_solicitacao, notificacaoTexto]);
+
+        const deleteDoacaoQuery = `
+            DELETE FROM doacao
+            WHERE id_doacao = $1
+        `;
+        await pool.query(deleteDoacaoQuery, [idDoacao]);
+
         res.send(`
             <script>
                 alert('Solicitação cadastrada com sucesso! ID: ${result.rows[0].id_solicitacao}');
@@ -216,9 +261,6 @@ router.post('/fazerSolicitacao', async (req, res) => {
     }
 });
 
-
-
-
 // Rota para exibir informações de beneficiário para edição
 router.get('/editarBenef', async (req, res) => {
     const userId = req.session.userId;
@@ -229,7 +271,7 @@ router.get('/editarBenef', async (req, res) => {
 
     try {
         const query = `
-            SELECT nome, benef_email, benef_endereco, benef_bairro, benef_cidade, benef_UF, benef_cep
+            SELECT nome, benef_email, benef_endereco, benef_bairro, benef_cidade, benef_UF, benef_cep, benef_telefone
             FROM cadastro_beneficiario
             WHERE id_beneficiario = $1
         `;
@@ -247,6 +289,7 @@ router.get('/editarBenef', async (req, res) => {
                 benef_cidade: beneficiario.benef_cidade,
                 benef_UF: beneficiario.benef_UF,
                 benef_cep: beneficiario.benef_cep,
+                benef_telefone: beneficiario.benef_telefone
             });
         } else {
             console.log('Usuário não encontrado');
@@ -260,9 +303,16 @@ router.get('/editarBenef', async (req, res) => {
 
 // Rota para processar edição de beneficiários
 router.post('/editarBeneficiario', async (req, res) => {
-    const { id_beneficiario, benef_email, benef_endereco, benef_cidade, benef_UF, benef_bairro, benef_cep } = req.body;
-
-    console.log('Dados recebidos:', req.body); // Verificando o corpo da requisição
+    const { 
+        id_beneficiario, 
+        benef_email, 
+        benef_endereco, 
+        benef_cidade, 
+        benef_UF, 
+        benef_bairro, 
+        benef_cep, 
+        nova_senha 
+    } = req.body;
 
     const dadosAtualizados = {
         benef_email, 
@@ -274,7 +324,8 @@ router.post('/editarBeneficiario', async (req, res) => {
     };
 
     try {
-        const query = `
+        // Início da query de atualização
+        let query = `
             UPDATE cadastro_beneficiario 
             SET benef_email = $1, 
                 benef_endereco = $2, 
@@ -282,18 +333,27 @@ router.post('/editarBeneficiario', async (req, res) => {
                 benef_UF = $4, 
                 benef_bairro = $5, 
                 benef_cep = $6
-            WHERE id_beneficiario = $7
         `;
-
         const values = [
             benef_email, 
             benef_endereco, 
             benef_cidade, 
             benef_UF, 
             benef_bairro, 
-            benef_cep,
-            id_beneficiario
+            benef_cep
         ];
+
+        // Se uma nova senha foi fornecida, criptografar e incluir na query
+        if (nova_senha && nova_senha.trim() !== '') {
+            const saltRounds = 10;
+            const hashedPassword = await bcrypt.hash(nova_senha, saltRounds);
+            query += `, benef_senha = $7`;  // Inclui a senha na query
+            values.push(hashedPassword);   // Adiciona o valor da senha
+        }
+
+        // Finaliza a query com a cláusula WHERE
+        query += ` WHERE id_beneficiario = $${values.length + 1}`;
+        values.push(id_beneficiario);  // Adiciona o id do beneficiário no final
 
         console.log("Executando query com os valores:", values);
 
@@ -307,5 +367,6 @@ router.post('/editarBeneficiario', async (req, res) => {
         res.send(`<script>alert('Erro ao editar conta. Tente novamente.'); window.location.href = '/beneficiarioHome';</script>`);
     }
 });
+
 
 module.exports = router;

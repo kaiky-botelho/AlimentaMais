@@ -4,6 +4,7 @@ const router = express.Router();
 const { format } = require('date-fns');
 const { ptBR } = require('date-fns/locale'); 
 const pool = require('../config/database');
+const nodemailer = require('nodemailer');
 
 // Rota para exibir o formulário de doador
 router.get('/doador', (req, res) => {
@@ -68,6 +69,7 @@ router.post('/cadastroDoador', async (req, res) => {
 
 // Rota para exibir a página principal do doador
 // Rota para a página principal do doador
+// Rota para exibir a página do doador
 router.get('/doadorHome', async (req, res) => {
     const userId = req.session.userId;
 
@@ -98,6 +100,15 @@ router.get('/doadorHome', async (req, res) => {
         `;
         const doacoesResult = await pool.query(doacoesQuery, [userId]);
 
+        // Consultar notificações não lidas
+        const notificacoesQuery = `
+            SELECT id_notificacao, notificacao_texto 
+            FROM notificacao 
+            WHERE id_doador = $1 AND lida = FALSE
+        `;
+        const notificacoesResult = await pool.query(notificacoesQuery, [userId]);
+        const notificacoes = notificacoesResult.rows;
+
         // Formatar as datas antes de enviar para o EJS
         const doacoes = doacoesResult.rows.map(doacao => ({
             ...doacao,
@@ -113,11 +124,31 @@ router.get('/doadorHome', async (req, res) => {
             doador_cidade: doador.doador_cidade,
             doador_UF: doador.doador_UF,
             doador_cep: doador.doador_cep,
-            doacoes // Passando as doações formatadas para o EJS
+            doacoes, // Passando as doações formatadas para o EJS
+            notificacoes // Passando as notificações para o EJS
         });
     } catch (error) {
         console.error('Erro ao consultar o banco de dados:', error);
         res.send('Erro ao buscar informações do usuário');
+    }
+});
+
+router.post('/notificacao/lida/:id', async (req, res) => {
+    const notificacaoId = req.params.id;
+
+    try {
+        const updateQuery = `
+            UPDATE notificacao
+            SET lida = TRUE
+            WHERE id_notificacao = $1
+        `;
+        await pool.query(updateQuery, [notificacaoId]);
+
+        // Redirecionar para a página inicial do doador
+        res.redirect('/doadorHome');
+    } catch (error) {
+        console.error('Erro ao marcar notificação como lida:', error.message);
+        res.status(500).send('Erro ao processar sua solicitação.');
     }
 });
 
@@ -192,7 +223,7 @@ router.get('/editar', async (req, res) => {
 
 // Rota para editar a conta do doador
 router.post('/editarDoador', async (req, res) => {
-    const { id_doador, doador_email, doador_endereco, doador_cidade, doador_UF, doador_bairro, doador_cep, nova_senha } = req.body;
+    const { id_doador, doador_email, doador_endereco, doador_cidade, doador_UF, doador_bairro, doador_cep, nova_senha, doador_telefone } = req.body;
 
     const dadosAtualizados = {
         doador_email,
@@ -200,7 +231,8 @@ router.post('/editarDoador', async (req, res) => {
         doador_cidade,
         doador_UF,
         doador_bairro,
-        doador_cep
+        doador_cep,
+        doador_telefone
     };
 
     try {
@@ -212,7 +244,8 @@ router.post('/editarDoador', async (req, res) => {
                 doador_cidade = $3, 
                 doador_UF = $4, 
                 doador_bairro = $5, 
-                doador_cep = $6
+                doador_cep = $6,
+                doador_telefone = $7
         `;
         const values = [
             doador_email, 
@@ -220,7 +253,8 @@ router.post('/editarDoador', async (req, res) => {
             doador_cidade, 
             doador_UF, 
             doador_bairro, 
-            doador_cep
+            doador_cep,
+            doador_telefone
         ];
 
         // Se uma nova senha foi fornecida, criptografar e incluir na query

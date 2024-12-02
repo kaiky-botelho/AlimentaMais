@@ -48,7 +48,7 @@ header .buttons-nav a img{
 section{
     flex: 0 0 90%;
     max-width: 90%;
-    height: 125vh;
+    height: auto;
     display: flex;
     flex-direction: column;
 }
@@ -100,10 +100,14 @@ section .titulo-inicial{
     overflow-y: scroll;
 }
 
-.doacao-historico .historico .titulo-containeir{
+.doacao-historico .historico .titulo-containeir,
+.doacao-notificacao .titulo-containeir
+{
     color: #2C5555;
     font-weight: 900;
     font-size: 18px;
+    margin-left: 25px;
+    text-transform: uppercase;
 }
 
 .historico{
@@ -130,45 +134,11 @@ section .titulo-inicial{
     border-radius: 10px; 
 }
 
-.historico .historico-lista {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.historico .historico-lista table {
-    width: 100%;
-    border: none;
-    margin: 0 auto;
-}
-
-.historico .historico-lista table th,
-.historico .historico-lista table td {
-    padding: 5px;
-    font-size: 20px;
-    text-align: center;
-    background-color: transparent;
-    border:none;
-    border-bottom: 1px solid #7e7e7e;
-}
-
-.historico .historico-lista .else-historico {
-    text-transform: uppercase;
-    color: #7e7e7e;
-    font-weight: 900;
-    text-align: center;
-}
-
-.historico .historico-lista table th {
-    text-transform: uppercase;
-    color: #2C5555;
-    font-size: 20px;
-    padding: 10px;
-    background-color: transparent;
-    text-align: center;
-}
 .banner{
     margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
 .banner .mySwiper{
@@ -184,6 +154,35 @@ section .titulo-inicial{
     overflow: hidden;
 }
 
+.doacao-notificacao {
+    background-color: #ffffff;
+    width: 500px;
+    height: 350px;
+    border-radius: 24px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+    overflow-y: scroll
+}
+
+.doacao-notificacao .notificacao .semNot{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #6b6b6b;
+}
+
+.notificacao .notificacao-item{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner .mySwiper img{
+    max-width: 100%;
+}
 
 /*Perfil*/
 
