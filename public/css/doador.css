@@ -131,6 +131,7 @@ section .titulo-inicial{
     background-color: #2C5555;
     padding: 15px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .doacao-notificiacao .notificacao .notificacao-item button i.fas.fa-check {
@@ -233,4 +234,3 @@ section .titulo-inicial{
     align-items: center;
     justify-content: center;
 }
-

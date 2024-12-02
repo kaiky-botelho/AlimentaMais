@@ -38,8 +38,8 @@
           <div class="inputForm">
             <div class="inputs">
               <div>
-                <label for="benef_telefone">Endereço:</label> <br>
-                <input type="text" id="benef_telefone" name="benef_telefone" value="<%= benef_endereco %>">
+                <label for="benef_telefone">Telefone:</label> <br>
+                <input type="text" id="benef_telefone" name="benef_telefone" value="<%= benef_telefone %>">
               </div>
               <div>
                 <label for="benef_endereco">Endereço:</label> <br>
@@ -51,7 +51,7 @@
             <div class="inputs">
               <div>
                 <label for="benef_cep">CEP:</label> <br>
-                <input type="text" id="benef_cep" name="benef_cep" value="<%= benef_cep %>">
+                <input type="text" id="benef_cep" name="benef_cep" value="<%= benef_cep %>"  onblur="buscaCep(this.value)">
               </div>
               <div>
                 <label for="benef_cidade">Cidade:</label> <br>
@@ -74,6 +74,9 @@
         </div>
       </form>
   </section>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+  <script src="/js/formBenef.js"></script>
 </body>
 
 </html>
