@@ -6,14 +6,14 @@ CREATE TABLE cadastro_doador (
 	doador_data_nasc DATE,
 	doador_email VARCHAR(100),
 	doador_senha VARCHAR(60),
-	doador_cep VARCHAR(10),
+	doador_cep VARCHAR(20),
 	doador_cidade VARCHAR(100),
 	doador_UF CHAR(2),
 	doador_endereco VARCHAR(100),
 	doador_numero VARCHAR(5),
 	doador_bairro VARCHAR(100),
 	doador_complemento VARCHAR(100),
-	frequencia_doacao VARCHAR(10)
+	frequencia_doacao VARCHAR(20)
 );
 
 SELECT * FROM cadastro_doador;
@@ -33,24 +33,11 @@ CREATE TABLE cadastro_beneficiario (
 	benef_numero VARCHAR(5),
 	benef_bairro VARCHAR(100),
 	benef_complemento VARCHAR(100),
+	qtd_familiares VARCHAR(50),
 	renda VARCHAR(50)
 );
 
 SELECT * FROM cadastro_beneficiario;
-
-CREATE TABLE solicitacao (
-	id_solicitacao SERIAL NOT NULL PRIMARY KEY,
-	solicitacao_alimento VARCHAR(100),
-	solicitacao_qtd VARCHAR(50),
-	solicitacao_obs VARCHAR(100),
-	solicitacao_entrega VARCHAR(50) CHECK (solicitacao_entrega IN ('Entregar pessoalmente', 'Retirar no endereço')), 
-	solicitacao_data DATE,
-	solicitacao_horario VARCHAR(5),
-	id_beneficiario INTEGER,  -- Adicionando a coluna para chave estrangeira
-	FOREIGN KEY (id_beneficiario) REFERENCES cadastro_beneficiario(id_beneficiario)  -- Referência correta para chave estrangeira
-);
-
-SELECT * FROM solicitacao;
 
 CREATE TABLE doacao (
 	id_doacao SERIAL NOT NULL PRIMARY KEY,
@@ -58,17 +45,38 @@ CREATE TABLE doacao (
 	doacao_qtd VARCHAR(50),
 	doacao_obs VARCHAR(100),
 	doacao_horario VARCHAR(5),
+	doacao_data date,
+	endereco_retirada VARCHAR(100),
 	id_doador INTEGER,  -- Adicionando a coluna para chave estrangeira
 	FOREIGN KEY (id_doador) REFERENCES cadastro_doador(id_doador)  -- Referência correta para chave estrangeira
 );
 
+CREATE TABLE solicitacao (
+    id_solicitacao SERIAL NOT NULL PRIMARY KEY,
+    solicitacao_alimento VARCHAR(100),
+    solicitacao_qtd VARCHAR(50),
+    solicitacao_obs VARCHAR(100),
+    solicitacao_entrega VARCHAR(50) CHECK (solicitacao_entrega IN ('Entregar pessoalmente', 'Retirar no endereço')),
+    solicitacao_data DATE,
+    solicitacao_horario VARCHAR(5),
+	endereco_retirada VARCHAR(100),
+    id_beneficiario INTEGER,  -- Chave estrangeira para beneficiário
+    id_doacao INTEGER,  -- Chave estrangeira para doação
+    FOREIGN KEY (id_beneficiario) REFERENCES cadastro_beneficiario(id_beneficiario),  -- Referência correta para chave estrangeira
+    FOREIGN KEY (id_doacao) REFERENCES doacao(id_doacao)  -- Adicionando a chave estrangeira para doação
+);
+
 SELECT * FROM doacao;
 
-ALTER TABLE solicitacao
-ADD COLUMN endereco_retirada VARCHAR(100);
+CREATE TABLE notificacao (
+    id_notificacao SERIAL PRIMARY KEY,
+    id_doador INT REFERENCES cadastro_doador(id_doador),
+    id_solicitacao INT REFERENCES solicitacao(id_solicitacao),
+    notificacao_texto TEXT,
+    lida BOOLEAN DEFAULT FALSE
+);
 
-ALTER TABLE cadastro_beneficiario
-ADD COLUMN qtd_familiares int;
+select * from notificacao;
 
-ALTER TABLE cadastro_beneficiario 
-ALTER COLUMN qtd_familiares TYPE VARCHAR(50) USING qtd_familiares::VARCHAR(50);
+
+
