@@ -106,3 +106,8 @@
     background-color: #1E603D;
   }
   
+  .grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
