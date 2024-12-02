@@ -8,7 +8,7 @@
 }
 
 body{
-  background-color: #fafafa;
+  background-color: #F0F0F0;
   overflow-x: hidden;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -44,99 +44,99 @@ header .buttons-nav a img{
 .titulo {
   text-align: center;
   font-size: 30px;
-  margin-bottom: 20px;
   color: #2C5555;
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
-form {
+.formulario {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  flex-wrap: wrap;
-  flex-grow: 1; 
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Usa a altura total da janela */
 }
 
-.edicao-section {
-  max-width: 800px;
-  justify-content: center;
-  padding: 20px;
-  align-items: center;
+label{
+  color: #787878;
+  font-size: 20px;
+}
+
+.inputForm{
   display: flex;
-  flex-direction: column; 
-  margin: auto; 
-  position: absolute; 
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); 
+  margin-bottom: 20px;
+}
+
+.inputs{
+  display: flex;
+  gap: 15px;
 }
 
 input {
-  display: flex;
-  flex-direction: column;
-  width: 100%; 
+  height: 40px;
+  width: 300px;
   padding: 10px;
-  border: 1px solid #000000;
+  font-size: 16px; 
+  border: 1px solid #ccc; 
   border-radius: 5px;
-  font-size: 1em;
-  background: #f9f9f9;
-  transition: border 0.3s ease;
-}
-
-label {
-  font-size: 1em;
-  margin-bottom: 5px;
-  color: #555;
 }
 
 
-input:focus {
-  border-color: #1E603D;
-  outline: none;
-  background: #ffffff;
+#doador_UF{
+  width: 120px;
 }
 
+#doador_telefone{
+  width: 400px;
+}
 
-.buttons {
-  width: 100%;
+#doador_senha{
+  width: 400px;
+}
+
+#doador_endereco{
+  width: 650px;
+}
+
+#doador_email{
+  width: 650px;
+}
+
+.buttons{
   display: flex;
-  justify-content: center;
-  margin-top: auto;
-  margin-bottom: 20px;
+  gap: 10px;
+  max-width: 100%;
+  margin-top: 30px;
 }
 
-.buttons button, .buttons a {
-  flex: 0 0 20%;
-  max-width: 20%;
-  height: 60px;
-  margin-right: 10px;
+button{
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  font-weight: 900;
   font-size: 20px;
-  color: white;
-  border: none;
-  cursor: pointer;
 }
 
-.buttons button a {
+a{
   text-decoration: none;
   color: white;
-}
-
-.buttons .voltar {
   display: flex;
-  background-color: #FDB233;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-  text-align: center;
   align-items: center;
   justify-content: center;
+  font-weight: 900;
+  font-size: 20px;
 }
 
-.buttons .doar {
+.button{
+  width: 150px;
+  height: 50px;
+  border-radius: 8px;
+}
+
+.del{
+  background-color: #FDB233;
+}
+
+.edit{
   background-color: #1E603D;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
 }

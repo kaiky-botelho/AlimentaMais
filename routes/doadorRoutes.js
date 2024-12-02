@@ -160,7 +160,7 @@ router.get('/editar', async (req, res) => {
 
     try {
         const query = `
-            SELECT nome_razao, doador_email, doador_endereco, doador_bairro, doador_cidade, doador_UF, doador_cep 
+            SELECT nome_razao, doador_email, doador_endereco, doador_bairro, doador_cidade, doador_cep, doador_telefone, doador_UF
             FROM cadastro_doador 
             WHERE id_doador = $1
         `;
@@ -175,8 +175,9 @@ router.get('/editar', async (req, res) => {
                 doador_endereco: doador.doador_endereco,
                 doador_bairro: doador.doador_bairro,
                 doador_cidade: doador.doador_cidade,
-                doador_UF: doador.doador_UF,
-                doador_cep: doador.doador_cep
+                doador_cep: doador.doador_cep,
+                doador_telefone: doador.doador_telefone,
+                doador_UF: doador.doador_UF
             });
         } else {
             res.send('Usuário não encontrado.');
@@ -191,9 +192,7 @@ router.get('/editar', async (req, res) => {
 
 // Rota para editar a conta do doador
 router.post('/editarDoador', async (req, res) => {
-    const { id_doador, doador_email, doador_endereco, doador_cidade, doador_UF, doador_bairro, doador_cep } = req.body;
-
-    console.log('Dados recebidos:', req.body); // Verificando o corpo da requisição
+    const { id_doador, doador_email, doador_endereco, doador_cidade, doador_UF, doador_bairro, doador_cep, nova_senha } = req.body;
 
     const dadosAtualizados = {
         doador_email,
@@ -205,7 +204,8 @@ router.post('/editarDoador', async (req, res) => {
     };
 
     try {
-        const query = `
+        // Início da query de atualização
+        let query = `
             UPDATE cadastro_doador 
             SET doador_email = $1, 
                 doador_endereco = $2, 
@@ -213,18 +213,27 @@ router.post('/editarDoador', async (req, res) => {
                 doador_UF = $4, 
                 doador_bairro = $5, 
                 doador_cep = $6
-            WHERE id_doador = $7
         `;
-
         const values = [
             doador_email, 
             doador_endereco, 
             doador_cidade, 
             doador_UF, 
             doador_bairro, 
-            doador_cep,
-            id_doador
+            doador_cep
         ];
+
+        // Se uma nova senha foi fornecida, criptografar e incluir na query
+        if (nova_senha && nova_senha.trim() !== '') {
+            const saltRounds = 10;
+            const hashedPassword = await bcrypt.hash(nova_senha, saltRounds);
+            query += `, doador_senha = $7`;
+            values.push(hashedPassword);
+        }
+
+        // Finalizar a query com a cláusula WHERE
+        query += ` WHERE id_doador = $${values.length + 1}`;
+        values.push(id_doador);
 
         console.log("Executando query com os valores:", values);
 
@@ -238,5 +247,6 @@ router.post('/editarDoador', async (req, res) => {
         res.send(`<script>alert('Erro ao editar conta. Tente novamente.'); window.location.href = '/doadorHome';</script>`);
     }
 });
+
 
 module.exports = router;
