@@ -34,12 +34,12 @@ const benefDataNasc = document.querySelector("#benef_data_nasc");
 const rendaFamiliar = document.querySelector("#rendaFamiliar");
 
 form.addEventListener("submit", (event) => {
-    // Impede o envio do formulário para validação
+// Impede o envio do formulário para validação
     event.preventDefault();
     
     let isValid = true;
 
-    // Validação do Nome/Razão Social
+// Validação do Nome/Razão Social
     if (nomeBeneficiario.value.trim() === "") {
         nomeBeneficiario.classList.add("invalid");
         nomeBeneficiario.nextElementSibling.style.display = "block";  // Exibe o span
@@ -49,7 +49,7 @@ form.addEventListener("submit", (event) => {
         nomeBeneficiario.nextElementSibling.style.display = "none";  // Oculta o span
     }
 
-    // Validação do E-mail
+// Validação do E-mail
     if (emailBeneficiario.value.trim() === "") {
         emailBeneficiario.classList.add("invalid");
         emailBeneficiario.nextElementSibling.style.display = "block";  // Exibe o span
@@ -63,10 +63,7 @@ form.addEventListener("submit", (event) => {
         emailBeneficiario.nextElementSibling.style.display = "none";  // Oculta o span
     }
 
-// Validação da Senha
-
-
-    // Validação do Documento (CPF ou CNPJ)
+// Validação do Documento (CPF ou CNPJ)
     if (beneficiarioDocumento.value.trim() === "") {
         beneficiarioDocumento.classList.add("invalid");
         beneficiarioDocumento.nextElementSibling.style.display = "block";  // Exibe o span
@@ -80,7 +77,7 @@ form.addEventListener("submit", (event) => {
         beneficiarioDocumento.nextElementSibling.style.display = "none";  // Oculta o span
     }
 
-    // Validação da Idade (Maior de 18 anos)
+// Validação da Idade (Maior de 18 anos)
     if (benefDataNasc.value.trim() === "") {
         benefDataNasc.classList.add("invalid");
         benefDataNasc.nextElementSibling.style.display = "block";  // Exibe o span
@@ -94,20 +91,28 @@ form.addEventListener("submit", (event) => {
         benefDataNasc.nextElementSibling.style.display = "none";  // Oculta o span
     }
 
-
-
-
-        // Validação da Renda Familiar - Verifica se a renda é "Até 1 Salário Mínimo"
+        
+// Validação da Renda Familiar - Verifica se a renda é "Até 1 Salário Mínimo"
         if (rendaFamiliar.value !== "Até 1 Salário Mínimo") {
             rendaFamiliar.classList.add("invalid");
             rendaFamiliar.nextElementSibling.style.display = "block";
         }
-    // Envia o formulário se tudo estiver válido
+
+//Validação qtd_familiares e Renda Familiar 
+if (renda !== "Até 1 Salário Mínimo" || qtd_familiares !== "4 ou mais") {
+    return res.send(`
+        <script>
+            alert('Cadastro permitido apenas para famílias com até 1 salário mínimo de renda e 4 ou mais moradores.');
+            window.location.href = '/beneficiario';
+        </script>
+    `);
+}
+
+// Envia o formulário se tudo estiver válido
     if (isValid) {
         form.submit();
     }
 });
-
 
 // Função para validar o formato do e-mail
 function validateEmail(email) {
@@ -133,11 +138,12 @@ function validateIdade(dataNasc) {
     let idade = hoje.getFullYear() - dataNascimento.getFullYear();
     const mes = hoje.getMonth() - dataNascimento.getMonth();
     
-    // Se o mês atual for antes do mês de nascimento ou o mês for o mesmo, mas o dia for anterior
+// Se o mês atual for antes do mês de nascimento ou o mês for o mesmo, mas o dia for anterior
     if (mes < 0 || (mes === 0 && hoje.getDate() < dataNascimento.getDate())) {
         idade--;
     }
 
-    // Verifica se a idade é maior ou igual a 18
+// Verifica se a idade é maior ou igual a 18
     return idade >= 18;
 }
+

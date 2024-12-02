@@ -70,5 +70,5 @@ ADD COLUMN endereco_retirada VARCHAR(100);
 ALTER TABLE cadastro_beneficiario
 ADD COLUMN qtd_familiares int;
 
-
-
+ALTER TABLE cadastro_beneficiario 
+ALTER COLUMN qtd_familiares TYPE VARCHAR(50) USING qtd_familiares::VARCHAR(50);
