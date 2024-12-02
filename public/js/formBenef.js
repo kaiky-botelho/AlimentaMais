@@ -32,6 +32,7 @@ const senhaBeneficiario = document.querySelector("#benef_senha");
 const beneficiarioDocumento = document.querySelector("#benef_documento");
 const benefDataNasc = document.querySelector("#benef_data_nasc");
 const rendaFamiliar = document.querySelector("#rendaFamiliar");
+const qtdfamiliares = document.querySelector("#qtd_familiares");
 
 form.addEventListener("submit", (event) => {
 // Impede o envio do formulário para validação
@@ -99,13 +100,9 @@ form.addEventListener("submit", (event) => {
         }
 
 //Validação qtd_familiares e Renda Familiar 
-if (renda !== "Até 1 Salário Mínimo" || qtd_familiares !== "4 ou mais") {
-    return res.send(`
-        <script>
-            alert('Cadastro permitido apenas para famílias com até 1 salário mínimo de renda e 4 ou mais moradores.');
-            window.location.href = '/beneficiario';
-        </script>
-    `);
+if (qtdfamiliares.value !== "4 ou mais") {
+    qtdfamiliares.classList.add("invalid");
+    qtdfamiliares.nextElementSibling.style.display = "block";
 }
 
 // Envia o formulário se tudo estiver válido
