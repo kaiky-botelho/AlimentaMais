@@ -89,14 +89,6 @@ router.get('/doadorHome', async (req, res) => {
 
         const doador = doadorResult.rows[0];
 
-        // Consultar doações associadas ao doador
-        const doacoesQuery = `
-            SELECT doacao_alimento, doacao_qtd, doacao_obs, doacao_data, doacao_horario 
-            FROM doacao 
-            WHERE id_doador = $1
-        `;
-        const doacoesResult = await pool.query(doacoesQuery, [userId]);
-
         // Consultar notificações não lidas
         const notificacoesQuery = `
             SELECT id_notificacao, notificacao_texto 
@@ -105,12 +97,6 @@ router.get('/doadorHome', async (req, res) => {
         `;
         const notificacoesResult = await pool.query(notificacoesQuery, [userId]);
         const notificacoes = notificacoesResult.rows;
-
-        // Formatar as datas antes de enviar para o EJS
-        const doacoes = doacoesResult.rows.map(doacao => ({
-            ...doacao,
-            doacao_data: doacao.doacao_data ? format(new Date(doacao.doacao_data), 'dd/MM/yyyy', { locale: ptBR }) : '' // Formata a data
-        }));
 
         // Renderizar página com os dados
         res.render('doadorHome', { 
@@ -121,7 +107,6 @@ router.get('/doadorHome', async (req, res) => {
             doador_cidade: doador.doador_cidade,
             doador_UF: doador.doador_UF,
             doador_cep: doador.doador_cep,
-            doacoes, // Passando as doações formatadas para o EJS
             notificacoes // Passando as notificações para o EJS
         });
     } catch (error) {
