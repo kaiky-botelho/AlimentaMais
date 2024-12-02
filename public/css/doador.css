@@ -121,7 +121,7 @@ section .titulo-inicial{
     border: none;
     background-color: #2C5555;
     padding: 15px;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 .doacao-notificiacao .notificacao .notificacao-item button i.fas.fa-check {
