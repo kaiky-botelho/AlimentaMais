@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doador</title>
     <link rel="stylesheet" href="/css/doador.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -20,39 +21,41 @@
 
     <!--Sessão Inicial-->
     <section>
-        <h2 class="titulo-inicial">Olá, <%= nome_razao %></h2> <!-- Nome do Doador -->
+        <h2 class="titulo-inicial">Olá, <%= nome_razao %>
+        </h2> <!-- Nome do Doador -->
         <div class="banner">
             <div class="mySwiper">
                 <img src="/img/partoArte.jpg" alt="">
             </div>
-            </div>
+        </div>
         </div>
 
-        <div class="doacao-historico">
+        <div class="doacao-notificiacao">
             <div class="doacao">
                 <a href="/fazerdoacao"><img src="/img/doacao.svg" alt="">Fazer Doação</a>
             </div>
-            <div class="historico">
-                <div class="doacao-notificacao">
-                    <h3 class="titulo-containeir">notificações</h3>
-                    <div class="notificacao">
-                        <% if (notificacoes.length === 0) { %>
-                            <p class="semNot">Não há notificações no momento.</p>
+            <div class="notificacao">
+
+                <h3 class="titulo-containeir">notificações</h3>
+                <div class="notificacoes">
+                    <% if (notificacoes.length===0) { %>
+                        <p class="semNot">Não há notificações no momento.</p>
                         <% } else { %>
                             <% notificacoes.forEach(function(notificacao) { %>
                                 <div class="notificacao-item">
-                                    <p><%= notificacao.notificacao_texto %></p>
+                                    <p>
+                                        <%= notificacao.notificacao_texto %>
+                                    </p>
                                     <form action="/notificacao/lida/<%= notificacao.id_notificacao %>" method="POST">
-                                        <button type="submit">Alimento Resgatado</button>
+                                        <button type="submit"><i class="fas fa-check"></i></button>
                                     </form>
                                 </div>
                                 <hr>
-                            <% }); %>
-                        <% } %>
-                    </div>
+                                <% }); %>
+                                    <% } %>
                 </div>
-                
             </div>
+
         </div>
     </section>
 
@@ -65,26 +68,30 @@
             <div class="infos">
                 <div class="info">
                     <h5>NOME</h5>
-                    <p><%= nome_razao %></p> <!-- Nome do Doador -->
+                    <p>
+                        <%= nome_razao %>
+                    </p> <!-- Nome do Doador -->
                 </div>
                 <hr>
                 <div class="info">
                     <h5>EMAIL</h5>
-                    <p><%= doador_email %></p> <!-- E-mail do Doador -->
+                    <p>
+                        <%= doador_email %>
+                    </p> <!-- E-mail do Doador -->
                 </div>
                 <hr>
                 <div class="info">
                     <h5>ENDEREÇO</h5>
                     <p>
                         <%= doador_endereco %>, <br>
-                        <%= doador_bairro || 'Bairro não informado' %>, <br> 
-                        <%= doador_cidade %>, <br>
-                        <%= doador_UF %> 
-                        <%= doador_cep || 'CEP não informado' %> 
+                            <%= doador_bairro || 'Bairro não informado' %>, <br>
+                                <%= doador_cidade %>, <br>
+                                    <%= doador_UF %>
+                                        <%= doador_cep || 'CEP não informado' %>
                     </p> <!-- Endereço do Doador -->
                 </div>
             </div>
-                <a href="/editar" class="editar" id="editar">Atualizar</a>
+            <a href="/editar" class="editar" id="editar">Atualizar</a>
         </div>
     </div>
 
