@@ -117,6 +117,15 @@ section .titulo-inicial{
     padding: 20px;
 }
 
+.semNot {
+    text-align: center;
+    margin-top: 120px;
+    color: #6b6b6b;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+
 .doacao-notificiacao .notificacao .notificacao-item button{
     border: none;
     background-color: #2C5555;
