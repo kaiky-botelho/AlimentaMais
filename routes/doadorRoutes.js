@@ -4,7 +4,6 @@ const router = express.Router();
 const { format } = require('date-fns');
 const { ptBR } = require('date-fns/locale'); 
 const pool = require('../config/database');
-const nodemailer = require('nodemailer');
 
 // Rota para exibir o formulário de doador
 router.get('/doador', (req, res) => {
