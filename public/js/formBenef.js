@@ -64,6 +64,16 @@ form.addEventListener("submit", (event) => {
         emailBeneficiario.nextElementSibling.style.display = "none";  // Oculta o span
     }
 
+        // Validação da Senha (mínimo de 6 caracteres)
+        if (senhaBeneficiario.value.trim().length < 6) {
+            senhaBeneficiario.classList.add("invalid");
+            senhaBeneficiario.nextElementSibling.style.display = "block";
+            isValid = false;
+        } else {
+            senhaBeneficiario.classList.remove("invalid");
+            senhaBeneficiario.nextElementSibling.style.display = "none";
+        }
+
 // Validação do Documento (CPF ou CNPJ)
     if (beneficiarioDocumento.value.trim() === "") {
         beneficiarioDocumento.classList.add("invalid");
