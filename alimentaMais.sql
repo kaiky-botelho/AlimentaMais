@@ -51,6 +51,8 @@ CREATE TABLE doacao (
 	FOREIGN KEY (id_doador) REFERENCES cadastro_doador(id_doador)  -- Referência correta para chave estrangeira
 );
 
+SELECT * FROM doacao;
+
 CREATE TABLE solicitacao (
     id_solicitacao SERIAL NOT NULL PRIMARY KEY,
     solicitacao_alimento VARCHAR(100),
@@ -66,7 +68,7 @@ CREATE TABLE solicitacao (
     FOREIGN KEY (id_doacao) REFERENCES doacao(id_doacao)  -- Adicionando a chave estrangeira para doação
 );
 
-SELECT * FROM doacao;
+SELECT * FROM solicitacao;
 
 CREATE TABLE notificacao (
     id_notificacao SERIAL PRIMARY KEY,
@@ -78,5 +80,5 @@ CREATE TABLE notificacao (
 
 select * from notificacao;
 
-
-
+DELETE FROM 
+WHERE id IN (1, 2, 3);
