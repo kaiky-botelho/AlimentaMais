@@ -154,3 +154,20 @@ function validateIdade(dataNasc) {
     return idade >= 18;
 }
 
+
+//Ocultar - Mostrar senha
+document.addEventListener('DOMContentLoaded', () => {
+    const passwordInput = document.getElementById('benef_senha');
+    const togglePassword = document.getElementById('togglePassword');
+    const eyeIcon = document.getElementById('eyeIcon');
+
+    togglePassword.addEventListener('click', () => {
+        // Alterna o tipo de input entre 'password' e 'text'
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+
+        // Alterna o ícone
+        eyeIcon.classList.toggle('fa-eye');
+        eyeIcon.classList.toggle('fa-eye-slash');
+    });
+});
