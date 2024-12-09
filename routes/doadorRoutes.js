@@ -222,7 +222,17 @@ router.get('/editar', async (req, res) => {
 
 // Rota para editar a conta do doador
 router.post('/editarDoador', async (req, res) => {
-    const { id_doador, doador_email, doador_endereco, doador_cidade, doador_UF, doador_bairro, doador_cep, nova_senha, doador_telefone } = req.body;
+    const { 
+        id_doador, 
+        doador_email, 
+        doador_endereco, 
+        doador_cidade, 
+        doador_UF, 
+        doador_bairro, 
+        doador_cep, 
+        doador_telefone,      
+        nova_senha
+    } = req.body;
 
     const dadosAtualizados = {
         doador_email,
@@ -260,7 +270,7 @@ router.post('/editarDoador', async (req, res) => {
         if (nova_senha && nova_senha.trim() !== '') {
             const saltRounds = 10;
             const hashedPassword = await bcrypt.hash(nova_senha, saltRounds);
-            query += `, doador_senha = $7`;
+            query += `, doador_senha = $8`;
             values.push(hashedPassword);
         }
 

@@ -310,8 +310,9 @@ router.post('/editarBeneficiario', async (req, res) => {
         benef_cidade, 
         benef_UF, 
         benef_bairro, 
-        benef_cep, 
-        nova_senha 
+        benef_cep,
+        benef_telefone, 
+        nova_senha
     } = req.body;
 
     const dadosAtualizados = {
@@ -320,7 +321,8 @@ router.post('/editarBeneficiario', async (req, res) => {
         benef_cidade, 
         benef_UF, 
         benef_bairro, 
-        benef_cep
+        benef_cep,
+        benef_telefone
     };
 
     try {
@@ -332,7 +334,8 @@ router.post('/editarBeneficiario', async (req, res) => {
                 benef_cidade = $3, 
                 benef_UF = $4, 
                 benef_bairro = $5, 
-                benef_cep = $6
+                benef_cep = $6,
+                benef_telefone = $7
         `;
         const values = [
             benef_email, 
@@ -340,14 +343,15 @@ router.post('/editarBeneficiario', async (req, res) => {
             benef_cidade, 
             benef_UF, 
             benef_bairro, 
-            benef_cep
+            benef_cep,
+            benef_telefone
         ];
 
         // Se uma nova senha foi fornecida, criptografar e incluir na query
         if (nova_senha && nova_senha.trim() !== '') {
             const saltRounds = 10;
             const hashedPassword = await bcrypt.hash(nova_senha, saltRounds);
-            query += `, benef_senha = $7`;  // Inclui a senha na query
+            query += `, benef_senha = $8`;  // Inclui a senha na query
             values.push(hashedPassword);   // Adiciona o valor da senha
         }
 
