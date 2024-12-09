@@ -47,8 +47,8 @@ CREATE TABLE doacao (
 	doacao_horario VARCHAR(5),
 	doacao_data date,
 	endereco_retirada VARCHAR(100),
-	id_doador INTEGER,  -- Adicionando a coluna para chave estrangeira
-	FOREIGN KEY (id_doador) REFERENCES cadastro_doador(id_doador)  -- Referência correta para chave estrangeira
+	id_doador INTEGER,  
+	FOREIGN KEY (id_doador) REFERENCES cadastro_doador(id_doador)  
 );
 
 SELECT * FROM doacao;
@@ -62,10 +62,10 @@ CREATE TABLE solicitacao (
     solicitacao_data DATE,
     solicitacao_horario VARCHAR(5),
 	endereco_retirada VARCHAR(100),
-    id_beneficiario INTEGER,  -- Chave estrangeira para beneficiário
-    id_doacao INTEGER,  -- Chave estrangeira para doação
-    FOREIGN KEY (id_beneficiario) REFERENCES cadastro_beneficiario(id_beneficiario),  -- Referência correta para chave estrangeira
-    FOREIGN KEY (id_doacao) REFERENCES doacao(id_doacao)  -- Adicionando a chave estrangeira para doação
+    id_beneficiario INTEGER,  
+    id_doacao INTEGER,  
+    FOREIGN KEY (id_beneficiario) REFERENCES cadastro_beneficiario(id_beneficiario), 
+    FOREIGN KEY (id_doacao) REFERENCES doacao(id_doacao) 
 );
 
 SELECT * FROM solicitacao;
@@ -80,5 +80,6 @@ CREATE TABLE notificacao (
 
 select * from notificacao;
 
-DELETE FROM 
-WHERE id IN (1, 2, 3);
+ALTER TABLE cadastro_beneficiario
+ADD CONSTRAINT unique_benef_email UNIQUE (benef_email),
+ADD CONSTRAINT unique_benef_telefone UNIQUE (benef_telefone);
