@@ -62,7 +62,7 @@ router.post('/cadastroBeneficiario', async (req, res) => {
 
         const result = await pool.query(query, values);
         
-        res.send(`<script>alert('Beneficiário cadastrado com sucesso! ID: ${result.rows[0].id_beneficiario}'); window.location.href = '/beneficiario';</script>`);
+        res.send(`<script>alert('Beneficiário cadastrado com sucesso! ID: ${result.rows[0].id_beneficiario}'); window.location.href = '/loginBenef';</script>`);
     } catch (error) {
         console.error('Erro ao cadastrar beneficiário:', error);
         res.send(`<script>alert('Erro ao cadastrar beneficiário. Tente novamente.'); window.location.href = '/beneficiario';</script>`);

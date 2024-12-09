@@ -20,7 +20,7 @@ function buscarCep(cep) {
         });
 }
 
-$(document).ready(function() {
+/*$(document).ready(function() {
     $('#doador_documento').on('input', function() {
         const documento = $(this).val().replace(/\D/g, ''); // Remove qualquer caractere não numérico
         const tamanho = documento.length;
@@ -35,10 +35,10 @@ $(document).ready(function() {
             $(this).mask('000.000.000-00', {reverse: true}); // CPF
         }
     });
-});
+});*/
 
 
-
+$('#doador_documento').mask('000.000.000-00')
 $('#doador_cep').mask('00000-000');
 $('#doador_telefone').mask('(00) 0 0000-0000');
 

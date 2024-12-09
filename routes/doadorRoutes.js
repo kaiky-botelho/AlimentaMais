@@ -59,7 +59,7 @@ router.post('/cadastroDoador', async (req, res) => {
 
         const result = await pool.query(query, values);
         
-        res.send(`<script>alert('Doador cadastrado com sucesso! ID: ${result.rows[0].id_doador}'); window.location.href = '/doador';</script>`);
+        res.send(`<script>alert('Doador cadastrado com sucesso! ID: ${result.rows[0].id_doador}'); window.location.href = '/loginDoador';</script>`);
     } catch (error) {
         console.error('Erro ao cadastrar doador:', error);
         res.send(`<script>alert('Erro ao cadastrar doador. Tente novamente.'); window.location.href = '/doador';</script>`);
