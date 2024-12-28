@@ -1,0 +1,202 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #F2F0EF;
+}
+
+.efeito-txt-Home, .efeito-img-Home, .efeito-card1, .efeito-card2, .efeito-card3, .efeito-card4, .efeito-card5{
+    visibility: hidden;
+}
+
+.home,
+.beneficios,
+.fim {
+    width: 100vw;
+    height: 100vh;
+}
+
+.home {
+    display: flex;
+    gap: 20px;
+    background-color: #2C5555;
+    place-content: center;
+    place-items: center;
+    color: white;
+}
+
+.home .textoHome {
+    width: 500px;
+}
+
+.home .textoHome h1 {
+    font-size: 45px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 40px;
+    margin-bottom: 20px;
+}
+
+.home .textoHome h1 span {
+    font-size: 60px;
+    font-weight: 900;
+    color: #FEB15D;
+}
+
+.home .textoHome p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.home .textoHome a {
+    font-weight: bold;
+    display: inline-block;
+    background-color: #FEB15D;
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    transition: transform 0.3s ease;
+}
+
+.home .textoHome a:hover {
+    transform: translateY(-3px);
+    /* Botão "sobe" levemente */
+}
+
+.home .imagemHome img {
+    /*MEDIA QUERRY*/
+    width: 800px;
+}
+
+.beneficios {
+    place-items: center;
+    place-content: center;
+    color: #2C5555;
+}
+
+.beneficios h1 {
+    font-size: 60px;
+    text-transform: uppercase;
+}
+
+.beneficios .benefText {
+    font-size: 30px;
+    font-weight: lighter;
+    text-align: center;
+    width: 1000px;
+    margin: 20px 0;
+}
+
+.beneficios .beneficios-container {
+    display: flex;
+    gap: 20px;
+}
+
+
+.beneficios .beneficios-container .beneficio-item-container {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+}
+
+.beneficios .beneficios-container .beneficio-item-container p {
+    font-weight: 500;
+    text-transform: uppercase;
+    width: 250px;
+    text-align: center;
+}
+
+.beneficios .beneficios-container .beneficio-item-container .beneficios-item {
+    display: flex;
+    background-color: #D4D4D4;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    place-items: center;
+    place-content: center;
+    margin-bottom: 20px
+}
+
+
+.beneficios .beneficios-container .beneficio-item-container .beneficios-item img {
+    width: 150px;
+}
+
+
+.fim {
+    display: flex;
+    gap: 20px;
+    place-content: center;
+    place-items: center;
+}
+
+.fim .textoFim {
+    width: 500px;
+}
+
+.fim .textoFim h1 {
+    font-size: 45px;
+    font-weight: 500;
+    line-height: 40px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    color: #2C5555;
+}
+
+
+.fim .textoFim p {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: #2d2d2d;
+}
+
+.fim .textoFim a {
+    font-weight: bold;
+    display: inline-block;
+    background-color: #FEB15D;
+    color: #fff;
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    transition: transform 0.3s ease;
+}
+
+.fim .textoFim a:hover {
+    transform: translateY(-3px);
+    /* Botão "sobe" levemente */
+}
+
+.fim .imagemFim img {
+    /*MEDIA QUERRY*/
+    width: 800px;
+}
+
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #2C5555;
+    font-size: 14px;
+    color: #fff;
+}
+
+@media (max-width: 1600px) {
+    .home .imagemHome img, .fim .imagemFim img {
+        width: 650px;
+        max-width: 100%;
+    }
+}

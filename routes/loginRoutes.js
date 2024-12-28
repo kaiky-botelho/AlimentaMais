@@ -32,7 +32,7 @@ function checkDoador(req, res, next) {
 
 // Rota inicial
 router.get('/', (req, res) => {
-    res.render('inicial');
+    res.render('landingPage');
 });
 
 // Login Beneficiário
