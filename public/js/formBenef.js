@@ -24,7 +24,7 @@ function buscaCep(cep) {
 $('#benef_cep').mask('00000-000');
 $('#benef_documento').mask('000.000.000-00', {reverse: true});
 $('#benef_telefone').mask('(00) 0 0000-0000');
-
+ /*
 const form = document.querySelector("#form");
 const nomeBeneficiario = document.querySelector("#nome");
 const emailBeneficiario = document.querySelector("#benef_email");
@@ -170,4 +170,4 @@ document.addEventListener('DOMContentLoaded', () => {
         eyeIcon.classList.toggle('fa-eye');
         eyeIcon.classList.toggle('fa-eye-slash');
     });
-});
+}); */

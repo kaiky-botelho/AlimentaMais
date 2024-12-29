@@ -5,12 +5,14 @@ const { format } = require('date-fns');
 const { ptBR } = require('date-fns/locale');
 const pool = require('../config/database');
 
+
 // Função para validar a categoria de renda
 
 // Rota para exibir o formulário de cadastro de beneficiário
 router.get('/beneficiario', (req, res) => {
     res.render('beneficiario');
 });
+
 
 // Rota para processar o formulário de cadastro de beneficiários
 router.post('/cadastroBeneficiario', async (req, res) => {
@@ -32,6 +34,11 @@ router.post('/cadastroBeneficiario', async (req, res) => {
     } = req.body;
 
     try {
+        // Verifique se a senha foi fornecida
+        if (!benef_senha || benef_senha.trim() === '') {
+            return res.send(`<script>alert('Senha não fornecida.'); window.location.href = '/beneficiario';</script>`);
+        }
+
         // Hash da senha
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(benef_senha, saltRounds);
@@ -57,12 +64,12 @@ router.post('/cadastroBeneficiario', async (req, res) => {
             benef_numero, 
             benef_bairro, 
             benef_complemento, 
-           renda
+            renda
         ];
 
         const result = await pool.query(query, values);
         
-        res.send(`<script>alert('Beneficiário cadastrado com sucesso! ID: ${result.rows[0].id_beneficiario}'); window.location.href = '/loginBenef';</script>`);
+        res.send(`<script>alert('Beneficiário cadastrado com sucesso! ID: ${result.rows[0].id_beneficiario}'); window.location.href = '/login';</script>`);
     } catch (error) {
         console.error('Erro ao cadastrar beneficiário:', error);
         res.send(`<script>alert('Erro ao cadastrar beneficiário. Tente novamente.'); window.location.href = '/beneficiario';</script>`);
@@ -73,7 +80,7 @@ router.post('/cadastroBeneficiario', async (req, res) => {
  router.get('/beneficiarioHome', async (req, res) => {
     const userId = req.session.userId;
     if (!userId) {
-        return res.redirect('/loginBenef');
+        return res.redirect('/login');
     }
 
     try {

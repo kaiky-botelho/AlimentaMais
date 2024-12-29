@@ -1,100 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beneficiario</title>
-    <link rel="stylesheet" href="/css/login_formulario.css">
-    <link rel="stylesheet" href="/css/Form.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>Cadastro de Beneficiário</title>
+    <link rel="stylesheet" href="/css/cadastro.css">
 </head>
-
 <body>
     <div class="container">
-        <div class="container-form">
-            <img src="/img/logov2.png" alt="Logo" class="logo">
-            <h2>FORMULÁRIO BENEFICIÁRIO</h2>
-            <form action='/cadastroBeneficiario' method='post' id="form">
-                
-                <div class="form">
-                    <div class="inputDiv">
-                        <input type="text" id="nome" name="nome" placeholder="Nome Completo do Responsável">
-                    <span>Digite seu nome completo.</span>
-                    </div>
-                    <div class="inputDiv">
-                        <input type="text" id="benef_documento" name="benef_documento" placeholder="CPF do Responsável" >
-                      <span>Digite um CPF válido.</span>
-                    </div>
-                    <div class="inputDiv">
+        <form action="/cadastroBeneficiario" method="POST" id="formCadastro">
+            <!-- Div de Informações Pessoais -->
+            <div class="input-container">
+                <div class="info-pessoais" id="info-pessoais">
+                    <h2>CADASTRO - BENEFICIÁRIO</h2>
+                    <h3>INFORMAÇÕES PESSOAIS</h3>
+                    <input type="text" id="nome" name="nome" placeholder="Nome Completo do Responsável">
+                    <input type="text" id="benef_documento" name="benef_documento" placeholder="CPF do Responsável">
+                    <div class="div-input">
                         <input type="text" id="benef_telefone" name="benef_telefone" placeholder="Telefone">
+                        <input type="date" id="benef_data_nasc" name="benef_data_nasc">
                     </div>
-                    <div class="inputDiv">
-                        <input type="date" id="benef_data_nasc" name="benef_data_nasc" placeholder="Data de Nascimento">
-                      <span>Para fazer cadastro é preciso ter pelo menos 18 anos.</span>
-                    </div>
-                    <div class="inputDiv">
+                    <div class="emailSenha">
                         <input type="email" id="benef_email" name="benef_email" placeholder="E-mail">
-                      <span>Digite um email válido.</span>
-                    </div>
-                    <div class="inputDiv">
                         <input type="password" id="benef_senha" name="benef_senha" placeholder="Senha">
-                        <span>Senha precisa ter mais de 6 caracteres.</span>
-                        <button type="button" id="togglePassword" class="togglePassword">
-                            <i id="eyeIcon" class="fas fa-eye"></i>
-                        </button>
                     </div>
-                    <div class="inputDiv">
-                        <input type="text" id="benef_cep" name="benef_cep" placeholder="CEP" onblur="buscaCep(this.value)">
-                    </div>
-                    
-                    <div class="inputDiv">
-                        <input type="text" id="benef_cidade" name="benef_cidade" placeholder="Cidade">
-                    </div>
-                    <div class="inputDiv">
-                        <input type="text" id="benef_UF" name="benef_UF" placeholder="Estado">
-                    </div>
-                    <div class="inputDiv">
-                        <input type="text" id="benef_endereco" name="benef_endereco" placeholder="Endereço">
-                    </div>
-                    <div class="inputDiv">
-                        <input type="text" id="benef_numero" name="benef_numero" placeholder="Nº">
-                    </div>
-                    <div class="inputDiv">
-                        <input type="text" id="benef_bairro" name="benef_bairro" placeholder="Bairro">
-                    </div>
-                    <div class="inputDiv">
-                        <input type="text" id="benef_complemento" name="benef_complemento" placeholder="Complemento">
-                    </div>
-                    
-                    <div class="inputDiv grid">
+                    <div class="div-input-renda">
+                        <select name="qtd_familiares" id="qtd_familiares">
+                            <option value="qtd_familiares">Qtde Membro</option>
+                            <option>1 a 3</option>
+                            <option>4 ou mais</option>
+                        </select>
                         <select name="renda" id="rendaFamiliar">
                             <option value="renda">Renda Familiar</option>
-                            <option name="renda">Até 1 Salário Mínimo</option>
-                            <option name="renda">2 ou mais</option>
+                            <option>Até 1 Salário Mínimo</option>
+                            <option>2 ou mais</option>
                         </select>
-                        <span>Cadastro permitido apenas para pessoas com renda de até 1 salário mínimo.</span>
-                        <select name="qtd_familiares" id="qtd_familiares">
-                            <option value="qtd_familiares">Integrantes da Família</option>
-                            <option name="qtd_familiares">1 a 3</option>
-                            <option name="qtd_familiares">4 ou mais</option>
-                        </select>
-                        <span>Cadastro permitido apenas para famílias com 4 ou mais moradores.</span>
+                        <label class="upload-btn">
+                            Enviar Comprovante
+                            <img src="/img/upload-cloud.png" alt="">
+                            <input type="file" name="comprovante" id="comprovante">
+                        </label>
                     </div>
-                    
-                    
+                    <button type="button" id="nextBtn">PRÓXIMO</button>
                 </div>
+                <!-- Div de Endereço -->
+                <div class="endereco" id="endereco" style="display:none;">
+                    <h2>CADASTRO - BENEFICIÁRIO</h2>
+                    <h3>ENDEREÇO</h3>
+                    <div class="input-div-endereco">
+                        <input class="menor" type="text" id="benef_cep" name="benef_cep" placeholder="CEP" onblur="buscaCep(this.value)">
+                        <input class="maior" type="text" id="benef_cidade" name="benef_cidade" placeholder="Cidade">
+                        <input class="menor" type="text" id="benef_UF" name="benef_UF" placeholder="Estado">
+                    </div>
+                    <input type="text" id="benef_endereco" name="benef_endereco" placeholder="Endereço">
+                    <div class="input-div-endereco">
+                        <input class="menor" type="text" id="benef_numero" name="benef_numero" placeholder="Nº">
+                        <input class="maior" type="text" id="benef_bairro" name="benef_bairro" placeholder="Bairro">
+                        <input class="menor" type="text" id="benef_complemento" name="benef_complemento" placeholder="Complemento">
+                    </div>
+                    <div class="buttons">
+                        <button type="button" id="backBtn" class="voltar">VOLTAR</button>
+                        <button type="submit">CADASTRAR</button>
+                    </div>
+                </div>
+            </div>
+        </form>
 
-                <div class="buttons">
-                    <a href="/loginBenef" class="botao laranja">Voltar</a>
-                    <button type="submit" class="botao verde">Concluir</button>
-                </div>
-            </form>
+        <div class="img-container">
+            <img class="logo" src="/img/LogoV4.png" alt="">
+            <p>CADASTRE SUAS INFORMAÇÕES</p>
+            <img class="cadastro" src="/img/imgCadastro.png" alt="">
         </div>
     </div>
+
+    <script>
+        // Alterna entre as seções
+        document.getElementById('nextBtn').addEventListener('click', function() {
+            document.getElementById('info-pessoais').style.display = 'none';
+            document.getElementById('endereco').style.display = 'flex';
+        });
+
+        // Volta para a seção de informações pessoais
+        document.getElementById('backBtn').addEventListener('click', function() {
+            document.getElementById('info-pessoais').style.display = 'flex';
+            document.getElementById('endereco').style.display = 'none';
+        });
+    </script>
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
     <script src="/js/formBenef.js"></script>
 </body>
-
 </html>

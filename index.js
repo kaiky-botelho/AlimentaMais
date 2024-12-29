@@ -17,10 +17,10 @@ app.use(express.static('models'));
 // Configuração de visualização
 app.set('view engine', 'ejs');
 
-// Configuração das rotas
-app.use('/', loginRoutes);
-app.use('/', doadorRoutes);
-app.use('/', beneficiarioRoutes);
+// Configuração das rotas com caminhos específicos
+app.use('/login', loginRoutes);
+app.use('/doador', doadorRoutes);
+app.use('/beneficiario', beneficiarioRoutes);
 
 // Inicia o servidor
 const PORT = process.env.PORT || 3000;

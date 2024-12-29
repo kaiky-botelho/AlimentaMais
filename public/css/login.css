@@ -64,24 +64,31 @@ button{
     font-weight: 500;
 }
 
-input{
+input {
     width: 40vw;
     height: 5vh;
     border: none;
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     background-color: #d9d9d9;
+    padding-left: 20px;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 
-input::placeholder{
-    text-indent: 20px; 
+input::placeholder {
     font-weight: 900;
     color: #686868;
+}
+
+input:focus {
+    border: solid 1px #2C5555;
+    outline: none;
 }
 
 a{
     color: #DF5B35;
     font-weight: 500;
+    margin-top: 10px;
 }
 
 .container .img-container {
@@ -95,4 +102,10 @@ a{
 
 .container .img-container img {
     width: 700px;
+}
+
+@media (max-width: 1600px) {
+    .container .img-container img{
+        max-width: 100%;
+    }
 }
