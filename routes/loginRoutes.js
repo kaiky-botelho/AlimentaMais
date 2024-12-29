@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
-const session = require('express-session'); 
+const session = require('express-session');
 const { Pool } = require('pg');
 const pool = require('../config/database');
 
@@ -18,7 +18,7 @@ function checkBeneficiario(req, res, next) {
     if (req.session.userType === 'beneficiario') {
         return next();
     } else {
-        res.redirect('/loginBenef');
+        res.redirect('/login');
     }
 }
 
@@ -26,7 +26,7 @@ function checkDoador(req, res, next) {
     if (req.session.userType === 'doador') {
         return next();
     } else {
-        res.redirect('/loginDoador');
+        res.redirect('/login');
     }
 }
 
@@ -34,100 +34,71 @@ function checkDoador(req, res, next) {
 router.get('/', (req, res) => {
     res.render('landingPage');
 });
-
-// Login Beneficiário
-router.get('/loginBenef', (req, res) => {
-    res.render('loginBenef');
+// Rota inicial
+router.get('/login', (req, res) => {
+    res.render('login');
 });
 
-router.post('/loginBenef', async (req, res) => {
-    const { benef_email, benef_senha } = req.body;
-
-    try {
-        const query = 'SELECT * FROM cadastro_beneficiario WHERE benef_email = $1';
-        const result = await pool.query(query, [benef_email]);
-
-        if (result.rows.length > 0) {
-            const benef = result.rows[0];
-            const isMatch = await bcrypt.compare(benef_senha, benef.benef_senha);
-
-            if (isMatch) {
-                req.session.userType = 'beneficiario';
-                req.session.userId = benef.id_beneficiario; // Armazena o ID do beneficiário na sessão
-                res.redirect('/beneficiarioHome');
-            } else {
-                res.send(`
-                    <script>
-                        alert('Senha incorreta');
-                        window.location.href = '/loginBenef';
-                    </script>
-                `);
-            }
-        } else {
-            res.send(`
-                <script>
-                    alert('Usuário não encontrado');
-                    window.location.href = '/loginBenef';
-                </script>
-            `);
-        }
-    } catch (err) {
-        console.error('Erro no login:', err);
-        res.status(500).send(`
-            <script>
-                alert('Erro ao realizar o login. Tente novamente.');
-                window.location.href = '/loginBenef';
-            </script>
-        `);
+// Unificar o login em uma única rota
+router.post('/login', async (req, res) => {
+    const { email, senha, userType } = req.body;
+    let table = '';
+    let emailColumn = '';
+    let senhaColumn = '';
+    
+    // Determinar a tabela e as colunas com base no tipo de usuário
+    if (userType === 'beneficiario') {
+        table = 'cadastro_beneficiario';
+        emailColumn = 'benef_email';
+        senhaColumn = 'benef_senha';
+    } else if (userType === 'doador') {
+        table = 'cadastro_doador';
+        emailColumn = 'doador_email';
+        senhaColumn = 'doador_senha';
     }
-});
-
-// Login Doador
-router.get('/loginDoador', (req, res) => {
-    res.render('loginDoador');
-});
-
-router.post('/loginDoador', async (req, res) => {
-    const { doador_email, doador_senha } = req.body;
 
     try {
-        const query = 'SELECT * FROM cadastro_doador WHERE doador_email = $1';
-        const result = await pool.query(query, [doador_email]);
+        // Query para buscar o usuário na tabela correta
+        const query = `SELECT * FROM ${table} WHERE ${emailColumn} = $1`;
+        const result = await pool.query(query, [email]);
 
         if (result.rows.length > 0) {
-            const doador = result.rows[0];
-            const isMatch = await bcrypt.compare(doador_senha, doador.doador_senha);
+            const user = result.rows[0];
+
+            // Comparar a senha
+            const isMatch = await bcrypt.compare(senha, user[senhaColumn]);
 
             if (isMatch) {
-                req.session.userType = 'doador';
-                req.session.userId = doador.id_doador; // Armazena o ID do doador na sessão
-                res.redirect('/doadorHome');
+                req.session.userType = userType;  // Define o tipo de usuário
+                req.session.userId = user.id_beneficiario || user.id_doador; // Armazena o ID na sessão
+                const redirectPage = userType === 'beneficiario' ? '/beneficiarioHome' : '/doadorHome';
+                return res.redirect(redirectPage);
             } else {
-                res.send(`
+                return res.send(`
                     <script>
                         alert('Senha incorreta.');
-                        window.location.href = '/loginDoador';
+                        window.location.href = '/login';
                     </script>
                 `);
             }
         } else {
-            res.send(`
+            return res.send(`
                 <script>
                     alert('Usuário não encontrado.');
-                    window.location.href = '/loginDoador';
+                    window.location.href = '/login';
                 </script>
             `);
         }
     } catch (err) {
         console.error('Erro no login:', err);
-        res.send(`
+        return res.send(`
             <script>
                 alert('Erro ao realizar o login. Tente novamente.');
-                window.location.href = '/loginDoador';
+                window.location.href = '/login';
             </script>
         `);
     }
 });
 
-// Corrigido a exportação
+// Exportação
 module.exports = router;

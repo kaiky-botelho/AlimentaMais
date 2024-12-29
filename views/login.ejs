@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="input-container">
+            <form action="/login" method="post">
+                <h1>LOGIN</h1>
+                <input type="email" id="email" name="email" placeholder="Email">
+                <input type="password" id="senha" name="senha" placeholder="Senha">
+                <div class="select-button">
+                        <select name="userType" id="userType">
+                            <option value=""> Selecione o tipo de usuário
+                            </option>
+                            <option value="beneficiario">Beneficiário</option>
+                            <option value="doador">Doador</option>
+                        </select>
+                    <div class="botao"><button type="submit">ENTRAR</button></div>
+                </div>
+            </form>
+
+            <a id="cadastroLink" href="beneficiario">CADASTRE-SE AQUI</a>
+        </div>
+        <div class="img-container"><img src="/img/loginImg.png" alt=""></div>
+    </div>
+
+    <script>
+        const userTypeSelect = document.getElementById('userType');
+        const cadastroLink = document.getElementById('cadastroLink');
+
+        userTypeSelect.addEventListener('change', () => {
+            if (userTypeSelect.value === 'doador') {
+                cadastroLink.href = 'doador';  // Atualiza o link para o cadastro do Doador
+            } else {
+                cadastroLink.href = 'beneficiario';  // Atualiza o link para o cadastro do Beneficiário
+            }
+        });
+    </script>
+</body>
+
+
+</html>
