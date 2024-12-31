@@ -9,67 +9,52 @@
 </head>
 <body>
     <div class="container">
-        <form action="/cadastroBeneficiario" method="POST" id="formCadastro">
+        <form action="/cadastroDoador" method="POST" id="formCadastro">
             <!-- Div de Informações Pessoais -->
             <div class="input-container">
                 <div class="info-pessoais" id="info-pessoais">
                     <h2>CADASTRO - BENEFICIÁRIO</h2>
                     <h3>INFORMAÇÕES PESSOAIS</h3>
-                    <input type="text" id="nome" name="nome" placeholder="Nome Completo do Responsável">
-                    <input type="text" id="benef_documento" name="benef_documento" placeholder="CPF do Responsável">
+                    <input type="text" id="nome_razao" name="nome_razao" placeholder="Nome Completo do Responsável">
+                    <input type="text" id="doador_documento" name="doador_documento" placeholder="CPF ou CNPJ">
                     <div class="div-input">
-                        <input type="text" id="benef_telefone" name="benef_telefone" placeholder="Telefone">
-                        <input type="date" id="benef_data_nasc" name="benef_data_nasc">
+                        <input type="text" id="benef_telefone" name="doador_telefone" placeholder="Telefone">
+                        <input type="date" id="doador_data_nasc" name="doador_data_nasc">
                     </div>
                     <div class="emailSenha">
-                        <input type="email" id="benef_email" name="benef_email" placeholder="E-mail">
-                        <input type="password" id="benef_senha" name="benef_senha" placeholder="Senha">
+                        <input type="email" id="doador_email" name="doador_email" placeholder="E-mail">
+                        <input type="password" id="doador_senha" name="doador_senha" placeholder="Senha">
                     </div>
-                    <button type="button" id="nextBtn">PRÓXIMO</button>
+                    <button type="button" id="button">PRÓXIMO</button>
                 </div>
                 <!-- Div de Endereço -->
-                <div class="endereco" id="endereco" style="display:none;">
+                <div class="endereco" id="endereco" >
                     <h2>CADASTRO - BENEFICIÁRIO</h2>
                     <h3>ENDEREÇO</h3>
                     <div class="input-div-endereco">
-                        <input class="menor" type="text" id="benef_cep" name="benef_cep" placeholder="CEP" onblur="buscaCep(this.value)">
-                        <input class="maior" type="text" id="benef_cidade" name="benef_cidade" placeholder="Cidade">
-                        <input class="menor" type="text" id="benef_UF" name="benef_UF" placeholder="Estado">
+                        <input class="menor" type="text" id="doador_cep" name="doador_cep" placeholder="CEP" onblur="buscaCep(this.value)">
+                        <input class="maior" type="text" id="doador_cidade" name="doador_cidade" placeholder="Cidade">
+                        <input class="menor" type="text" id="doador_UF" name="doador_UF" placeholder="Estado">
                     </div>
-                    <input type="text" id="benef_endereco" name="benef_endereco" placeholder="Endereço">
+                    <input type="text" id="doador_endereco" name="doador_endereco" placeholder="Endereço">
                     <div class="input-div-endereco">
-                        <input class="menor" type="text" id="benef_numero" name="benef_numero" placeholder="Nº">
-                        <input class="maior" type="text" id="benef_bairro" name="benef_bairro" placeholder="Bairro">
-                        <input class="menor" type="text" id="benef_complemento" name="benef_complemento" placeholder="Complemento">
+                        <input class="menor" type="text" id="doador_numero" name="doador_numero" placeholder="Nº">
+                        <input class="maior" type="text" id="doador_bairro" name="doador_bairro" placeholder="Bairro">
+                        <input class="menor" type="text" id="doador_complemento" name="doador_complemento" placeholder="Complemento">
                     </div>
                     <div class="buttons">
-                        <button type="button" id="backBtn" class="voltar">VOLTAR</button>
+                        <button type="button" id="button-voltar" class="voltar">VOLTAR</button>
                         <button type="submit">CADASTRAR</button>
                     </div>
                 </div>
+                <div class="img-container">
+                    <img class="logo" src="/img/LogoV4.png" alt="">
+                    <p>CADASTRE SUAS INFORMAÇÕES</p>
+                    <img class="cadastro" src="/img/imgCadastro.png" alt="">
+                </div>
+            </div>
             </div>
         </form>
-
-        <div class="img-container">
-            <img class="logo" src="/img/LogoV4.png" alt="">
-            <p>CADASTRE SUAS INFORMAÇÕES</p>
-            <img class="cadastro" src="/img/imgCadastro.png" alt="">
-        </div>
-    </div>
-
-    <script>
-        // Alterna entre as seções
-        document.getElementById('nextBtn').addEventListener('click', function() {
-            document.getElementById('info-pessoais').style.display = 'none';
-            document.getElementById('endereco').style.display = 'flex';
-        });
-
-        // Volta para a seção de informações pessoais
-        document.getElementById('backBtn').addEventListener('click', function() {
-            document.getElementById('info-pessoais').style.display = 'flex';
-            document.getElementById('endereco').style.display = 'none';
-        });
-    </script>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>

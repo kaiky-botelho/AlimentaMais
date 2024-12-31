@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Beneficiário</title>
     <link rel="stylesheet" href="/css/cadastro.css">
 </head>
+
 <body>
     <div class="container">
         <form action="/cadastroBeneficiario" method="POST" id="formCadastro">
@@ -41,14 +43,15 @@
                             <input type="file" name="comprovante" id="comprovante">
                         </label>
                     </div>
-                    <button type="button" id="nextBtn">PRÓXIMO</button>
+                    <button type="button" id="button">PRÓXIMO</button>
                 </div>
                 <!-- Div de Endereço -->
-                <div class="endereco" id="endereco" style="display:none;">
+                <div class="endereco" id="endereco">
                     <h2>CADASTRO - BENEFICIÁRIO</h2>
                     <h3>ENDEREÇO</h3>
                     <div class="input-div-endereco">
-                        <input class="menor" type="text" id="benef_cep" name="benef_cep" placeholder="CEP" onblur="buscaCep(this.value)">
+                        <input class="menor" type="text" id="benef_cep" name="benef_cep" placeholder="CEP"
+                            onblur="buscaCep(this.value)">
                         <input class="maior" type="text" id="benef_cidade" name="benef_cidade" placeholder="Cidade">
                         <input class="menor" type="text" id="benef_UF" name="benef_UF" placeholder="Estado">
                     </div>
@@ -56,39 +59,28 @@
                     <div class="input-div-endereco">
                         <input class="menor" type="text" id="benef_numero" name="benef_numero" placeholder="Nº">
                         <input class="maior" type="text" id="benef_bairro" name="benef_bairro" placeholder="Bairro">
-                        <input class="menor" type="text" id="benef_complemento" name="benef_complemento" placeholder="Complemento">
+                        <input class="menor" type="text" id="benef_complemento" name="benef_complemento"
+                            placeholder="Complemento">
                     </div>
                     <div class="buttons">
-                        <button type="button" id="backBtn" class="voltar">VOLTAR</button>
+                        <button type="button" id="button-voltar" class="voltar">VOLTAR</button>
                         <button type="submit">CADASTRAR</button>
                     </div>
                 </div>
+                <div class="img-container">
+                    <img class="logo" src="/img/LogoV4.png" alt="">
+                    <p>CADASTRE SUAS INFORMAÇÕES</p>
+                    <img class="cadastro" src="/img/imgCadastro.png" alt="">
+                </div>
             </div>
+
         </form>
-
-        <div class="img-container">
-            <img class="logo" src="/img/LogoV4.png" alt="">
-            <p>CADASTRE SUAS INFORMAÇÕES</p>
-            <img class="cadastro" src="/img/imgCadastro.png" alt="">
-        </div>
     </div>
-
-    <script>
-        // Alterna entre as seções
-        document.getElementById('nextBtn').addEventListener('click', function() {
-            document.getElementById('info-pessoais').style.display = 'none';
-            document.getElementById('endereco').style.display = 'flex';
-        });
-
-        // Volta para a seção de informações pessoais
-        document.getElementById('backBtn').addEventListener('click', function() {
-            document.getElementById('info-pessoais').style.display = 'flex';
-            document.getElementById('endereco').style.display = 'none';
-        });
     </script>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
     <script src="/js/formBenef.js"></script>
 </body>
+
 </html>

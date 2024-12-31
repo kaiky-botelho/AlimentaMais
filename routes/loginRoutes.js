@@ -34,7 +34,8 @@ function checkDoador(req, res, next) {
 router.get('/', (req, res) => {
     res.render('landingPage');
 });
-// Rota inicial
+
+
 router.get('/login', (req, res) => {
     res.render('login');
 });

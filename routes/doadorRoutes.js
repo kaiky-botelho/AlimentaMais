@@ -25,8 +25,7 @@ router.post('/cadastroDoador', async (req, res) => {
         doador_endereco, 
         doador_numero, 
         doador_bairro, 
-        doador_complemento, 
-        frequencia_doacao, 
+        doador_complemento
     } = req.body;
 
     try {
@@ -35,8 +34,8 @@ router.post('/cadastroDoador', async (req, res) => {
 
         const query = `
             INSERT INTO cadastro_doador 
-            (nome_razao, doador_documento, doador_telefone, doador_data_nasc, doador_email, doador_senha, doador_cep, doador_cidade, doador_UF, doador_endereco, doador_numero, doador_bairro, doador_complemento, frequencia_doacao) 
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) 
+            (nome_razao, doador_documento, doador_telefone, doador_data_nasc, doador_email, doador_senha, doador_cep, doador_cidade, doador_UF, doador_endereco, doador_numero, doador_bairro, doador_complemento) 
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) 
             RETURNING id_doador
         `;
         
@@ -53,8 +52,7 @@ router.post('/cadastroDoador', async (req, res) => {
             doador_endereco, 
             doador_numero, 
             doador_bairro, 
-            doador_complemento, 
-            frequencia_doacao
+            doador_complemento
         ];
 
         const result = await pool.query(query, values);

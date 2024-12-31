@@ -11,25 +11,15 @@ body {
 }
 
 /* Contêiner principal com flex */
-.container {
-    display: flex;
-}
 
-
-/* Botões */
-.buttons {
-    margin-top: 20px;
-}
 
 .container .input-container {
     display: flex;
-    flex-direction: column;
     background-color: #fff;
-    width: 50vw;
+    width: 100vw;
     height: 100vh;
-    place-items: center;
-    place-content: center;
-    gap: 20px;
+
+    margin: 0;
 }
 
 h2, h3{
@@ -39,21 +29,18 @@ h2, h3{
 
 
 /* Formulários */
-form {
+
+
+.container .input-container .info-pessoais {
     display: flex;
     flex-direction: column;
-    place-content: center;
-    place-items: center;
+    place-items: center; 
+    place-content: center; 
     gap: 20px;
+    width: 50vw;
+    height: 100vh; 
 }
 
-.container .info-pessoais {
-    display: flex;
-    flex-direction: column;
-    place-items: center;
-    place-content: center;
-    gap: 20px;
-}
 
 .container .info-pessoais .div-input {
     display: grid;
@@ -154,6 +141,8 @@ button {
 
 .container .endereco {
     display: flex;
+    width: 50vw;
+    height: 100vh;
     flex-direction: column;
     place-items: center;
     place-content: center;
@@ -161,16 +150,28 @@ button {
 }
 
 /* Imagens e conteúdo */
-.container .img-container {
+.img-container {
+    position: absolute;
+    right: 0;
     background-color: #2C5555;
     width: 50vw;
     height: 100vh;
     display: flex;
-    place-items: center;
-    place-content: center;
     flex-direction: column;
     gap: 100px;
-    transition: transform 1s ease-in-out;
+    place-items: center;
+    place-content: center;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    transform: translateX(0%);
+    opacity: 1;
+}
+
+.img-container.mover {
+    transform: translateX(-100%);
+}
+
+.img-container.voltar {
+    transform: translateX(0%);
 }
 
 .container .img-container .logo {
@@ -190,10 +191,7 @@ button {
 }
 
 /* Estilos adicionais para a direita */
-.container .direita .endereco .input-div-endereco {
-    display: flex;
-    gap: 10px;
-}
+
 
  .menor {
     width: 10vw;

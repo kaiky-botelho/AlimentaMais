@@ -1,3 +1,16 @@
+document.getElementById('button').addEventListener('click', function () {
+    const imgContainer = document.querySelector('.img-container');
+    imgContainer.classList.add('mover');
+    imgContainer.classList.remove('voltar');
+});
+
+document.getElementById('button-voltar').addEventListener('click', function () {
+    const imgContainer = document.querySelector('.img-container');
+    imgContainer.classList.add('voltar');
+    imgContainer.classList.remove('mover');
+});
+
+
 //buscar cep beneficiario
 function buscaCep(cep) {
   fetch(`https://viacep.com.br/ws/${cep}/json/`)
