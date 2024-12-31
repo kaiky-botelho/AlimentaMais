@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const loginRoutes = require('./routes/loginRoutes');
 const doadorRoutes = require('./routes/doadorRoutes');
 const beneficiarioRoutes = require('./routes/beneficiarioRoutes');
+const administradorRoutes = require('./routes/administradorRoutes.js');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.set('view engine', 'ejs');
 app.use('/', loginRoutes);
 app.use('/', doadorRoutes);
 app.use('/', beneficiarioRoutes);
+app.use('/', administradorRoutes);
 
 // Inicia o servidor
 const PORT = process.env.PORT || 3000;
