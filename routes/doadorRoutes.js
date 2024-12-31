@@ -57,7 +57,7 @@ router.post('/cadastroDoador', async (req, res) => {
 
         const result = await pool.query(query, values);
         
-        res.send(`<script>alert('Doador cadastrado com sucesso! ID: ${result.rows[0].id_doador}'); window.location.href = '/loginDoador';</script>`);
+        res.send(`<script>alert('Doador cadastrado com sucesso! ID: ${result.rows[0].id_doador}'); window.location.href = '/login';</script>`);
     } catch (error) {
         console.error('Erro ao cadastrar doador:', error);
         res.send(`<script>alert('Erro ao cadastrar doador. Tente novamente.'); window.location.href = '/doador';</script>`);
@@ -71,7 +71,7 @@ router.get('/doadorHome', async (req, res) => {
     const userId = req.session.userId;
 
     if (!userId) {
-        return res.redirect('/loginDoador');
+        return res.redirect('/login');
     }
 
     try {
@@ -121,8 +121,8 @@ router.get('/doadorHome', async (req, res) => {
             doador_cidade: doador.doador_cidade,
             doador_UF: doador.doador_UF,
             doador_cep: doador.doador_cep,
-            doacoes, // Passando as doações formatadas para o EJS
-            notificacoes // Passando as notificações para o EJS
+            doacoes, 
+            notificacoes
         });
     } catch (error) {
         console.error('Erro ao consultar o banco de dados:', error);
@@ -154,7 +154,7 @@ router.post('/notificacao/lida/:id', async (req, res) => {
 router.get('/fazerdoacao', (req, res) => { 
     const userId = req.session.userId; // Certifique-se de que o ID do usuário está na sessão
     if (!userId) {
-        return res.redirect('/loginDoador');
+        return res.redirect('/login');
     }
     res.render('fazerdoacao', { userId });  // Passa o ID para o formulário
 });
@@ -162,17 +162,77 @@ router.get('/fazerdoacao', (req, res) => {
 
 // Rota para processar a doação
 router.post('/fazerDoacao', async (req, res) => {
-    const { doacao_alimento, doacao_qtd, doacao_obs, doacao_data, doacao_horario, id_doador } = req.body; 
+    const { doacao_alimento, doacao_qtd, doacao_obs, doacao_data, doacao_horario, id_doador } = req.body;
 
-    try { 
-        const query = `
-            INSERT INTO doacao (doacao_alimento, doacao_qtd, doacao_obs, doacao_data, doacao_horario, id_doador) 
+    try {
+        const query = 
+            `INSERT INTO doacao (doacao_alimento, doacao_qtd, doacao_obs, doacao_data, doacao_horario, id_doador) 
             VALUES ($1, $2, $3, $4, $5, $6) 
-            RETURNING id_doacao`; 
+            RETURNING id_doacao;`;
         const values = [doacao_alimento, doacao_qtd, doacao_obs, doacao_data, doacao_horario, id_doador]; 
         const result = await pool.query(query, values); 
         
-        res.send(`<script>alert('Doação realizada! ID: ${result.rows[0].id_doacao}'); window.location.href = '/fazerdoacao';</script>`); 
+        res.send(`
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Doação Realizada</title>
+                <style>
+                    body{
+                        background-color:#f0f0f0 ;
+                        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                        color: #2C5555;
+                    }
+
+                    .container{
+                        display: flex;
+                        flex-direction: column;
+                        place-items: center;
+                        place-content: center;
+                    }
+
+                    img{
+                        max-width: 100%;
+                        width: 500px;
+                    }
+
+                    h1{
+                        margin: 0;
+                    }
+
+                    .countdown {
+                        font-size: 24px;
+                        font-weight: bold;
+                        margin-top: 20px;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <img src="/img/doacao.png" alt="Doação">
+                    <h1>DOAÇÃO REALIZADA COM SUCESSO!!</h1>
+                    <p>VOLTANDO PARA A TELA INICIAL</p>
+                    <p class="countdown" id="countdown">3</p>
+                </div>
+                <script>
+                    // Contagem regressiva para redirecionamento
+                    let countdown = 3;
+                    const countdownElement = document.getElementById('countdown');
+                    
+                    const interval = setInterval(function() {
+                        countdown--;
+                        countdownElement.textContent = countdown;
+                        if (countdown === 0) {
+                            clearInterval(interval);
+                            window.location.href = '/doadorHome'; // Redireciona após 3 segundos
+                        }
+                    }, 1000); // Atualiza a contagem a cada 1 segundo
+                </script>
+            </body>
+            </html>
+        `);
     } catch (error) { 
         console.error('Erro ao realizar a doação:', error); 
         res.send(`<script>alert('Erro ao realizar a doação. Tente novamente.'); window.location.href = '/fazerdoacao';</script>`); 
@@ -183,7 +243,7 @@ router.post('/fazerDoacao', async (req, res) => {
 router.get('/editar', async (req, res) => {
     const userId = req.session.userId;
     if (!userId) {
-        return res.redirect('/loginDoador');
+        return res.redirect('/login');
     }
 
     try {

@@ -23,38 +23,70 @@
     <section>
         <h2 class="titulo-inicial">Olá, <%= nome_razao %>
         </h2> <!-- Nome do Doador -->
-        <div class="banner">
-            <div class="mySwiper">
-                <img src="/img/partoArte.jpg" alt="">
-            </div>
-        </div>
-        </div>
-
-        <div class="doacao-notificiacao">
-            <div class="doacao">
-                <a href="/fazerdoacao"><img src="/img/doacao.svg" alt="">Fazer Doação</a>
-            </div>
-            <div class="notificacao">
-
-                <h3 class="titulo-containeir">notificações</h3>
-                <div class="notificacoes">
-                    <% if (notificacoes.length===0) { %>
-                        <p class="semNot">Não há notificações no momento.</p>
-                        <% } else { %>
-                            <% notificacoes.forEach(function(notificacao) { %>
-                                <div class="notificacao-item">
-                                    <p>
-                                        <%= notificacao.notificacao_texto %>
-                                    </p>
-                                    <form action="/notificacao/lida/<%= notificacao.id_notificacao %>" method="POST">
-                                        <button type="submit"><i class="fas fa-check"></i></button>
-                                    </form>
-                                </div>
-                                <hr>
-                                <% }); %>
-                                    <% } %>
+        <div class="container">
+            <div>
+                <div class="banner">
+                    <div class="mySwiper">
+                        <img src="/img/partoArte.jpg" alt="">
+                    </div>
+                </div>
+                
+                <div class="doacao-notificiacao">
+                    <div class="doacao">
+                        <a href="/fazerdoacao"><img src="/img/doacao.svg" alt="">Fazer Doação</a>
+                    </div>
+                    <div class="notificacao">
+                        <h3 class="titulo-containeir">notificações</h3>
+                        <div class="notificacoes">
+                            <% if (notificacoes.length===0) { %>
+                                <p class="semNot">Não há notificações no momento.</p>
+                                <% } else { %>
+                                    <% notificacoes.forEach(function(notificacao) { %>
+                                        <div class="notificacao-item">
+                                            <p>
+                                                <%= notificacao.notificacao_texto %>
+                                            </p>
+                                            <form action="/notificacao/lida/<%= notificacao.id_notificacao %>" method="POST">
+                                                <button type="submit"><i class="fas fa-check"></i></button>
+                                            </form>
+                                        </div>
+                                        <hr>
+                                        <% }); %>
+                                            <% } %>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="historico">
+                <h3 class="titulo-containeir">Histórico de Doações</h3>
+                <div class="historico-lista">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Alimento</th>
+                                <th>Quantidade</th>
+                                <th>Data</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (doacoes.length === 0) { %>
+                                <tr class="else-historico">
+                                    <td colspan="4">Nenhuma doação registrada.</td>
+                                </tr>
+                            <% } else { %>
+                                <% doacoes.forEach(function(doacao) { %>
+                                    <tr>
+                                        <td><%= doacao.doacao_alimento %></td>
+                                        <td><%= doacao.doacao_qtd %></td>
+                                        <td><%= doacao.doacao_data %></td>
+                                    </tr>
+                                <% }) %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
 
         </div>
     </section>

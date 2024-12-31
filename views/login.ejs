@@ -17,16 +17,17 @@
                 <input type="password" id="senha" name="senha" placeholder="Senha">
                 <div class="select-button">
                         <select name="userType" id="userType">
-                            <option value=""> Selecione o tipo de usuário
+                            <option value="selecione"> Selecione o tipo de usuário
                             </option>
                             <option value="beneficiario">Beneficiário</option>
                             <option value="doador">Doador</option>
+                            <option value="adm">Administrador</option>
                         </select>
                     <div class="botao"><button type="submit">ENTRAR</button></div>
                 </div>
             </form>
 
-            <a id="cadastroLink" href="beneficiario">CADASTRE-SE AQUI</a>
+            <a id="cadastroLink" href="#">CADASTRE-SE AQUI</a>
         </div>
         <div class="img-container"><img src="/img/loginImg.png" alt=""></div>
     </div>
@@ -35,11 +36,19 @@
         const userTypeSelect = document.getElementById('userType');
         const cadastroLink = document.getElementById('cadastroLink');
 
+
         userTypeSelect.addEventListener('change', () => {
-            if (userTypeSelect.value === 'doador') {
-                cadastroLink.href = 'doador';  // Atualiza o link para o cadastro do Doador
+            if(userTypeSelect.value ==='selecione') {
+                cadastroLink.href = '/#';  
+            }
+            else if (userTypeSelect.value === 'doador') {
+                cadastroLink.href = '/doador';  
+                cadastroLink.style.display = 'inline-block'; 
+            } else if (userTypeSelect.value === 'beneficiario'){
+                cadastroLink.href = '/beneficiario';
+                cadastroLink.style.display = 'inline-block'; 
             } else {
-                cadastroLink.href = 'beneficiario';  // Atualiza o link para o cadastro do Beneficiário
+                cadastroLink.style.display = 'none'; 
             }
         });
     </script>
