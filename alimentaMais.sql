@@ -82,3 +82,11 @@ select * from notificacao;
 ALTER TABLE cadastro_beneficiario
 ADD CONSTRAINT unique_benef_email UNIQUE (benef_email),
 ADD CONSTRAINT unique_benef_telefone UNIQUE (benef_telefone);
+
+CREATE TABLE administrador (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(100) UNIQUE NOT NULL, -- admin@admin.com
+    senha VARCHAR(60) NOT NULL -- admin123
+);
+
+
