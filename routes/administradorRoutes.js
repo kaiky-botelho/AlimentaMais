@@ -6,8 +6,8 @@ const { ptBR } = require('date-fns/locale');
 const pool = require('../config/database');
 
 
-router.get('/admimHome', (req, res) => {
-    res.render('admimHome');
+router.get('/validar', (req, res) => {
+    res.render('validar');
 });
 
 router.get('/cadAdmin', (req, res) => {
