@@ -13,7 +13,7 @@
             <!-- Div de Informações Pessoais -->
             <div class="input-container">
                 <div class="info-pessoais" id="info-pessoais">
-                    <h2>CADASTRO - BENEFICIÁRIO</h2>
+                    <h2>CADASTRO - DOADOR</h2>
                     <h3>INFORMAÇÕES PESSOAIS</h3>
                     <input type="text" id="nome_razao" name="nome_razao" placeholder="Nome Completo do Responsável">
                     <input type="text" id="doador_documento" name="doador_documento" placeholder="CPF ou CNPJ">
@@ -23,7 +23,16 @@
                     </div>
                     <div class="emailSenha">
                         <input type="email" id="doador_email" name="doador_email" placeholder="E-mail">
-                        <input type="password" id="doador_senha" name="doador_senha" placeholder="Senha">
+                        <div class="password-container">
+                            <input type="password" id="doador_senha" name="doador_senha" placeholder="Senha">
+                            <span id="toggle-password" class="eye-icon">
+                              <!-- Ícone de olho fechado -->
+                              <i id="eye-closed" class="fas fa-eye-slash"></i>
+                              <!-- Ícone de olho aberto -->
+                              <i id="eye-open" class="fas fa-eye" style="display:none;"></i>
+                            </span>
+                            <script src="js/ocultaSenha.js"></script>
+                          </div>     
                     </div>
                     <button type="button" id="button">PRÓXIMO</button>
                 </div>

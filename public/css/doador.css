@@ -64,12 +64,12 @@ section .titulo-inicial{
     gap: 10px;
 }
 
-.doacao-notificiacao{
+.doacao-historico{
     display: flex;
     gap: 24px;
 }
 
-.doacao-notificiacao .doacao{
+.doacao-historico .doacao{
     background: rgb(223,91,53);
     background: linear-gradient(27deg, rgba(223,91,53,1) 0%, rgba(240,127,95,1) 100%);
     width: 350px;
@@ -83,7 +83,7 @@ section .titulo-inicial{
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
-.doacao-notificiacao .doacao a{
+.doacao-historico .doacao a{
     display: flex;
     flex-direction: column;
     text-decoration: none;
@@ -92,7 +92,7 @@ section .titulo-inicial{
     font-size: 20px;
     font-weight: 900;
 }
-.doacao-notificiacao .doacao a img{
+.doacao-historico .doacao a img{
     max-width: 100%;
     width: 200px;
 }
@@ -105,7 +105,7 @@ section .titulo-inicial{
     text-transform: uppercase;
 }
 
-.doacao-notificiacao .notificacao{
+.doacao-historico .historico{
     background: #ffffff;
     width: 700px;
     height: 350px;
@@ -115,7 +115,7 @@ section .titulo-inicial{
     overflow-y: scroll;
 }
 
-.doacao-notificiacao .notificacao .notificacao-item{
+.imagem-noti .notificacao .notificacao-item{
     display: grid;
     grid-template-columns: 1fr 1fr;
     font-weight: 600;
@@ -132,7 +132,7 @@ section .titulo-inicial{
 }
 
 
-.doacao-notificiacao .notificacao .notificacao-item button{
+.imagem-noti .notificacao .notificacao-item button{
     border: none;
     background-color: #2C5555;
     padding: 15px;
@@ -140,7 +140,7 @@ section .titulo-inicial{
     cursor: pointer;
 }
 
-.doacao-notificiacao .notificacao .notificacao-item button i.fas.fa-check {
+.imagem-noti .notificacao .notificacao-item button i.fas.fa-check {
     font-size: 20px;
     color: #fff;
 }
@@ -159,16 +159,18 @@ section .titulo-inicial{
     border-radius: 10px; 
 }
 
-.banner{
+.imagem-noti{
     margin-bottom: 20px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
+    gap: 10px;
 }
 
-.banner .mySwiper{
+.imagem-noti .imagem {
     background-color: #ffffff;
-    width: 1080px;
-    height: 350px;
+    width: 520px;
+    height: 300px;
     border-radius: 24px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     display: flex;
@@ -178,6 +180,19 @@ section .titulo-inicial{
     overflow: hidden;
 }
 
+.imagem-noti .imagem img{
+    max-width: 100%;
+}
+
+.imagem-noti .notificacao{
+    background: #ffffff;
+    width: 520px;
+    height: 300px;
+    border-radius: 24px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    padding: 20px;
+    overflow-y: scroll;
+}
 
 /*Perfil*/
 
@@ -308,4 +323,3 @@ section .titulo-inicial{
     background-color: #ffffff27;
     backdrop-filter: blur(10px);
 }
-

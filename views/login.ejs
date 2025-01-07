@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="/css/login.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -14,7 +15,18 @@
             <form action="/login" method="post">
                 <h1>LOGIN</h1>
                 <input type="email" id="email" name="email" placeholder="Email">
-                <input type="password" id="senha" name="senha" placeholder="Senha">
+                
+                <div class="password-container">
+                    <input type="password" id="senha" name="senha" placeholder="Senha">
+                    <span id="toggle-password" class="eye-icon">
+                      <!-- Ícone de olho fechado -->
+                      <i id="eye-closed" class="fas fa-eye-slash"></i>
+                      <!-- Ícone de olho aberto -->
+                      <i id="eye-open" class="fas fa-eye" style="display:none;"></i>
+                    </span>
+                    <script src="js/ocultaSenha.js"></script>
+                  </div>                        
+                  
                 <div class="select-button">
                         <select name="userType" id="userType">
                             <option value="selecione"> Selecione o tipo de usuário

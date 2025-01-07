@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doador</title>
-    <link rel="stylesheet" href="/css/doador.css">
+    <link rel="stylesheet" href="./css/doador.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
     <!--Cabeçalho-->
     <header>
-        <img src="/img/logoV3.png" alt="Logo do Alimenta Mais" class="logo">
+        <img src="./img/logoV3.png" alt="Logo do Alimenta Mais" class="logo">
         <div class="buttons-nav">
-            <a id="profile"><img src="/img/perfil.svg" alt="Icone de perfil"></a>
-            <a href="/"><img src="/img/sair.svg" alt="Icone para Sair"></a>
+            <a id="profile"><img src="./img/perfil.svg" alt="Icone de perfil"></a>
+            <a href="/"><img src="./img/sair.svg" alt="Icone para Sair"></a>
         </div>
     </header>
 
@@ -25,16 +25,7 @@
         </h2> <!-- Nome do Doador -->
         <div class="container">
             <div>
-                <div class="banner">
-                    <div class="mySwiper">
-                        <img src="/img/partoArte.jpg" alt="">
-                    </div>
-                </div>
-                
-                <div class="doacao-notificiacao">
-                    <div class="doacao">
-                        <a href="/fazerdoacao"><img src="/img/doacao.svg" alt="">Fazer Doação</a>
-                    </div>
+                <div class="imagem-noti">
                     <div class="notificacao">
                         <h3 class="titulo-containeir">notificações</h3>
                         <div class="notificacoes">
@@ -55,39 +46,49 @@
                                             <% } %>
                         </div>
                     </div>
+                    <div class="imagem">
+                        <img src="./img/Group 196.jpg" alt="">
+                    </div>
                 </div>
-            </div>
-            <div class="historico">
-                <h3 class="titulo-containeir">Histórico de Doações</h3>
-                <div class="historico-lista">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Alimento</th>
-                                <th>Quantidade</th>
-                                <th>Data</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% if (doacoes.length === 0) { %>
-                                <tr class="else-historico">
-                                    <td colspan="4">Nenhuma doação registrada.</td>
-                                </tr>
-                            <% } else { %>
-                                <% doacoes.forEach(function(doacao) { %>
+                
+                <div class="doacao-historico">
+                    <div class="doacao">
+                        <a href="/fazerdoacao"><img src="./img/doacao.svg" alt="">Fazer Doação</a>
+                    </div>
+                    <div class="historico">
+                        <h3 class="titulo-containeir">Histórico</h3>
+                        <div class="historico-lista">
+                            <table border="1">
+                                <thead>
                                     <tr>
-                                        <td><%= doacao.doacao_alimento %></td>
-                                        <td><%= doacao.doacao_qtd %></td>
-                                        <td><%= doacao.doacao_data %></td>
+                                        <th>Alimento</th>
+                                        <th>Quantidade</th>
+                                        <th>Data</th>
+                                        <th>Horário</th>
                                     </tr>
-                                <% }) %>
-                            <% } %>
-                        </tbody>
-                    </table>
+                                </thead>
+                                <tbody>
+                                    <% if (doacoes.length > 0) { %>
+                                        <% doacoes.forEach(doacao => { %>
+                                            <tr>
+                                                <td><%= doacoes.doacao_alimento %></td>
+                                                <td><%= doacoes.doacao_qtd %></td>
+                                                <td><%= doacoes.doacao_data %></td>
+                                                <td><%= doacoes.doacao_horario %></td>
+                                            </tr>
+                                        <% }) %>
+                                    <% } else { %>
+                                        <tr>
+                                            <td colspan="7">Nenhuma doação registrada.</td>
+                                        </tr>
+                                    <% } %>
+                                </tbody>
+                                
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-
         </div>
     </section>
 
@@ -129,5 +130,4 @@
 
     <script src="/js/homeDoador.js"></script>
 </body>
-
 </html>
