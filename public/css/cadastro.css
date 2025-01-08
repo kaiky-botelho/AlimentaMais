@@ -201,4 +201,14 @@ button {
     width: 19vw;
 }
 
+.password-container {
+    position: relative; 
+}
 
+.eye-icon{
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
