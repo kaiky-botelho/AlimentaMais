@@ -33,7 +33,6 @@ document.getElementById('toggle-password').addEventListener('click', function() 
   });
 
 //Beneficiario
-
 document.getElementById('toggle-password').addEventListener('click', function() {
     const passwordField = document.getElementById('benef_senha');
     const eyeOpen = document.getElementById('eye-open');
