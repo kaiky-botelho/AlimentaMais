@@ -1,8 +1,8 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
+const multer = require('multer');
+const path = require('path');
 const router = express.Router();
-const { format } = require('date-fns');
-const { ptBR } = require('date-fns/locale');
 const pool = require('../config/database');
 
 // Rota para exibir o formulário de cadastro de beneficiário
@@ -10,8 +10,33 @@ router.get('/beneficiario', (req, res) => {
     res.render('beneficiario');
 });
 
+// Configuração do multer para salvar arquivos PDF na pasta 'uploads'
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'uploads/'); // Pasta onde os PDFs serão armazenados
+    },
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+        cb(null, `${file.fieldname}-${uniqueSuffix}${path.extname(file.originalname)}`);
+    }
+});
+
+const upload = multer({
+    storage: storage,
+    fileFilter: (req, file, cb) => {
+        const fileTypes = /pdf/;
+        const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
+        const mimeType = fileTypes.test(file.mimetype);
+        if (extname && mimeType) {
+            cb(null, true);
+        } else {
+            cb(new Error('Apenas arquivos PDF são permitidos'));
+        }
+    }
+});
+
 // Rota para processar o formulário de cadastro de beneficiários
-router.post('/cadastroBeneficiario', async (req, res) => {
+router.post('/cadastroBeneficiario', upload.single('comprovante_PDF'), async (req, res) => {
     const { 
         nome, 
         benef_documento, 
@@ -26,8 +51,12 @@ router.post('/cadastroBeneficiario', async (req, res) => {
         benef_numero, 
         benef_bairro, 
         benef_complemento, 
+        qtd_familiares,
         renda 
     } = req.body;
+
+    // Verifica se o arquivo foi enviado
+    const comprovantePDF = req.file ? req.file.path : null;
 
     try {
         // Verifique se a senha foi fornecida
@@ -41,8 +70,8 @@ router.post('/cadastroBeneficiario', async (req, res) => {
 
         const query = `
             INSERT INTO cadastro_beneficiario 
-            (nome, benef_documento, benef_telefone, benef_data_nasc, benef_email, benef_senha, benef_cep, benef_cidade, benef_UF, benef_endereco, benef_numero, benef_bairro, benef_complemento, renda) 
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) 
+            (nome, benef_documento, benef_telefone, benef_data_nasc, benef_email, benef_senha, benef_cep, benef_cidade, benef_UF, benef_endereco, benef_numero, benef_bairro, benef_complemento, qtd_familiares, renda, comprovante_PDF) 
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) 
             RETURNING id_beneficiario
         `;
 
@@ -59,8 +88,10 @@ router.post('/cadastroBeneficiario', async (req, res) => {
             benef_endereco, 
             benef_numero, 
             benef_bairro, 
-            benef_complemento, 
-            renda
+            benef_complemento,
+            qtd_familiares, 
+            renda,
+            comprovantePDF // Adiciona o caminho do PDF
         ];
 
         const result = await pool.query(query, values);
@@ -71,6 +102,7 @@ router.post('/cadastroBeneficiario', async (req, res) => {
         res.send(`<script>alert('Erro ao cadastrar beneficiário. Tente novamente.'); window.location.href = '/beneficiario';</script>`);
     }
 });
+
 
 // Rota para a página principal do beneficiário
 router.get('/beneficiarioHome', async (req, res) => {
