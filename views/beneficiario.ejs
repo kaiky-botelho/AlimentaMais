@@ -11,7 +11,7 @@
 
 <body>
     <div class="container">
-        <form action="/cadastroBeneficiario" method="POST" id="formCadastro">
+        <form action="/cadastroBeneficiario" method="POST" enctype="multipart/form-data" id="formCadastro">
             <!-- Div de Informações Pessoais -->
             <div class="input-container">
                 <div class="info-pessoais" id="info-pessoais">
@@ -47,10 +47,22 @@
                             <option>2 ou mais</option>
                         </select>
                         <label class="upload-btn">
-                            Enviar Comprovante
-                            <img src="/img/upload-cloud.png" alt="">
-                            <input type="file" name="comprovante_PDF" id="comprovante_PDF" accept="application/pdf" required>
+                            <span id="button-text">Enviar Comprovante</span> 
+                            <img src="/img/upload-cloud.png" alt="Upload" id="upload-icon"> 
+                            <input type="file" name="comprovantePDF" id="comprovantePDF" accept="application/pdf" required>
+                            <script>
+                                let isSubmitting = false;
+                             
+                                document.getElementById("myForm").addEventListener("submit", function(event) {
+                                    if (isSubmitting) {
+                                        event.preventDefault(); 
+                                    } else {
+                                        isSubmitting = true; 
+                                    }
+                                });
+                             </script>
                         </label>
+                        
                     </div>
                     <button type="button" id="button">PRÓXIMO</button>
                 </div>
@@ -91,7 +103,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
     <script src="/js/formBenef.js"></script>
     <script src="js/ocultaSenha.js"></script>
+    <script src="/js/uploadButton.js"></script>
 
 </body>
-
 </html>

@@ -36,7 +36,7 @@ const upload = multer({
 });
 
 // Rota para processar o formulário de cadastro de beneficiários
-router.post('/cadastroBeneficiario', upload.single('comprovante_PDF'), async (req, res) => {
+router.post('/cadastroBeneficiario', upload.single('comprovantePDF'), async (req, res) => {
     const { 
         nome, 
         benef_documento, 
@@ -70,7 +70,7 @@ router.post('/cadastroBeneficiario', upload.single('comprovante_PDF'), async (re
 
         const query = `
             INSERT INTO cadastro_beneficiario 
-            (nome, benef_documento, benef_telefone, benef_data_nasc, benef_email, benef_senha, benef_cep, benef_cidade, benef_UF, benef_endereco, benef_numero, benef_bairro, benef_complemento, qtd_familiares, renda, comprovante_PDF) 
+            (nome, benef_documento, benef_telefone, benef_data_nasc, benef_email, benef_senha, benef_cep, benef_cidade, benef_UF, benef_endereco, benef_numero, benef_bairro, benef_complemento, qtd_familiares, renda, comprovantePDF) 
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) 
             RETURNING id_beneficiario
         `;
