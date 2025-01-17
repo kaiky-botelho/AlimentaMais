@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizar Beneficiário</title>
+    <link rel="stylesheet" href="/css/admimView.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <img src="/img/logoV3.png" alt="Logo do Alimenta Mais" class="logo">
+        <div class="buttons-nav">
+            <a href="/adminHome"><img src="/img/back.svg" alt="Ícone de Voltar"></a>
+            <a href="/"><img src="/img/sair.svg" alt="Ícone para Sair"></a>
+        </div>
+    </header>
+
+    <section>
+        <h2 class="titulo-inicial">Detalhes do Beneficiário</h2>
+
+        <div class="container-detalhes">
+            <table>
+                <tbody id="detalhesBeneficiario">
+                    <!-- Os dados serão preenchidos dinamicamente -->
+                </tbody>
+            </table>
+
+            <!-- Botões para Aprovar/Reprovar -->
+            <div class="botoes-acoes">
+                <button id="aprovar" class="botao-aprovar">Aprovar</button>
+                <button id="reprovar" class="botao-reprovar">Reprovar</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Obtenção do ID do beneficiário da URL
+        const beneficiarioId = window.location.pathname.split('/').pop();
+
+        // Fetch dos detalhes do beneficiário
+        fetch(`/admin/beneficiarios/detalhes/${beneficiarioId}`)
+            .then(response => response.json())
+            .then(data => {
+                const detalhesTable = document.getElementById('detalhesBeneficiario');
+                
+                // Montar os dados do beneficiário
+                detalhesTable.innerHTML = `
+                    <tr><td><strong>ID:</strong></td><td>${data.id_beneficiario}</td></tr>
+                    <tr><td><strong>Nome:</strong></td><td>${data.nome}</td></tr>
+                    <tr><td><strong>Documento:</strong></td><td>${data.benef_documento}</td></tr>
+                    <tr><td><strong>Telefone:</strong></td><td>${data.benef_telefone}</td></tr>
+                    <tr><td><strong>Data de Nascimento:</strong></td><td>${data.benef_data_nasc}</td></tr>
+                    <tr><td><strong>Email:</strong></td><td>${data.benef_email}</td></tr>
+                    <tr><td><strong>CEP:</strong></td><td>${data.benef_cep}</td></tr>
+                    <tr><td><strong>Cidade:</strong></td><td>${data.benef_cidade}</td></tr>
+                    <tr><td><strong>Estado (UF):</strong></td><td>${data.benef_UF}</td></tr>
+                    <tr><td><strong>Endereço:</strong></td><td>${data.benef_endereco}, Nº ${data.benef_numero}</td></tr>
+                    <tr><td><strong>Bairro:</strong></td><td>${data.benef_bairro}</td></tr>
+                    <tr><td><strong>Complemento:</strong></td><td>${data.benef_complemento}</td></tr>
+                    <tr><td><strong>Quantidade de Familiares:</strong></td><td>${data.qtd_familiares}</td></tr>
+                    <tr><td><strong>Renda:</strong></td><td>${data.renda}</td></tr>
+                    <tr><td><strong>Comprovante:</strong></td>
+                        <td><a href="/uploads/${data.comprovantepdf}" target="_blank">Visualizar Comprovante</a></td>
+                    </tr>
+                `;
+            })
+            .catch(err => console.error('Erro ao carregar os detalhes do beneficiário:', err));
+
+        // Aprovar Beneficiário
+        document.getElementById('aprovar').addEventListener('click', () => {
+            if (confirm('Tem certeza que deseja aprovar este beneficiário?')) {
+                fetch(`/admin/beneficiarios/${beneficiarioId}/aprovar`, { method: 'POST' })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(data.message);
+                        window.location.href = '/adminHome'; // Voltar para a página inicial
+                    })
+                    .catch(err => console.error('Erro ao aprovar beneficiário:', err));
+            }
+        });
+
+        // Reprovar Beneficiário
+        document.getElementById('reprovar').addEventListener('click', () => {
+            if (confirm('Tem certeza que deseja reprovar este beneficiário?')) {
+                fetch(`/admin/beneficiarios/${beneficiarioId}/reprovar`, { method: 'POST' })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(data.message);
+                        window.location.href = '/adminHome'; // Voltar para a página inicial
+                    })
+                    .catch(err => console.error('Erro ao reprovar beneficiário:', err));
+            }
+        });
+    </script>
+</body>
+</html>
