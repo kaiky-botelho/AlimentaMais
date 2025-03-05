@@ -1,7 +1,5 @@
 # Alimenta Mais
 
-![Alimenta Mais Logo](link-para-logo)
-
 ## Descrição
 O **Alimenta Mais** é uma plataforma desenvolvida para conectar doadores e beneficiários de alimentos, promovendo a solidariedade e reduzindo o desperdício de comida. A solução visa facilitar a doação e distribuição de alimentos para pessoas necessitadas.
 
